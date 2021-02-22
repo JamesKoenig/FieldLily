@@ -7,7 +7,7 @@
     "start": "node app.js",
     "server": "nodemon app.js"
   },
-  "author": "qi zhu",
+  "author": ["James Koenig","Itai Farhi","Qi Zhu"],
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
