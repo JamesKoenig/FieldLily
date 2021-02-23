@@ -1,11 +1,15 @@
 {
   "name": "test_mern",
   "version": "1.0.0",
-  "description": "test mern",
+  "description": "Field of Lily",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "debug": "node --inspect app.js",
+    "frontend-install": "npm install --prefix frontend",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": ["James Koenig","Itai Farhi","Qi Zhu"],
   "license": "ISC",
