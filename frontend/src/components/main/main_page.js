@@ -7,7 +7,7 @@ class MainPage extends React.Component {
       <div>
         <h1>Field Lily</h1>
         <footer>
-        BSD 3 &copy; 2021
+        CC-BY 4.0 &copy; 2021
         </footer>
       </div>
     );
