@@ -1,7 +1,7 @@
 {
-  "name": "test_mern",
+  "name": "field_lily",
   "version": "1.0.0",
-  "description": "Field of Lily",
+  "description": "Field Lily",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

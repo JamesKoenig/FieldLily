@@ -12,15 +12,15 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
-router.get('/user/:user_id', (req, res) => {
-    Habit.find({user: req.params.user_id})
-        .sort({ date: -1 })
-        .then(habits => res.json(habits))
-        .catch(err =>
-            res.status(404).json({ nohabitsfound: 'No habits found from that user' }
-        )
-    );
-});
+// router.get('/user/:user_id', (req, res) => {
+//     Habit.find({user: req.params.user_id})
+//         .sort({ date: -1 })
+//         .then(habits => res.json(habits))
+//         .catch(err =>
+//             res.status(404).json({ nohabitsfound: 'No habits found from that user' }
+//         )
+//     );
+// });
 
 router.get('/:id', (req, res) => {
     Habit.findById(req.params.id)
