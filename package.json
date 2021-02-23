@@ -1,11 +1,12 @@
 {
   "name": "test_mern",
   "version": "1.0.0",
-  "description": "test mern",
+  "description": "Field of Lily",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
+    "debug": "node --inspect app.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
