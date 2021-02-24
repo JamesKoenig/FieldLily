@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const validateHabitInput = require('../../validation/habits');
+
 
 const Habit = require('../../models/Habit');
 
@@ -12,15 +14,15 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
-router.get('/user/:user_id', (req, res) => {
-    Habit.find({user: req.params.user_id})
-        .sort({ date: -1 })
-        .then(habits => res.json(habits))
-        .catch(err =>
-            res.status(404).json({ nohabitsfound: 'No habits found from that user' }
-        )
-    );
-});
+// router.get('/user/:user_id', (req, res) => {
+//     Habit.find({user: req.params.user_id})
+//         .sort({ date: -1 })
+//         .then(habits => res.json(habits))
+//         .catch(err =>
+//             res.status(404).json({ nohabitsfound: 'No habits found from that user' }
+//         )
+//     );
+// });
 
 router.get('/:id', (req, res) => {
     Habit.findById(req.params.id)
@@ -40,8 +42,9 @@ router.post('/',
       }
   
       const newHabit = new Habit({
-        text: req.body.text,
-        user: req.user.id
+        title: req.body.title,
+        user: req.user.id,
+        description: req.body.description
       });
   
       newHabit.save().then(habit => res.json(habit));
