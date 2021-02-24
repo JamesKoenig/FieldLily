@@ -4,7 +4,6 @@ const Habit = require('../models/Habit');
 
 module.exports = function validateResourceInput(data) {
   let errors = {};
-  
 
   data.description = validText(data.description) ? data.description : '';
   data.title = validText(data.title) ? data.title : '';
@@ -19,7 +18,7 @@ module.exports = function validateResourceInput(data) {
     errors.description = 'title field is required';
   }
 
-  if (!Habit.findById(habit_id)) {
+  if (!Habit.findById(data.habit_id)) {
     errors.description = 'invalid habit ID'
   }
 
