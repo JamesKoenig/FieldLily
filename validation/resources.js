@@ -1,5 +1,6 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
+const Habit = require('../models/Habit');
 
 module.exports = function validateResourceInput(data) {
   let errors = {};
@@ -18,8 +19,8 @@ module.exports = function validateResourceInput(data) {
     errors.description = 'title field is required';
   }
 
-  if (Validator.isEmpty(data.habit)) {
-    errors.description = 'habit field is required';
+  if (!Habit.findById(habit_id)) {
+    errors.description = 'invalid habit ID'
   }
 
   return {

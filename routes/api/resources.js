@@ -21,23 +21,34 @@ router.get('/:id', (req, res) => {
         );
 });
 
-router.post('/',
+router.get('/habits/:habit_id', (req, res) => {
+    Resource.find({habit: req.params.habit_id})
+        .sort({ date: -1 })
+        .then( resources => { res.json(resources) })
+        .catch( err =>
+            res.status(404).json({ 
+                nohabitfound: 'No habit found with that ID' 
+            })
+        );
+});
+
+router.post('/habits/:habit_id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
       const { errors, isValid } = validateResourceInput(req.body);
-        
+
       if (!isValid) {
         return res.status(400).json(errors);
       }
-  
+
       const newResource = new Resource({
         title: req.body.title,
         description: req.body.description,
-        habit: req.body.habit
+        habit: req.params.habit_id
       });
-  
+
       newResource.save().then(resource => res.json(resource));
     }
-  );
+);
 
-  module.exports = router;
+module.exports = router;
