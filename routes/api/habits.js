@@ -14,6 +14,18 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
+router.get(
+  "/currentUser",
+  passport.authenticate('jwt', {session: false }),
+  (req, res) => {
+    Habit.find( { user: req.user.id })
+      .then(  habits => res.json(habits))
+      .catch( err    => res.status(402)
+                           .json({ nocurrentuser: "no current user" })
+            )
+  }
+);
+
 router.get('/:id', (req, res) => {
     Habit.findById(req.params.id)
         .then(habit => res.json(habit))
