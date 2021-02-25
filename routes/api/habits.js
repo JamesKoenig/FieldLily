@@ -59,7 +59,7 @@ router.post('/',
         Habit.findById(req.params.id).then((habit) => {
             if (habit) {
                 if (habit.user != req.user.id){
-                    res.status(404).json({ wronguser: 'can only be updated by owner' });
+                    res.status(401).json({ wronguser: 'Habits can only be updated by owner' });
                 }else{
                     if (req.body.title) {
                         habit.title = req.body.title;
