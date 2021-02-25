@@ -52,4 +52,38 @@ router.post('/habits/:habit_id',
     }
 );
 
+router.put('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Resource.findById(req.params.id).then((resource) => {
+            if (resource) {
+                if (req.body.title) {
+                    resource.title = req.body.title;
+                }
+
+                if (req.body.description) {
+                    resource.description = req.body.description;
+                }
+                resource.save().then((resource) => res.json(resource));
+            } else {
+                res.status(404).json({ noresourcefound: 'No resource with that ID' });
+            }
+        });
+    }
+);
+
+router.delete("/:id",  
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Resource.findOneAndRemove({
+        _id: req.params.id
+      })
+      .then(resource => {
+        res.json(resource);
+      })
+      .catch(err => res.status(400).json({noresourceFound: "No resource Found"}));
+});
+
+
+
 module.exports = router;

@@ -53,4 +53,37 @@ router.post('/',
     }
   );
 
-  module.exports = router;
+  router.put('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Habit.findById(req.params.id).then((habit) => {
+            if (habit) {
+                if (req.body.title) {
+                    habit.title = req.body.title;
+                }
+
+                if (req.body.description) {
+                    habit.description = req.body.description;
+                }
+                habit.save().then((habit) => res.json(habit));
+            } else {
+                res.status(404).json({ nohabitfound: 'No habit with that ID' });
+            }
+        });
+    }
+);
+
+router.delete("/:id",  
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Habit.findOneAndRemove({
+            _id: req.params.id
+        })
+        .then(habit => {
+            res.json(habit);
+        })
+        .catch(err => res.status(404).json({nohabitFound: "No habit with that ID"}));
+    }
+);
+
+module.exports = router;
