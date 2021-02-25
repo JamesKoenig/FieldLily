@@ -85,7 +85,7 @@ router.delete("/:id",
             if (resource) {
                 Habit.findById(resource.habit).then((habit) => {
                     if (habit.user != req.user.id){
-                        res.status(404).json({ wronguser: 'can only be deleted by owner' });
+                        res.status(401).json({ wronguser: 'Resource can only be deleted by owner' });
                     }else{
                         resource.delete().then((resource) => res.json(resource));   
                     }
