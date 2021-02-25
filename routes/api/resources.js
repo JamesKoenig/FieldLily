@@ -57,14 +57,20 @@ router.put('/:id',
     (req, res) => {
         Resource.findById(req.params.id).then((resource) => {
             if (resource) {
-                if (req.body.title) {
-                    resource.title = req.body.title;
-                }
+                Habit.findById(resource.habit).then((habit) => {
+                    if (habit.user != req.user.id){
+                        res.status(401).json({ wronguser: 'Resource can only be updated by owner' });
+                    }else{
+                        if (req.body.title) {
+                            resource.title = req.body.title;
+                        }
 
-                if (req.body.description) {
-                    resource.description = req.body.description;
-                }
-                resource.save().then((resource) => res.json(resource));
+                        if (req.body.description) {
+                            resource.description = req.body.description;
+                        }
+                        resource.save().then((resource) => res.json(resource));
+                    }
+                })
             } else {
                 res.status(404).json({ noresourcefound: 'No resource with that ID' });
             }
@@ -73,16 +79,23 @@ router.put('/:id',
 );
 
 router.delete("/:id",  
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Resource.findOneAndRemove({
-        _id: req.params.id
-      })
-      .then(resource => {
-        res.json(resource);
-      })
-      .catch(err => res.status(400).json({noresourceFound: "No resource Found"}));
-});
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Resource.findById(req.params.id).then((resource) => {
+            if (resource) {
+                Habit.findById(resource.habit).then((habit) => {
+                    if (habit.user != req.user.id){
+                        res.status(401).json({ wronguser: 'Resource can only be deleted by owner' });
+                    }else{
+                        resource.delete().then((resource) => res.json(resource));   
+                    }
+                })
+            } else {
+                res.status(404).json({ noresourcefound: 'No resource with that ID' });
+            }
+        });
+    }   
+);
 
 
 
