@@ -58,14 +58,19 @@ router.post('/',
     (req, res) => {
         Habit.findById(req.params.id).then((habit) => {
             if (habit) {
-                if (req.body.title) {
-                    habit.title = req.body.title;
-                }
+                if (habit.user != req.user.id){
+                    res.status(404).json({ wronguser: 'can only be updated by owner' });
+                }else{
+                    if (req.body.title) {
+                        habit.title = req.body.title;
+                    }
 
-                if (req.body.description) {
-                    habit.description = req.body.description;
+                    if (req.body.description) {
+                        habit.description = req.body.description;
+                    }
+                    habit.save().then((habit) => res.json(habit));
                 }
-                habit.save().then((habit) => res.json(habit));
+                
             } else {
                 res.status(404).json({ nohabitfound: 'No habit with that ID' });
             }
@@ -76,13 +81,17 @@ router.post('/',
 router.delete("/:id",  
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        Habit.findOneAndRemove({
-            _id: req.params.id
+        Habit.findById(req.params.id).then((habit) => {
+            if (habit) {
+                if (habit.user != req.user.id){
+                    res.status(404).json({ wronguser: 'can only be deleted by owner' });
+                } else {
+                    habit.delete().then((habit) => res.json(habit));
+                }
+            } else {
+                res.status(404).json({ nohabitfound: 'No habit with that ID' });
+            }
         })
-        .then(habit => {
-            res.json(habit);
-        })
-        .catch(err => res.status(404).json({nohabitFound: "No habit with that ID"}));
     }
 );
 
