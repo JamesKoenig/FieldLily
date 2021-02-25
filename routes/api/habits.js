@@ -82,7 +82,7 @@ router.delete("/:id",
         .then(habit => {
             res.json(habit);
         })
-        .catch(err => res.status(400).json({nohabitFound: "No habit Found"}));
+        .catch(err => res.status(404).json({nohabitFound: "No habit with that ID"}));
     }
 );
 
