@@ -39,20 +39,26 @@ router.get('/habits/:habit_id', (req, res) => {
 router.post('/habits/:habit_id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      const resource = {
-        title: req.body.title,
-        description: req.body.description,
-        habit: req.params.habit_id
-      };
-      const { errors, isValid } = validateResourceInput(resource);
+        const resource = {
+            title: req.body.title,
+            description: req.body.description,
+            habit: req.params.habit_id
+        };
+        const { errors, isValid } = validateResourceInput(resource);
 
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
 
-      const newResource = new Resource(resource);
+        const newResource = new Resource(resource);
 
-      newResource.save().then(resource => res.json(resFromObj(resource)));
+        Habit.findById(resource.habit).then((habit) => {
+            if (habit.user != req.user.id){
+                res.status(401).json({ wronguser: 'Resource can only be added by owner' });
+            }else{
+                newResource.save().then(resource => res.json(resFromObj(resource)));
+            }
+        })
     }
 );
 
