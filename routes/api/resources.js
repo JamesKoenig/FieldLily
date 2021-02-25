@@ -4,18 +4,22 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const validateResourceInput = require('../../validation/resources');
 const Resource = require('../../models/Resource');
+const {
+  resFromArr,
+  resFromObj,
+} = require("./utils");
 
 router.get('/', (req, res) => {
     Resource.find()
         .sort({ date: -1 })
-        .then(resources => res.json(resources))
+        .then(resources => res.json(resFromArr(resources)))
         .catch(err => res.status(404).json({ noresourcesfound: 'No resources found' }));
 });
 
 
 router.get('/:id', (req, res) => {
     Resource.findById(req.params.id)
-        .then(resource => res.json(resource))
+        .then(resource => res.json(resFromObj(resource)))
         .catch(err =>
             res.status(404).json({ noresourcefound: 'No resource found with that ID' })
         );
@@ -24,7 +28,7 @@ router.get('/:id', (req, res) => {
 router.get('/habits/:habit_id', (req, res) => {
     Resource.find({habit: req.params.habit_id})
         .sort({ date: -1 })
-        .then( resources => { res.json(resources) })
+        .then( resources => { res.json(resFromArr(resources)) })
         .catch( err =>
             res.status(404).json({
                 nohabitfound: 'No habit found with that ID'
@@ -48,7 +52,7 @@ router.post('/habits/:habit_id',
 
       const newResource = new Resource(resource);
 
-      newResource.save().then(resource => res.json(resource));
+      newResource.save().then(resource => res.json(resFromObj(resource)));
     }
 );
 
@@ -68,7 +72,7 @@ router.put('/:id',
                         if (req.body.description) {
                             resource.description = req.body.description;
                         }
-                        resource.save().then((resource) => res.json(resource));
+                        resource.save().then((resource) => res.json(resFromObj(resource)));
                     }
                 })
             } else {
@@ -87,7 +91,7 @@ router.delete("/:id",
                     if (habit.user != req.user.id){
                         res.status(401).json({ wronguser: 'Resource can only be deleted by owner' });
                     }else{
-                        resource.delete().then((resource) => res.json(resource));   
+                        resource.delete().then((resource) => res.json(resFromObj(resource)));   
                     }
                 })
             } else {
