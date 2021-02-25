@@ -10,6 +10,7 @@ const {
 
 
 const Habit = require('../../models/Habit');
+const Resource = require('../../models/Resource');
 
 router.get('/', (req, res) => {
     Habit.find()
@@ -91,7 +92,13 @@ router.delete("/:id",
                 if (habit.user != req.user.id){
                     res.status(401).json({ wronguser: 'can only be deleted by owner' });
                 } else {
-                    habit.delete().then((habit) => res.json(resFromObj(habit)));
+                    Resource.deleteMany({habit: req.params.id}, function(err, result) {
+                        if (err) {
+                            res.send(err);
+                        } else {
+                            habit.delete().then((habit) => res.json(resFromObj(habit)));
+                        }
+                    })
                 }
             } else {
                 res.status(404).json({ nohabitfound: 'No habit with that ID' });
