@@ -38,6 +38,7 @@ class Modal extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyPress);
+    this.props.closeModal();
   }
 
   render() {

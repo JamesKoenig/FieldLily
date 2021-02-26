@@ -27,12 +27,12 @@ class NavBar extends React.Component {
         ];
       } else {
         return [
-          <button key="login" 
-                  onClick={ () => openModal('login') }> 
+          <button key="login"
+                  onClick={ () => openModal('login') }>
             Login
           </button>,
-          <button key="signup" 
-                  onClick={ () => openModal('signup') }> 
+          <button key="signup"
+                  onClick={ () => openModal('signup') }>
             Sign Up
           </button>,
         ];
@@ -48,7 +48,7 @@ class NavBar extends React.Component {
                { [<div></div>,...this.getLinks()] }
              </div>
           </div>
-          <Modal />
+          { this.props.loggedIn ? null : <Modal /> }
         </div>
       );
   }
