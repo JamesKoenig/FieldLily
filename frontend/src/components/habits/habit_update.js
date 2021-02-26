@@ -21,11 +21,23 @@ class HabitUpdate extends React.Component {
 
 
   handleChangeTitle(e) {
-    this.setState({ title: e.target.value })
+    let habit = {
+        title: this.state.title,
+        description: this.state.description
+      };    
+    let modifiedTitle = e.target.value
+    habit.title = modifiedTitle
+    this.setState({ habit: habit })
   }
 
   handleChangeDescription(e) {
-    this.setState({ description: e.target.value })
+    let habit = {
+        title: this.state.title,
+        description: this.state.description
+      }; 
+    let modifiedDescription = e.target.value
+    habit.description = modifiedDescription
+    this.setState({ habit: habit })
   }
 
   handleSubmit(e) {
@@ -38,6 +50,7 @@ class HabitUpdate extends React.Component {
     this.props.updateHabit(habit); 
     this.setState({title: '',
                    description: ''})
+    
   }
 
   update(key) {
@@ -54,18 +67,17 @@ class HabitUpdate extends React.Component {
                     <input type="textarea"
                         value={this.state.title}
                         onChange={this.update("title")}
-                        placeholder="Habit title"
+                        placeholder={this.state.title}
                     />
                     <input type="textarea"
                         value={this.state.description}
                         onChange={this.update("description")}
-                        placeholder="Habit description"
+                        placeholder={this.state.description}
                     />
                     <input type="submit" value="Submit" />
                 </div>
             </form>
             <br />
-            <HabitBox text={this.state.updateHabit} />
         </div>
     )
   }
