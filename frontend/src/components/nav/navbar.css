@@ -1,16 +1,25 @@
 .header-flex-container {
     position: fixed;
     display: flex;
-    top: 0;
-    width: 100%;
-    justify-content: center;
+    height: 100%;
+    left: 0;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
 }
 
 .header {
     display: flex;
-    width: 100%;
-    max-width: 1580px;
+    flex-direction: inherit;
+    height: 100%;
+    max-height: 500px;
     margin: auto;
     justify-content: space-between;
     margin-top: 8px;
+}
+
+.header-links {
+    display: flex;
+    flex-direction: inherit;
+    padding: 5px;
 }
