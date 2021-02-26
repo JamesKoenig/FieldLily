@@ -3,6 +3,7 @@ import { getHabits, getHabitId, writeHabit } from '../util/habit_api_util';
 export const RECEIVE_HABITS = "RECEIVE_HABITS";
 export const RECEIVE_HABIT_ID = "RECEIVE_HABIT_ID";
 export const RECEIVE_NEW_HABIT = "RECEIVE_NEW_HABIT";
+export const RECEIVE_UPDATED_HABIT = "RECEIVE_UPDATED_HABIT"
 
 export const receiveHabits = habits => ({
     type: RECEIVE_HABITS,
@@ -16,6 +17,11 @@ export const receiveHabitId = habit => ({
 
 export const receiveNewHabit = habit => ({
     type: RECEIVE_NEW_HABIT,
+    habit
+})
+
+export const receiveUpdatedHabit = habit => ({
+    type: RECEIVE_UPDATED_HABIT,
     habit
 })
 
@@ -36,3 +42,9 @@ export const composeHabit = data => dispatch => (
       .then(habit => dispatch(receiveNewHabit(habit)))
       .catch(err => console.log(err))
   );
+
+export const updateHabit = data => dispatch => (
+    writeHabit(data)
+      .then(habit => dispatch(receiveUpdatedHabit(habit)))
+      .catch(err => console.log(err))
+)

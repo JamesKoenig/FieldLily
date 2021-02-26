@@ -9,7 +9,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
-
+import HabitUpdateContainer from './habits/habit_update_container'
 
 
 
@@ -24,6 +24,7 @@ const App = () => (
         <ProtectedRoute exact path="/habits" component={HabitsContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
+        <ProtectedRoute exact path="/update_habit" component={HabitUpdateContainer} />
     </Switch>
   </div>
 );
