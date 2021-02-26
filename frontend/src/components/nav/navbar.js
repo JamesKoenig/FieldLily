@@ -43,9 +43,11 @@ class NavBar extends React.Component {
       return (
         <div className="navbar-flex-container">
           <div className="navbar">
-              <h1 className="navbar-logo">FieldLily</h1>
-                { this.getLinks() }
-              </div>
+            <h1 className="navbar-logo">FieldLily</h1>
+             <div className="navbar-links">
+               { [<div></div>,...this.getLinks()] }
+             </div>
+          </div>
           <Modal />
         </div>
       );
