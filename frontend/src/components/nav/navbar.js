@@ -27,21 +27,25 @@ class NavBar extends React.Component {
         ];
       } else {
         return [
-           <button onClick={ () => openModal('login') }> Login </button>,
-           <button onClick={ () => openModal('signup') }> Sign Up </button>,
+          <button key="login" 
+                  onClick={ () => openModal('login') }> 
+            Login
+          </button>,
+          <button key="signup" 
+                  onClick={ () => openModal('signup') }> 
+            Sign Up
+          </button>,
         ];
       }
   }
 
   render() {
       return (
-        <div className="header-flex-container">
-          <div className="header">
-              <h1 className="header-logo">FieldLily</h1>
-              <div className="header-links">
+        <div className="navbar-flex-container">
+          <div className="navbar">
+              <h1 className="navbar-logo">FieldLily</h1>
                 { this.getLinks() }
               </div>
-          </div>
           <Modal />
         </div>
       );
