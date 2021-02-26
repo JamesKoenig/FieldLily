@@ -10,12 +10,22 @@ class HabitUpdate extends React.Component {
           description: "",
           updateHabit: ""
       }
-
+      this.handleChangeTitle = this.onChangeTitle.bind(this)
+      this.handleChangeDescription = this.onChangeDescription.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
   componentWillReceiveProps(nextProps) {
       this.setState({updateHabit: nextProps.updateHabit.text});
+  }
+
+
+  handleChangeTitle(e) {
+    this.setState({ title: e.target.value })
+  }
+
+  handleChangeDescription(e) {
+    this.setState({ description: e.target.value })
   }
 
   handleSubmit(e) {

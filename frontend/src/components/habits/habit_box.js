@@ -9,7 +9,7 @@ class HabitBox extends React.Component {
               <li><h2>{this.props.title}</h2></li>
               {/* style this so that indent is indented */}
               <li><p id="indent">{this.props.description}
-                  <Link className=""
+                  <Link className="edit-link" to={"/:id/" + this.props.obj._id}></Link>
               </p></li>
             </ul>
         </div>
