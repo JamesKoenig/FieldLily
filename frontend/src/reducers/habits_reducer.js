@@ -8,10 +8,10 @@ import { RECEIVE_HABITS, RECEIVE_HABIT_ID, RECEIVE_NEW_HABIT } from '../actions/
         newState.all = action.habits.data;
         return newState;
       case RECEIVE_HABIT_ID:
-        newState.user = action.habits.data;
+        newState.user = action.habit.data;
         return newState;
       case RECEIVE_NEW_HABIT:
-        newState.new = action.habits.data
+        newState.new = action.habit.data
         return newState;
       default:
         return state;

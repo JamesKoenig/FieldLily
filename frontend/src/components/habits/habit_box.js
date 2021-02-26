@@ -4,7 +4,8 @@ class HabitBox extends React.Component {
   render() {
     return (
         <div>
-            <h3>{this.props.text}</h3>
+            <h2>{this.props.title}</h2>
+            <p>{this.props.description}</p>
         </div>
     );
   }

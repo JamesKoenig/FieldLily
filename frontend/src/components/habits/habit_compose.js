@@ -6,7 +6,8 @@ class HabitCompose extends React.Component {
       super(props);
 
       this.state = {
-          text: "",
+          title: "",
+          description: "",
           newHabit: ""
       }
 
@@ -20,16 +21,18 @@ class HabitCompose extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let habit = {
-      text: this.state.text
+      title: this.state.title,
+      description: this.state.description
     };
 
     this.props.composeHabit(habit); 
-    this.setState({text: ''})
+    this.setState({title: '',
+                   description: ''})
   }
 
-  update() {
+  update(key) {
     return e => this.setState({
-      text: e.currentTarget.value
+      [key]: e.currentTarget.value
     });
   }
 
@@ -39,9 +42,14 @@ class HabitCompose extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input type="textarea"
-                        value={this.state.text}
-                        onChange={this.update()}
-                        placeholder="Add your habit :)"
+                        value={this.state.title}
+                        onChange={this.update("title")}
+                        placeholder="Habit title"
+                    />
+                    <input type="textarea"
+                        value={this.state.description}
+                        onChange={this.update("description")}
+                        placeholder="Habit description"
                     />
                     <input type="submit" value="Submit" />
                 </div>

@@ -9,9 +9,9 @@ export const receiveHabits = habits => ({
     habits
   });
 
-export const receiveHabitId = habits => ({
+export const receiveHabitId = habit => ({
     type: RECEIVE_HABIT_ID,
-    habits
+    habit
 });
 
 export const receiveNewHabit = habit => ({
