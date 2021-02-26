@@ -24,7 +24,7 @@ const App = () => (
         <ProtectedRoute exact path="/habits" component={HabitsContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
-        <ProtectedRoute exact path="/update_habit" component={HabitUpdateContainer} />
+        <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
     </Switch>
   </div>
 );

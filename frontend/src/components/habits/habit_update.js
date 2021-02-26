@@ -10,8 +10,8 @@ class HabitUpdate extends React.Component {
           description: "",
           updateHabit: ""
       }
-      this.handleChangeTitle = this.onChangeTitle.bind(this)
-      this.handleChangeDescription = this.onChangeDescription.bind(this)
+      this.handleChangeTitle = this.handleChangeTitle.bind(this)
+      this.handleChangeDescription = this.handleChangeDescription.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this);
   } 
 

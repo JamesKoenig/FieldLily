@@ -29,9 +29,9 @@ class Habit extends React.Component {
     } else {
       return (
         <div>
-          <h2>All Habits</h2>
+          <h1>All Habits</h1>
           {this.state.habits.map(habit => (
-            <HabitBox key={habit._id} title={habit.title} description={habit.description} />
+            <HabitBox key={habit._id} id={habit._id} title={habit.title} description={habit.description} />
           ))}
           <HabitCompose />
         </div>
