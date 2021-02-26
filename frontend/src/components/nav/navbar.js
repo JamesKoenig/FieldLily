@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Modal from '../modal/modal_container';
+import './navbar.css';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -17,35 +18,35 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
-    const { openModal } = this.props;
-      if (this.props.loggedIn) {
-        return (
-            <div>
-                <Link to={'/habits'}>All Habits</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <button onClick={this.logoutUser}>Logout</button>
-            </div>
-        );
+    const { openModal, loggedIn } = this.props;
+      if (loggedIn) {
+        return [
+          <Link key="habits"  to={'/habits'}>All Habits</Link>,
+          <Link key="profile" to={'/profile'}>Profile</Link>,
+          <button key="logout" onClick={this.logoutUser}>Logout</button>,
+        ];
       } else {
-        return (
-            <div>
-              <button onClick={ () => openModal('login') }>
-               Login 
-             </button>
-              <button onClick={ () => openModal('signup') }>
-                Sign Up
-              </button>
-              <Modal />
-            </div>
-        );
+        return [
+          <button key="login" 
+                  onClick={ () => openModal('login') }> 
+            Login
+          </button>,
+          <button key="signup" 
+                  onClick={ () => openModal('signup') }> 
+            Sign Up
+          </button>,
+        ];
       }
   }
 
   render() {
       return (
-        <div>
-            <h1>FieldLily</h1>
-            { this.getLinks() }
+        <div className="navbar-flex-container">
+          <div className="navbar">
+              <h1 className="navbar-logo">FieldLily</h1>
+                { this.getLinks() }
+              </div>
+          <Modal />
         </div>
       );
   }
