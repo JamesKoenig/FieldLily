@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
+import Modal from '../modal/modal_container';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
+    const { openModal } = this.props;
       if (this.props.loggedIn) {
         return (
             <div>
@@ -27,8 +29,13 @@ class NavBar extends React.Component {
       } else {
         return (
             <div>
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
+              <button onClick={ () => openModal('login') }>
+               Login 
+             </button>
+              <button onClick={ () => openModal('signup') }>
+                Sign Up
+              </button>
+              <Modal />
             </div>
         );
       }
