@@ -1,4 +1,4 @@
-import { getHabits, getHabitId, writeHabit } from '../util/tweet_api_util';
+import { getHabits, getHabitId, writeHabit } from '../util/habit_api_util';
 
 export const RECEIVE_HABITS = "RECEIVE_HABITS";
 export const RECEIVE_HABIT_ID = "RECEIVE_HABIT_ID";

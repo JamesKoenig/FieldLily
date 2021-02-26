@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTweets } from '../../actions/tweet_actions';
+import { fetchHabits } from '../../actions/habit_actions';
 import Habits from './habits';
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTweets: () => dispatch(fetchTweets())
+    fetchHabits: () => dispatch(fetchHabits())
   };
 };
 

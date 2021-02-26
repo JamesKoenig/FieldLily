@@ -23,7 +23,7 @@ class HabitCompose extends React.Component {
       text: this.state.text
     };
 
-    this.props.composeTweet(habit); 
+    this.props.composeHabit(habit); 
     this.setState({text: ''})
   }
 

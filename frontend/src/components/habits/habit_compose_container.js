@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { composeTweet } from '../../actions/tweet_actions';
+import { composeHabit } from '../../actions/habit_actions';
 import HabitCompose from './habit_compose';
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    composeTweet: data => dispatch(composeTweet(data))
+    composeHabit: data => dispatch(composeHabit(data))
   };
 };
 

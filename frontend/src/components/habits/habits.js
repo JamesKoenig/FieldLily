@@ -7,7 +7,7 @@ class Habit extends React.Component {
     super(props);
 
     this.state = {
-      tweets: []
+      habits: []
     }
   }
 
@@ -16,7 +16,7 @@ class Habit extends React.Component {
   }
 
   componentWillReceiveProps(newState) {
-    this.setState({ tweets: newState.habits });
+    this.setState({ habits: newState.habits });
   }
 
   render() {
@@ -26,7 +26,7 @@ class Habit extends React.Component {
       return (
         <div>
           <h2>All Habits</h2>
-          {this.state.habits.map(tweet => (
+          {this.state.habits.map(habit => (
             <HabitBox key={habit._id} text={habits.text} />
           ))}
         </div>
