@@ -1,14 +1,12 @@
 import React from 'react';
+import './main.css'
 
 class MainPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main-page">
         <h1>Field Lily</h1>
-        <footer>
-        CC-BY 4.0 &copy; 2021
-        </footer>
       </div>
     );
   }

@@ -1,0 +1,16 @@
+.header-flex-container {
+    position: fixed;
+    display: flex;
+    top: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    max-width: 1580px;
+    margin: auto;
+    justify-content: space-between;
+    margin-top: 8px;
+}

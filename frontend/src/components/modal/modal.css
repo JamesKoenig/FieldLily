@@ -1,24 +1,31 @@
-.modal-background {
+#modal-background {
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     background: radial-gradient(rgba(0,0,0,0),rgba(0,0,0,0.3));
-    animation: fade-in .25s ease-in;
 }
 
-.fade-out {
-    animation: fade-out .1s ease-out;
+.modal-fade-in {
+    animation: modal-fade-in .25s ease-in;
+    animation-fill-mode: forwards;
 }
 
-@keyframes fade-in {
+.modal-fade-out {
+    animation: modal-fade-out .25s ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-fade-in {
     0%   { opacity: 0.0; }
     100% { opacity: 1.0; }
 }
 
-@keyframes fade-out {
+@keyframes modal-fade-out {
     0%   { opacity: 1.0; }
     100% { opacity: 0.0; }
 }
