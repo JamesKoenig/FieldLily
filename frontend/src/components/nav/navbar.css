@@ -23,6 +23,7 @@
     flex-direction: inherit;
     height: 0;
     max-height: 0;
+    bottom: 12px;
     justify-content: space-between;
     z-index: -100;
     transition: .5s ease-in-out;
