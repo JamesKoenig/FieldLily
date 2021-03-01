@@ -1,0 +1,37 @@
+.navbar-flex-container {
+    position: fixed;
+    display: flex;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: end;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: inherit;
+    justify-content: space-between;
+    margin: 20px 12px;
+}
+
+.navbar-links {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    flex-direction: inherit;
+    height: 0;
+    max-height: 0;
+    bottom: 12px;
+    justify-content: space-between;
+    z-index: -100;
+    transition: .5s ease-in-out;
+}
+
+.navbar:hover .navbar-links {
+    z-index: auto;
+    height: 100%;
+    max-height: 480px;
+}
+

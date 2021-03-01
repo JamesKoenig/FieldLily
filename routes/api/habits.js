@@ -3,14 +3,19 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const validateHabitInput = require('../../validation/habits');
+const {
+  resFromArr,
+  resFromObj,
+} = require("./utils");
 
 
 const Habit = require('../../models/Habit');
+const Resource = require('../../models/Resource');
 
 router.get('/', (req, res) => {
     Habit.find()
         .sort({ date: -1 })
-        .then(habits => res.json(habits))
+        .then(habits => res.json(resFromArr(habits)))
         .catch(err => res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
@@ -19,7 +24,8 @@ router.get(
   passport.authenticate('jwt', {session: false }),
   (req, res) => {
     Habit.find( { user: req.user.id })
-      .then(  habits => res.json(habits))
+      .sort({ date: -1 })
+      .then(  habits => res.json(resFromArr(habits)))
       .catch( err    => res.status(402)
                            .json({ nocurrentuser: "no current user" })
             )
@@ -28,7 +34,7 @@ router.get(
 
 router.get('/:id', (req, res) => {
     Habit.findById(req.params.id)
-        .then(habit => res.json(habit))
+        .then(habit => res.json(resFromObj(habit)))
         .catch(err =>
             res.status(404).json({ nohabitfound: 'No habit found with that ID' })
         );
@@ -49,7 +55,7 @@ router.post('/',
         description: req.body.description
       });
   
-      newHabit.save().then(habit => res.json(habit));
+      newHabit.save().then(habit => res.json(resFromObj(habit)));
     }
   );
 
@@ -58,14 +64,19 @@ router.post('/',
     (req, res) => {
         Habit.findById(req.params.id).then((habit) => {
             if (habit) {
-                if (req.body.title) {
-                    habit.title = req.body.title;
-                }
+                if (habit.user != req.user.id){
+                    res.status(401).json({ wronguser: 'Habits can only be updated by owner' });
+                }else{
+                    if (req.body.title) {
+                        habit.title = req.body.title;
+                    }
 
-                if (req.body.description) {
-                    habit.description = req.body.description;
+                    if (req.body.description) {
+                        habit.description = req.body.description;
+                    }
+                    habit.save().then((habit) => res.json(resFromObj(habit)));
                 }
-                habit.save().then((habit) => res.json(habit));
+                
             } else {
                 res.status(404).json({ nohabitfound: 'No habit with that ID' });
             }
@@ -99,13 +110,23 @@ router.put('/:id',
 router.delete("/:id",  
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        Habit.findOneAndRemove({
-            _id: req.params.id
+        Habit.findById(req.params.id).then((habit) => {
+            if (habit) {
+                if (habit.user != req.user.id){
+                    res.status(401).json({ wronguser: 'can only be deleted by owner' });
+                } else {
+                    Resource.deleteMany({habit: req.params.id}, function(err, result) {
+                        if (err) {
+                            res.send(err);
+                        } else {
+                            habit.delete().then((habit) => res.json(resFromObj(habit)));
+                        }
+                    })
+                }
+            } else {
+                res.status(404).json({ nohabitfound: 'No habit with that ID' });
+            }
         })
-        .then(habit => {
-            res.json(habit);
-        })
-        .catch(err => res.status(404).json({nohabitFound: "No habit with that ID"}));
     }
 );
 

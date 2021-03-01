@@ -13,19 +13,21 @@ import HabitUpdateContainer from './habits/habit_update_container'
 
 
 
+import './app.css';
+
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
-        <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignupFormContainer} />
-
         <ProtectedRoute exact path="/habits" component={HabitsContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
     </Switch>
+    <footer id="footer">
+      CC-BY 4.0 &copy; 2021
+    </footer>
   </div>
 );
 

@@ -4,18 +4,22 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const validateResourceInput = require('../../validation/resources');
 const Resource = require('../../models/Resource');
+const {
+  resFromArr,
+  resFromObj,
+} = require("./utils");
 
 router.get('/', (req, res) => {
     Resource.find()
         .sort({ date: -1 })
-        .then(resources => res.json(resources))
+        .then(resources => res.json(resFromArr(resources)))
         .catch(err => res.status(404).json({ noresourcesfound: 'No resources found' }));
 });
 
 
 router.get('/:id', (req, res) => {
     Resource.findById(req.params.id)
-        .then(resource => res.json(resource))
+        .then(resource => res.json(resFromObj(resource)))
         .catch(err =>
             res.status(404).json({ noresourcefound: 'No resource found with that ID' })
         );
@@ -24,7 +28,7 @@ router.get('/:id', (req, res) => {
 router.get('/habits/:habit_id', (req, res) => {
     Resource.find({habit: req.params.habit_id})
         .sort({ date: -1 })
-        .then( resources => { res.json(resources) })
+        .then( resources => { res.json(resFromArr(resources)) })
         .catch( err =>
             res.status(404).json({
                 nohabitfound: 'No habit found with that ID'
@@ -35,20 +39,26 @@ router.get('/habits/:habit_id', (req, res) => {
 router.post('/habits/:habit_id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      const resource = {
-        title: req.body.title,
-        description: req.body.description,
-        habit: req.params.habit_id
-      };
-      const { errors, isValid } = validateResourceInput(resource);
+        const resource = {
+            title: req.body.title,
+            description: req.body.description,
+            habit: req.params.habit_id
+        };
+        const { errors, isValid } = validateResourceInput(resource);
 
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
 
-      const newResource = new Resource(resource);
+        const newResource = new Resource(resource);
 
-      newResource.save().then(resource => res.json(resource));
+        Habit.findById(resource.habit).then((habit) => {
+            if (habit.user != req.user.id){
+                res.status(401).json({ wronguser: 'Resource can only be added by owner' });
+            }else{
+                newResource.save().then(resource => res.json(resFromObj(resource)));
+            }
+        })
     }
 );
 
@@ -57,14 +67,20 @@ router.put('/:id',
     (req, res) => {
         Resource.findById(req.params.id).then((resource) => {
             if (resource) {
-                if (req.body.title) {
-                    resource.title = req.body.title;
-                }
+                Habit.findById(resource.habit).then((habit) => {
+                    if (habit.user != req.user.id){
+                        res.status(401).json({ wronguser: 'Resource can only be updated by owner' });
+                    }else{
+                        if (req.body.title) {
+                            resource.title = req.body.title;
+                        }
 
-                if (req.body.description) {
-                    resource.description = req.body.description;
-                }
-                resource.save().then((resource) => res.json(resource));
+                        if (req.body.description) {
+                            resource.description = req.body.description;
+                        }
+                        resource.save().then((resource) => res.json(resFromObj(resource)));
+                    }
+                })
             } else {
                 res.status(404).json({ noresourcefound: 'No resource with that ID' });
             }
@@ -73,16 +89,23 @@ router.put('/:id',
 );
 
 router.delete("/:id",  
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Resource.findOneAndRemove({
-        _id: req.params.id
-      })
-      .then(resource => {
-        res.json(resource);
-      })
-      .catch(err => res.status(400).json({noresourceFound: "No resource Found"}));
-});
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Resource.findById(req.params.id).then((resource) => {
+            if (resource) {
+                Habit.findById(resource.habit).then((habit) => {
+                    if (habit.user != req.user.id){
+                        res.status(401).json({ wronguser: 'Resource can only be deleted by owner' });
+                    }else{
+                        resource.delete().then((resource) => res.json(resFromObj(resource)));   
+                    }
+                })
+            } else {
+                res.status(404).json({ noresourcefound: 'No resource with that ID' });
+            }
+        });
+    }   
+);
 
 
 
