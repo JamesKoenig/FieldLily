@@ -1,5 +1,9 @@
-import { RECEIVE_HABITS, RECEIVE_HABIT_ID, RECEIVE_NEW_HABIT } from '../actions/habit_actions';
-  
+import { 
+  RECEIVE_HABITS, 
+  RECEIVE_HABIT_ID, 
+  RECEIVE_NEW_HABIT,
+} from '../../actions/habit_actions';
+
   const HabitsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
@@ -17,5 +21,5 @@ import { RECEIVE_HABITS, RECEIVE_HABIT_ID, RECEIVE_NEW_HABIT } from '../actions/
         return state;
     }
   };
-  
-  export default HabitsReducer;
+
+export default HabitsReducer;
