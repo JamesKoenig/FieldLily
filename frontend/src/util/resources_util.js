@@ -1,38 +1,16 @@
-export const createResource = (resource) =>{
-    return $.ajax({
-        url: `/api/resources`,
-        method: 'POST',
-        data : {resource}
-    })
-}
+import axios from 'axios';
 
-export const fetchResource = () =>{
-    return $.ajax({
-        url: `/api/resources`,
-        method: 'GET'
-    })
-}
+export const createResource = resource =>
+  axios.post('/api/resources', resource);
 
-export const fetchResource = (ResourceId) =>{
-    return $.ajax({
-        url: `/api/resources/${ResourceId}`,
-        method: 'GET'
-    })
-}
+export const fetchResources = () =>
+  axios.get('/api/resources');
 
-export const updateResource = (resource) => {
-    return $.ajax({
-        url: `api/resources/${resource.id}`,
-        method: 'PATCH',
-        data: { resource }
-    })
-}
-export const deleteResource = (ResourceId) => {
-    return $.ajax({
-        url: `/api/resources/${ResourceId}`,
-        method: 'DELETE'
-    })
-}
+export const fetchResource = resourceId =>
+  axios.get(`/api/resources/${resourceId}`);
 
+export const updateResource = resource =>
+  axios.patch(`api/resources/${resource._id}`,resource);
 
-
+export const deleteResource = resourceId =>
+  axios.delete(`/api/resources/${resourceId}`);
