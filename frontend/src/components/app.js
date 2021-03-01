@@ -1,6 +1,9 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 
 import HabitsContainer from './habits/habits_container';
@@ -20,7 +23,7 @@ const App = () => (
     <NavBarContainer />
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
-        <ProtectedRoute exact path="/habits" component={HabitsContainer} />
+        <Route exact path="/habits" component={HabitsContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
