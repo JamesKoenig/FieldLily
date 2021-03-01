@@ -13,7 +13,7 @@ import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
 import HabitUpdateContainer from './habits/habit_update_container'
-
+import ResourcesContainer from './resources/resources_container';
 
 
 import './app.css';
@@ -24,6 +24,7 @@ const App = () => (
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
         <Route exact path="/habits" component={HabitsContainer} />
+        <Route exact path="/resources" component={ResourcesContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
