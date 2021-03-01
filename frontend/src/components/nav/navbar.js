@@ -23,10 +23,12 @@ class NavBar extends React.Component {
         return [
           <Link key="habits"  to={'/habits'}>All Habits</Link>,
           <Link key="profile" to={'/profile'}>Profile</Link>,
+          <Link key="new_habit" to={"/new_habit"}>New Habit</Link>,
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
         return [
+          <Link key="habits" to={"/habits"}>All Habits</Link>,
           <button key="login"
                   onClick={ () => openModal('login') }>
             Login
@@ -45,7 +47,7 @@ class NavBar extends React.Component {
           <div className="navbar">
             <h1 className="navbar-logo">FieldLily</h1>
              <div className="navbar-links">
-               { [<div></div>,...this.getLinks()] }
+               { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
           </div>
           { this.props.loggedIn ? null : <Modal /> }

@@ -1,7 +1,7 @@
 import { RECEIVE_ALL_RESOURCES,
          RECEIVE_RESOURCE,
          REMOVE_RESOURCE
-} from '../actions/resource_actions';
+} from '../../actions/resource_actions';
 
 
 const ResourceReducer = (oldState = {}, action) => {
