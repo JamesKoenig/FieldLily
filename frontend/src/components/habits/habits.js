@@ -6,32 +6,24 @@ import HabitCompose from './habit_compose_container'
 class Habit extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      habits: []
-    }
   }
 
   componentWillMount() {
     this.props.fetchHabits();
   }
 
-  componentWillReceiveProps(newState) {
-    this.setState({ habits: newState.habits });
-  }
-
   render() {
-    if (this.state.habits.length === 0) {
+    const { habits } = this.props;
+    if (!habits || habits.length < 1) {
       return (<div>There are no Habits
                   <HabitCompose />
-
       </div>)
     } else {
       return (
         <div>
           <h1>All Habits</h1>
-          {this.state.habits.map(habit => (
-            <HabitBox key={habit._id} id={habit._id} title={habit.title} description={habit.description} />
+          { habits.map(habit => (
+            <HabitBox key={habit._id} {...habit} />
           ))}
           <HabitCompose />
         </div>
