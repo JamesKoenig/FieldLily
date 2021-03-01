@@ -4,7 +4,7 @@ import Habits from './habits';
 
 const mapStateToProps = (state) => {
   return {
-    habits: Object.values(state.habits.all)
+    habits: Object.values(state.entities.habits.all)
   };
 };
 

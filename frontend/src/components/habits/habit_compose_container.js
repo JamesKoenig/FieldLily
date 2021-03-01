@@ -5,7 +5,7 @@ import HabitCompose from './habit_compose';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.user,
-    newHabit: state.habits.new
+    newHabit: state.entities.habits.new
   };
 };
 
