@@ -1,4 +1,17 @@
 import { connect } from 'react-redux';
 import Resources from './resources';
+import {
+  fetchResources,
+} from '../../actions/resource_actions';
 
-export default connect(null,null)(Resources);
+const mSTP = ({entities: { resources } }) => ({
+  resources,
+});
+
+//object form, convert back to function form if it glitches, documented at:
+// https://react-redux.js.org/using-react-redux/connect-mapdispatch#two-forms-of-mapdispatchtoprops
+const mDTP = {
+  fetchResources,
+};
+
+export default connect(mSTP,mDTP)(Resources);
