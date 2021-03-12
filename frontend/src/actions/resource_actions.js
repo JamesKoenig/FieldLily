@@ -1,4 +1,4 @@
-import * as resources_util from '../util/resources_util'
+import * as resources_util from '../util/resources_api_util'
 
 export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
 export const RECEIVE_RESOURCE = 'RECEIVE_RESOURCE'
