@@ -13,6 +13,10 @@ const ResourceSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  featured: {
+    type: Boolean,
+    required: false
   }
 });
 
