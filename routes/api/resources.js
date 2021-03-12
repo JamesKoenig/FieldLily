@@ -16,6 +16,13 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ noresourcesfound: 'No resources found' }));
 });
 
+router.get('/featured', (req, res) => {
+    Resource.find({featured: true})
+        .sort({ date: -1 })
+        .then(resources => res.json(resFromArr(resources)))
+        .catch(err => res.status(404).json({ noresourcesfound: 'No featured resources found' }));
+});
+
 
 router.get('/:id', (req, res) => {
     Resource.findById(req.params.id)
@@ -42,8 +49,10 @@ router.post('/habits/:habit_id',
         const resource = {
             title: req.body.title,
             description: req.body.description,
-            habit: req.params.habit_id
+            habit: req.params.habit_id,
+            featured: req.body.featured
         };
+
         const { errors, isValid } = validateResourceInput(resource);
 
         if (!isValid) {
@@ -78,6 +87,11 @@ router.put('/:id',
                         if (req.body.description) {
                             resource.description = req.body.description;
                         }
+
+                        if (req.body.featured !== null) {
+                            resource.featured = req.body.featured;
+                        }
+
                         resource.save().then((resource) => res.json(resFromObj(resource)));
                     }
                 })
