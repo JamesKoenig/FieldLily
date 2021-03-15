@@ -16,6 +16,11 @@
     margin: 20px 12px;
 }
 
+.navbar-logo {
+    color: var(--forever-susan-accent-peach);
+    text-shadow: -.25px -.25px var(--forever-susan-accent-orange);
+}
+
 .navbar-links {
     position: absolute;
     display: flex;
