@@ -1,9 +1,9 @@
 :root {
-    --forever-susan-dark-crimson     #190604;
-    --forever-suzan-dark-green       #203812;
-    /* TODO: re-find orange accent color. for *
-     *   some reason it's the same as crimson */
-    --forever-susan-accent-orange:   #190604;
+    --forever-susan-dark-crimson:    #190604;
+    --forever-susan-dark-green:      #203812;
+    --forever-susan-accent-orange:   #fd4f19;
+    --forever-susan-accent-peach:    #ec1d13;
     --forever-susan-accent-lime:     #a2b738;
-    --forever-suzan-accent-red:      #c33540;
+    --forever-susan-accent-red:      #c33540;
+    --forever-susan-accent-yellow:   #fe9e48;
 }
