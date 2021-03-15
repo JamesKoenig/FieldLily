@@ -11,8 +11,6 @@ import { setAuthToken } from './util/session_api_util';
 
 import { logout } from './actions/session_actions';
 
-import "./colors/colors.css";
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
