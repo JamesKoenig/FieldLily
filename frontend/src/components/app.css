@@ -2,4 +2,10 @@
     position: fixed;
     bottom: 0;
     margin: 0 12px 12px 12px;
+    color: var(--forever-susan-accent-lime);
+    background-image: radial-gradient(  at bottom left,
+                        var(--forever-susan-dark-green),
+                        var(--forever-susan-dark-crimson)
+                        );
+
 }
