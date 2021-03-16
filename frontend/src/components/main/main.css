@@ -3,4 +3,6 @@
     width: 100vw;
     color: var(--forever-susan-accent-yellow);
     background-color: var(--forever-susan-dark-crimson);
+    font: helvetica;
+    font-size: large;
 }

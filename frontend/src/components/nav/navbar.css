@@ -7,6 +7,8 @@
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: end;
+    font: helvetica;
+    font-size: x-large;
 }
 
 .navbar {
