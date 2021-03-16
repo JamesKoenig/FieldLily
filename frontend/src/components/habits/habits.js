@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 import HabitBox from './habit_box';
 import HabitCompose from './habit_compose_container'
 
-import "./habits.css"
+
+import './habits.css';
 
 class Habit extends React.Component {
   constructor(props) {
