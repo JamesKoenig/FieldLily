@@ -30,10 +30,12 @@ class Habit extends React.Component {
         <div className="habits-index-container">
           <div className="habits-index">
             <h1 className="habits-index-heading">All Habits</h1>
-            { habits.map(habit => (
-              <HabitBox key={habit._id} {...habit} loggedIn={loggedIn} />
-            ))}
-            { loggedIn ?  (<HabitCompose />) : null }
+            <ul className="habits-index-list">
+              { habits.map(habit => (
+                <HabitBox key={habit._id} {...habit} loggedIn={loggedIn} />
+              ))}
+              { loggedIn ?  (<HabitCompose />) : null }
+            </ul>
           </div>
           <div></div>
         </div>
