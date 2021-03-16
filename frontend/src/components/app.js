@@ -17,6 +17,7 @@ import ResourcesContainer from './resources/resources_container';
 
 
 import './app.css';
+import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (
   <div>
@@ -28,6 +29,7 @@ const App = () => (
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
+        <ProtectedRoute exact path="/resources/:resourceId" component={ResourceShowContainer} />
     </Switch>
     <footer id="footer">
       CC-BY 4.0 &copy; 2021

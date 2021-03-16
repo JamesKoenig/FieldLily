@@ -1,4 +1,5 @@
 import React from 'react';
+import Resource from '../../../../models/Resource';
 
 class Resources extends React.Component {
   componentDidMount() {
@@ -7,7 +8,17 @@ class Resources extends React.Component {
   render() {
     //todo: map through this.props.resources & render them
     return (
-      <p>hello world!</p>
+
+      <div>
+        <ul>  
+          {this.props.resources.map((resource) => (
+              <ResourceIndexItem
+                resource={resource}
+                key={resource.id}
+              />
+          ))}
+        </ul>
+      </div>
     )
   }
 }
