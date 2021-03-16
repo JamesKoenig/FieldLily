@@ -15,19 +15,21 @@ class Habit extends React.Component {
   }
 
   render() {
-    const { habits } = this.props;
+    const { habits, loggedIn } = this.props;
     if (!habits || habits.length < 1) {
-      return (<div className="habit-index">There are no Habits
-                  <HabitCompose />
+      return (
+      <div className="habit-index">
+        <h1>There are no Habits</h1>
+        {loggedIn ? (<HabitCompose />) : null }
       </div>)
     } else {
       return (
         <div className="habit-index">
           <h1>All Habits</h1>
           { habits.map(habit => (
-            <HabitBox key={habit._id} {...habit} />
+            <HabitBox key={habit._id} {...habit} loggedIn={loggedIn} />
           ))}
-          <HabitCompose />
+          { loggedIn ?  (<HabitCompose />) : null }
         </div>
       );
     }
