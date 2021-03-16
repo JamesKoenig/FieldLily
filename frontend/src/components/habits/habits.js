@@ -13,10 +13,12 @@ class Habit extends React.Component {
   }
 
   render() {
-    const { habits } = this.props;
+    const { habits, loggedIn } = this.props;
     if (!habits || habits.length < 1) {
-      return (<div>There are no Habits
-                  <HabitCompose />
+      return (
+      <div>
+        <h1>There are no Habits</h1>
+        {loggedIn ? (<HabitCompose />) : null }
       </div>)
     } else {
       return (
@@ -25,7 +27,7 @@ class Habit extends React.Component {
           { habits.map(habit => (
             <HabitBox key={habit._id} {...habit} />
           ))}
-          <HabitCompose />
+          { loggedIn ?  (<HabitCompose />) : null }
         </div>
       );
     }
