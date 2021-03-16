@@ -1,0 +1,10 @@
+.habit-index-box {
+    margin: 0 30px;
+    padding: 15px;
+    background: navy;
+    border-radius: 5px;
+}
+
+.habit-index-box:last-child {
+    margin-bottom: 30px;
+}
