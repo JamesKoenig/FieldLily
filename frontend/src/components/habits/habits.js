@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import HabitBox from './habit_box';
 import HabitCompose from './habit_compose_container'
 
+import './habits.css';
+
 class Habit extends React.Component {
   constructor(props) {
     super(props);
@@ -15,12 +17,12 @@ class Habit extends React.Component {
   render() {
     const { habits } = this.props;
     if (!habits || habits.length < 1) {
-      return (<div>There are no Habits
+      return (<div className="habit-index">There are no Habits
                   <HabitCompose />
       </div>)
     } else {
       return (
-        <div>
+        <div className="habit-index">
           <h1>All Habits</h1>
           { habits.map(habit => (
             <HabitBox key={habit._id} {...habit} />
