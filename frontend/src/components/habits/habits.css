@@ -23,8 +23,8 @@
 }
 
 .habits-index-list {
+    flex-grow: 1;
     display: flex;
-    flex-basis: fill;
     flex-direction: column;
     justify-content: space-around;
 }
