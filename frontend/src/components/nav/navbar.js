@@ -23,7 +23,6 @@ class NavBar extends React.Component {
         return [
           <Link key="habits"  to={'/habits'}>All Habits</Link>,
           <Link key="profile" to={'/profile'}>Profile</Link>,
-          <Link key="new_habit" to={"/new_habit"}>New Habit</Link>,
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
