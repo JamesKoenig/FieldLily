@@ -13,8 +13,8 @@ class ResourceShow extends React.Component {
 
   render() {
     const { resource } = this.props;
-  
-    //debugger
+    if(!resource)
+      return null;
     return (
       <div>
          <div>

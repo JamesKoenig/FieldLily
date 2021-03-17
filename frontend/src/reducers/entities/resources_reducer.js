@@ -11,7 +11,7 @@ const ResourceReducer = (oldState = {},
         case RECEIVE_ALL_RESOURCES:
             return Object.assign({}, oldState, resources)
         case RECEIVE_RESOURCE:
-            return Object.assign({}, oldState, { [resource.id]: resource})
+            return Object.assign({}, oldState, resource)
         case REMOVE_RESOURCE:
             let nextState = Object.assign({}, oldState);
             delete nextState[resourceId];
