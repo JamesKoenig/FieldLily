@@ -2,16 +2,17 @@ import { connect } from 'react-redux';
 import { fetchHabitId } from '../../actions/habit_actions';
 import Profile from './profile';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({session: { user: currentUser },
+                          entities: {habits: {user: habits }}}) => {
   return {
-    habits: Object.values(state.habits.user),
-    currentUser: state.session.user
+    habits,
+    currentUser,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetch: id => dispatch(fetchHabitId(id))
+    fetchHabitId: id => dispatch(fetchHabitId(id))
   };
 };
 
