@@ -1,19 +1,17 @@
 import { connect } from 'react-redux';
-import { fetchHabitId } from '../../actions/habit_actions';
+import { fetchCurrentUserHabits } from '../../actions/habit_actions';
 import Profile from './profile';
 
 const mapStateToProps = ({session: { user: currentUser },
                           entities: {habits: {user: habits }}}) => {
   return {
-    habits,
+    habits: Object.values(habits),
     currentUser,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchHabitId: id => dispatch(fetchHabitId(id))
-  };
+const mapDispatchToProps = {
+    fetchCurrentUserHabits,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
