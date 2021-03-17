@@ -1,8 +1,19 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link,Route } from 'react-router-dom'
 import Modal from '../modal/modal_container';
 import './navbar.css';
+
+const CondLink = ({ path, label }) => (
+  <Route
+    render={ ( { location } ) => (location.pathname !== path) ?
+        (<Link to={path}>{label}</Link>) : null }
+   />
+)
+
+const arrToCondLinks = arr =>
+  arr.map( ([path,label]) => {
+    return (<CondLink {...{path,label}} />);
+  });
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -21,13 +32,15 @@ class NavBar extends React.Component {
     const { openModal, loggedIn } = this.props;
       if (loggedIn) {
         return [
-          <Link key="habits"  to={'/habits'}>All Habits</Link>,
-          <Link key="profile" to={'/profile'}>Profile</Link>,
+          ...arrToCondLinks([
+            ["/habits", "All Habits"],
+            ["/profile", "Profile"],
+            ]),
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
         return [
-          <Link key="habits" to={"/habits"}>All Habits</Link>,
+          ...arrToCondLinks([["/","Home"],["/habits","All Habits"]]),
           <button key="login"
                   onClick={ () => openModal('login') }>
             Login
@@ -44,9 +57,7 @@ class NavBar extends React.Component {
       return (
         <div className="navbar-flex-container">
           <div className="navbar">
-            <Link to="/">
-              <h1 className="navbar-logo">FieldLily</h1>
-            </Link>
+            <h1 className="navbar-logo">FieldLily</h1>
              <div className="navbar-links">
                { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
