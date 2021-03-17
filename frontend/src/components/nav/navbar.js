@@ -1,8 +1,22 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { 
+  Link,
+  Route, 
+} from 'react-router-dom'
 import Modal from '../modal/modal_container';
 import './navbar.css';
+
+const CondLink = ({ path, label }) => (
+  <Route
+    render={ ( { location } ) => (location.pathname !== path) ?
+        (<Link to={path}>{label}</Link>) : null }
+   />
+)
+
+const arrToCondLinks = arr =>
+  arr.map( ([path,label]) => {
+    return (<CondLink {...{path,label}} />);
+  });
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -21,16 +35,20 @@ class NavBar extends React.Component {
     const { openModal, loggedIn } = this.props;
       if (loggedIn) {
         return [
-          <Link key="habits"  to={'/habits'}>All Habits</Link>,
-          <Link key="resources" to={"/resources"}>All Resources</Link>,
-          <Link key="profile" to={'/profile'}>Profile</Link>,
-          <Link key="new_habit" to={"/new_habit"}>New Habit</Link>,
+          ...arrToCondLinks([
+            ["/habits", "All Habits"],
+            ["/profile", "Profile"],
+            ["/resources", "All Resources"],
+            ]),
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
         return [
-          <Link key="habits" to={"/habits"}>All Habits</Link>,
-          <Link key="resources" to={"/resources"}>All Resources</Link>,
+          ...arrToCondLinks([
+            ["/","Home"],
+            ["/habits","All Habits"],
+            ["/resources", "All Resources"],
+          ]),
           <button key="login"
                   onClick={ () => openModal('login') }>
             Login
