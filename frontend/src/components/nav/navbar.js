@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link,Route } from 'react-router-dom'
+import { 
+  Link,
+  Route, 
+} from 'react-router-dom'
 import Modal from '../modal/modal_container';
 import './navbar.css';
 
@@ -35,12 +38,17 @@ class NavBar extends React.Component {
           ...arrToCondLinks([
             ["/habits", "All Habits"],
             ["/profile", "Profile"],
+            ["/resources", "All Resources"],
             ]),
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
         return [
-          ...arrToCondLinks([["/","Home"],["/habits","All Habits"]]),
+          ...arrToCondLinks([
+            ["/","Home"],
+            ["/habits","All Habits"],
+            ["/resources", "All Resources"],
+          ]),
           <button key="login"
                   onClick={ () => openModal('login') }>
             Login
