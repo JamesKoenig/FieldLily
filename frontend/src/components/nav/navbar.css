@@ -8,7 +8,7 @@
     justify-content: flex-start;
     align-items: end;
     font: helvetica;
-    font-size: x-large;
+    font-size: 30px;
 }
 
 .navbar {
@@ -40,5 +40,10 @@
     z-index: auto;
     height: 100%;
     max-height: 480px;
+}
+
+button {
+    font: helvetica;
+    font-size: 30px;
 }
 
