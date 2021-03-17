@@ -12,7 +12,7 @@ class Profile extends React.Component {
     
     componentWillMount() {
         console.log(this.props.currentUser.id)
-        this.props.fetchHabitId(this.props.currentUser.id);
+        this.props.fetchCurrentUserHabits();
     }
 
     componentWillReceiveProps(newState) {
@@ -27,7 +27,7 @@ class Profile extends React.Component {
             <div>
               <h2>All of This User's Habits</h2>
               {this.state.habits.map(habit => (
-                <HabitBox key={habit._id} text={habit.text} />
+                <HabitBox key={habit._id} {...habit} />
               ))}
             </div>
           );
