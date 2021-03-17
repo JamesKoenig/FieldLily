@@ -3,7 +3,7 @@ import {
   CLOSE_MODAL,
 } from '../actions/modal_actions';
 
-export default (state=null, action) =>{
+const modalReducer = (state=null, action) => {
   switch(action.type) {
     case CLOSE_MODAL:
       return null;
@@ -13,3 +13,5 @@ export default (state=null, action) =>{
       return state;
   }
 };
+
+export default modalReducer;

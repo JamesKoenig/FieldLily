@@ -7,10 +7,6 @@ import HabitCompose from './habit_compose_container'
 import './habits.css';
 
 class Habit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.fetchHabits();
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import HabitBox from './habit_box';
 
 class HabitUpdate extends React.Component {
   constructor(props) {
