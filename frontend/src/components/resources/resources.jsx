@@ -6,12 +6,12 @@ class Resources extends React.Component {
     this.props.fetchResources();
   }
   render() {
+    const { resources } = this.props;
     //todo: map through this.props.resources & render them
     return (
-
       <div>
-        <ul>  
-          {this.props.resources.map((resource) => (
+        <ul>
+          {resources.map((resource) => (
               <ResourceIndexItem
                 resource={resource}
                 key={resource.id}

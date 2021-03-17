@@ -5,7 +5,7 @@ import {
 } from '../../actions/resource_actions';
 
 const mSTP = ({entities: { resources } }) => ({
-  resources,
+  resources: Object.values(resources),
 });
 
 //object form, convert back to function form if it glitches, documented at:
