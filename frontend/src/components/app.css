@@ -7,5 +7,6 @@
                         var(--forever-susan-dark-green),
                         var(--forever-susan-dark-crimson)
                         );
-
+    font-family: helvetica;
+    font-size: 30px;
 }
