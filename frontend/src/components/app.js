@@ -26,10 +26,10 @@ const App = () => (
         <AuthRoute exact path="/" component={MainPage} />
         <Route exact path="/habits" component={HabitsContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />
+        <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
-        <ProtectedRoute exact path="/resources/:resourceId" component={ResourceShowContainer} />
     </Switch>
     <footer id="footer">
       CC-BY 4.0 &copy; 2021

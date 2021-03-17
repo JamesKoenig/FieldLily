@@ -4,21 +4,20 @@ import { RECEIVE_ALL_RESOURCES,
 } from '../../actions/resource_actions';
 
 
-const ResourceReducer = (oldState = {}, action) => {
+const ResourceReducer = (oldState = {},
+                         {type, resources, resource, resourceId}) => {
     Object.freeze(oldState)
-    switch (action.type) {
+    switch (type) {
         case RECEIVE_ALL_RESOURCES:
-            return Object.assign({}, oldState, action.resources)
- 
+            return Object.assign({}, oldState, resources)
         case RECEIVE_RESOURCE:
-            return Object.assign({}, oldState, { [action.resource.id]: action.resource })
-            
+            return Object.assign({}, oldState, resource)
         case REMOVE_RESOURCE:
             let nextState = Object.assign({}, oldState);
-            delete nextState[action.ResourceId]
-            return nextState
+            delete nextState[resourceId];
+            return nextState;
         default:
-            return oldState
+            return oldState;
     }
 }
 

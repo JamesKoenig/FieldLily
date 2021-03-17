@@ -15,32 +15,32 @@ export const receiveResource = resource => ({
   resource
 })
 
-export const removeResource = ResourceId => ({
+export const removeResource = resourceId => ({
   type:REMOVE_RESOURCE,
-  ResourceId
+  resourceId
 })
 
 export const fetchResources = () => dispatch => {
   return resources_util.fetchResources()
-      .then(resources => dispatch(receiveAllResources(resources)))
+      .then( ({data: resources}) => dispatch(receiveAllResources(resources)))
 }
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
 export const createResource = resource => dispatch => (
   resources_util.createResource(resource)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
 export const updateResource= resource => dispatch => (
   resources_util.updateResource(resource)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
-export const deleteResource = ResourceId => dispatch => (
-  resources_util.deleteResource(ResourceId)
-    .then(() => dispatch(removeResource(ResourceId)))
+export const deleteResource = resourceId => dispatch => (
+  resources_util.deleteResource(resourceId)
+    .then(() => dispatch(removeResource(resourceId)))
 )
