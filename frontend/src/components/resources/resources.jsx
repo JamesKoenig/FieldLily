@@ -13,7 +13,7 @@ class Resources extends React.Component {
           {resources.map((resource) => (
               <ResourceIndexItem
                 resource={resource}
-                key={resource.id}
+                key={resource._id}
               />
           ))}
         </ul>

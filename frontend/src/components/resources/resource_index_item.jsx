@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const ResourceIndexItem = props => (
+const ResourceIndexItem = ({ resource: { _id, title} }) => (
   <li>
-    <Link to={`/resources/${props.resource.id}`}>{props.resource.title}</Link>
+    <Link to={`/resources/${_id}`}>{title}</Link>
   </li>
 );
 
