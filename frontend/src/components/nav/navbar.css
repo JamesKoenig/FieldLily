@@ -7,7 +7,7 @@
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: end;
-    font: helvetica;
+    font-family: helvetica;
     font-size: 30px;
 }
 
@@ -43,7 +43,7 @@
 }
 
 button {
-    font: helvetica;
+    font-family: helvetica;
     font-size: 30px;
 }
 
