@@ -1,7 +1,7 @@
 import { 
-  RECEIVE_HABITS, 
-  RECEIVE_HABIT_ID, 
+  RECEIVE_HABITS,
   RECEIVE_NEW_HABIT,
+  RECEIVE_CURRENT_USER_HABITS,
 } from '../../actions/habit_actions';
 
   const HabitsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
@@ -11,8 +11,8 @@ import {
       case RECEIVE_HABITS:
         newState.all = action.habits.data;
         return newState;
-      case RECEIVE_HABIT_ID:
-        newState.user = action.habit.data;
+      case RECEIVE_CURRENT_USER_HABITS:
+        newState.user = action.habits.data;
         return newState;
       case RECEIVE_NEW_HABIT:
         newState.new = action.habit.data
