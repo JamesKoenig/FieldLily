@@ -7,7 +7,6 @@ class Resources extends React.Component {
   }
   render() {
     const { resources } = this.props;
-    //todo: map through this.props.resources & render them
     return (
       <div>
         <ul>
