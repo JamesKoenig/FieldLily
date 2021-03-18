@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
 import ResourceShow from './resource_show';
 import { fetchResource } from '../../actions/resource_actions';
+import { fetchHabits } from '../../actions/habit_actions';
 
 
-const mapStateToProps = ({entities: { resources, habits } },
+const mapStateToProps = ({entities: { resources, habits: { all: habits } } },
                          {match: {params: { resourceId } } }) => {
   let resource = resources[resourceId]                           
-  return {                         
-    resource: resource,
-    habit: habits[resource.habit]
+  return {
+    resourceId,
+    resource,
+    habit: resource ? habits[resource.habit] : undefined,
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchResource: resourceId => dispatch(fetchResource(resourceId))
+  fetchResource: resourceId => dispatch(fetchResource(resourceId)),
+  fetchHabits: () => dispatch(fetchHabits()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResourceShow)
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceShow);
