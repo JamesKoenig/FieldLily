@@ -12,7 +12,7 @@ class ResourceShow extends React.Component {
   }
 
   render() {
-    const { resource } = this.props;
+    const { resource, habit } = this.props;
     if(!resource)
       return null;
     return (
@@ -21,7 +21,7 @@ class ResourceShow extends React.Component {
             <h1>{resource.title}</h1>
             <p>{resource.featured}</p>
             <p>{resource.description}</p>
-            <p>{resource.habit}</p>
+            <p>belong to habit {habit.title}</p>
         </div>
         <Link to="/" />
       </div>
