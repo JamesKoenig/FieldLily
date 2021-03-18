@@ -5,7 +5,7 @@ import HabitUpdate from './habit_update';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.user,
-    updateHabit: state.habits.update
+    updateHabit: state.entities.habits.update
   };
 };
 
