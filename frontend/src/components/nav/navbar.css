@@ -6,7 +6,7 @@
     right: 0;
     flex-direction: column-reverse;
     justify-content: flex-start;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .navbar {
