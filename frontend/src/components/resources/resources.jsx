@@ -1,5 +1,7 @@
 import React from 'react';
 import ResourceIndexItem from './resource_index_item';
+import './resources.css';
+
 
 class Resources extends React.Component {
   componentDidMount() {
