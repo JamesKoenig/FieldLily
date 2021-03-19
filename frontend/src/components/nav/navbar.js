@@ -70,7 +70,7 @@ class NavBar extends React.Component {
                { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
           </div>
-          { this.props.loggedIn ? null : <Modal /> }
+          <Modal />
         </div>
       );
   }
