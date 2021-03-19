@@ -10,7 +10,8 @@ import HabitsContainer from './habits/habits_container';
 import MainPage from './main/main_page';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
-import HabitUpdateContainer from './habits/habit_update_container'
+import HabitUpdateContainer from './habits/habit_update_container';
+import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
 
 
@@ -23,6 +24,7 @@ const App = () => (
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
         <Route exact path="/habits" component={HabitsContainer} />
+        <Route exact path="/habits/:habitId" component={HabitShowContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />
         <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />

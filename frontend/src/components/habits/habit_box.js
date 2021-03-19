@@ -9,7 +9,7 @@ class HabitBox extends React.Component {
     return (
         <li>
             <ul className="habit-index-box">
-              <li><h2>{title}</h2></li>
+              <li><h2><Link to={`/habits/${id}`}>{title}</Link></h2></li>
               {/* style this so that "indent" is indented */}
               <li><p id="indent">{description}
                 { loggedIn ?
