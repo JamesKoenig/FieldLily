@@ -1,5 +1,5 @@
 import modalManifest from './modal_manifest';
-import { closeModal } from '../../actions/modal_actions';
+import { closeModal } from '../../actions/old_modal_actions';
 import { connect } from 'react-redux';
 import Modal from './modal';
 
