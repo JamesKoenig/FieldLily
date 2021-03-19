@@ -1,7 +1,7 @@
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
-} from '../actions/modal_actions';
+} from '../../actions/old_modal_actions';
 
 const modalReducer = (state=null, action) => {
   switch(action.type) {
