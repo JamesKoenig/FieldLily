@@ -1,3 +1,12 @@
+/* @font-face {
+    font-display: swap;
+    font-family: CCSymbols;
+    font-synthesis: none;
+    src: url(CCSymbols.woff2) format(woff2),
+            url(CCSymbols.woff)  format(woff);
+    unicode-range: u+a9, u+229c,u+1f10d-f, u+1f16d-f;
+} */
+
 #footer {
     position: fixed;
     bottom: 0;
@@ -8,5 +17,6 @@
                         var(--forever-susan-dark-crimson)
                         );
     font-family: helvetica;
+                 /* CCSymbols; */
     font-size: 30px;
 }
