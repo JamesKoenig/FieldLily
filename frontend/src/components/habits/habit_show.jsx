@@ -11,13 +11,18 @@ class HabitShow extends React.Component {
 
   render() {
     const { habit, resources } = this.props;
+    //debugger
     if(!habit)
       return null;
+    if(!resources) {
+      resources = []
+    }
     return (
       <div>
          <div>
-            <h1>{habit.title}</h1>
-            <p>{habit.description}</p>
+            <h1>Title: {habit.title}</h1>
+            <p>Description: {habit.description}</p>
+            <h2>Resources:</h2>
             <ul>
                 {resources.map((resource) => (
                     <ResourceIndexItem
