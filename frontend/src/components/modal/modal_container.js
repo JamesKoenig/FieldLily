@@ -1,16 +1,19 @@
 import modalManifest from './modal_manifest';
-import { closeModal } from '../../actions/old_modal_actions';
+import {
+  closeModal,
+  modalFadeAndClose,
+} from '../../actions/modal/modal_common_actions';
 import { connect } from 'react-redux';
 import Modal from './modal';
-import { ModalUtil } from '../../util/modal_util';
 
-const mSTP = ({ui: { modal }}) => ({
-  Component: modalManifest[modal],
+const mSTP = ({session: { isAuthenticated},
+               ui: { newModal: { type, subtype }}}) => ({
+  Component: modalManifest(type, subtype),
+  autoClose: type === "session" ? isAuthenticated : false,
 });
 
 const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeModal()),
-  modalUtil: new ModalUtil("modal-background",dispatch),
+  modalFadeAndClose: modalId => dispatch(modalFadeAndClose(modalId)),
 })
 
 export default connect(mSTP, mDTP)(Modal);
