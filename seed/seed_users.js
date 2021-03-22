@@ -4,7 +4,7 @@ const loadSeedFile = require("./seedfile_parse");
 const User = require("../models/User");
 
 function seedUsers() {
-  let usersData = loadSeedFile("user_seed.json");
+  let userData = loadSeedFile("user.json");
   console.log(userData);
 }
 
