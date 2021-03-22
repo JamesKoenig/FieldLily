@@ -1,14 +1,18 @@
 import modalManifest from './modal_manifest';
-import { closeModal } from '../../actions/modal_actions';
+import {
+  modalFadeAndClose,
+} from '../../actions/modal/modal_common_actions';
 import { connect } from 'react-redux';
 import Modal from './modal';
 
-const mSTP = ({ui: { modal }}) => ({
-  Component: modalManifest[modal],
+const mSTP = ({session: { isAuthenticated},
+               ui: { modal: { type, subtype }}}) => ({
+  Component: modalManifest(type, subtype),
+  autoClose: type === "session" ? isAuthenticated : false,
 });
 
 const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeModal())
+  modalFadeAndClose: modalId => dispatch(modalFadeAndClose(modalId)),
 })
 
 export default connect(mSTP, mDTP)(Modal);

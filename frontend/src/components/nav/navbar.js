@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
+import {
   Link,
-  Route, 
+  Route,
 } from 'react-router-dom'
 import Modal from '../modal/modal_container';
 import './navbar.css';
@@ -15,7 +15,7 @@ const CondLink = ({ path, label }) => (
 
 const arrToCondLinks = arr =>
   arr.map( ([path,label]) => {
-    return (<CondLink {...{path,label}} />);
+    return (<CondLink key={path} {...{path,label}} />);
   });
 
 class NavBar extends React.Component {
@@ -32,7 +32,12 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
-    const { openModal, loggedIn } = this.props;
+    const {
+      loggedIn,
+      openLoginModal,
+      openSignupModal,
+    } = this.props;
+
       if (loggedIn) {
         return [
           ...arrToCondLinks([
@@ -50,11 +55,11 @@ class NavBar extends React.Component {
             ["/resources", "All Resources"],
           ]),
           <button key="login"
-                  onClick={ () => openModal('login') }>
+                  onClick={ () => openLoginModal() }>
             Login
           </button>,
           <button key="signup"
-                  onClick={ () => openModal('signup') }>
+                  onClick={ () => openSignupModal() }>
             Sign Up
           </button>,
         ];
@@ -70,7 +75,7 @@ class NavBar extends React.Component {
                { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
           </div>
-          { this.props.loggedIn ? null : <Modal /> }
+          <Modal />
         </div>
       );
   }
