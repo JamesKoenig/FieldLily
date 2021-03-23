@@ -3,9 +3,21 @@ const loadSeedFile = require("./seedfile_parse");
 
 const User = require("../models/User");
 
-function seedUsers() {
+async function seedUsers() {
   let userData = loadSeedFile("user.json");
-  console.log(userData);
+  console.log("deleting existing users");
+  User.deleteMany({ email: "" });
+
+  console.log("adding users");
+  prom = Promise.all(
+    userData.map( userDatum => {
+      //TODO: bcrypt passwords!!!!
+      //user = new User(userDatum);
+      //return user.save();
+    })
+  );
+  await prom.resolve();
+  console.log(prom);
 }
 
 module.exports = seedUsers;

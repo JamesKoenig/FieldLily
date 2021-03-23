@@ -5,15 +5,15 @@ const seedUsers = require("./seed_users");
 const seedHabits = require ("./seed_habits");
 const seedResources = require("./seed_resources");
 
-function seed() {
+async function seed() {
   console.log("connected to MongoDB");
-  seedUsers();
-  seedHabits();
-  seedResources();
+  await seedUsers();
+  await seedHabits();
+  await seedResources();
   process.exit();
 }
 
-mongoose.connect(dbUri, { userNewUrlParser: true } )
+mongoose.connect(dbUri, { useNewUrlParser: true } )
 
 const db = mongoose.connection;
 db.on("error",console.error.bind(console, 'connection error:'));
