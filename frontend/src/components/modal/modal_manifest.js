@@ -1,6 +1,6 @@
 import LoginForm  from '../session/login_form_container';
 import SignupForm from '../session/signup_form_container';
-import HabitCompose from '../habits/habit_compose';
+import HabitCompose from '../habits/habit_compose_container';
 import ResourceForm from '../resources/resource_form';
 
 const sessionModals = {

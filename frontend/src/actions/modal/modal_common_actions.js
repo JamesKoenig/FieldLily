@@ -33,5 +33,6 @@ export const modalFadeAndClose = modalId => dispatch => {
   //add animation listener callbacks
   //chrome, safari, opera
   background.addEventListener("webkitAnimationEnd", _modalClose);
+  //standard
   background.addEventListener("animationend", _modalClose);
 }
