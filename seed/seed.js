@@ -5,12 +5,18 @@ const seedUsers = require("./seed_users");
 const seedHabits = require ("./seed_habits");
 const seedResources = require("./seed_resources");
 
-async function seed() {
+const User = require("../models/User");
+
+function seed() {
   console.log("connected to MongoDB");
-  await seedUsers();
-  await seedHabits();
-  await seedResources();
-  process.exit();
+  seedUsers()
+    .then( () =>
+      User.find())
+    .then( results =>
+      console.log(results))
+    //.then(seedHabits())
+    //.then(seedResources())
+    //.finally( process.exit())
 }
 
 mongoose.connect(dbUri, { useNewUrlParser: true } )
