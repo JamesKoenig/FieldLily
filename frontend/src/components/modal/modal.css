@@ -8,6 +8,13 @@
     height: 100%;
     width: 100%;
     background: radial-gradient(rgba(0,0,0,0),rgba(0,0,0,0.3));
+    font-family: helvetica;
+    /* font-size: 100px; */
+}
+
+.modal {
+    font-family: helvetica;
+    /* font-size: 100px; */
 }
 
 .modal-fade-in {

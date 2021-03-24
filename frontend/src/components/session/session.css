@@ -1,4 +1,9 @@
-.container {
+/* .container {
     font-family: helvetica;
     font-size: 30px;
-}
+} */
+
+input::placeholder {
+    color: blue;
+    font-size: 40px;
+  }
