@@ -1,11 +1,12 @@
 const bcrypt = require("bcryptjs");
-const loadSeedFile = require("./seedfile_parse");
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const loadSeedFile = require("./seedfile_parse");
+const dropModelCollection = require("./drop_model");
 
 function seedUsers() {
   let userData = loadSeedFile("user.json");
-  return dropUsers()
+  return dropModelCollection(User)
     .then( () =>
       Promise.all(
         userData.map( user =>
