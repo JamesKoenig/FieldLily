@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './resource_show.css'
 
 class ResourceShow extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class ResourceShow extends React.Component {
     if(!resource || !habit)
       return null;
     return (
-      <div>
+      <div className="resource-show-container">
          <div>
             <h1>{resource.title}</h1>
             <p>{resource.featured}</p>

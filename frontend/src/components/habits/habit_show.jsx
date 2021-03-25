@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ResourceIndexItem from '../resources/resource_index_item';
+import ListGroup from 'react-bootstrap/ListGroup';
 
+import './habit_show.css';
 
 class HabitShow extends React.Component {
   componentDidMount() {
@@ -18,21 +20,29 @@ class HabitShow extends React.Component {
       resources = []
     }
     return (
-      <div>
-         <div>
-            <h1>Title: {habit.title}</h1>
-            <p>Description: {habit.description}</p>
-            <h2>Resources:</h2>
-            <ul>
+      <div className="habit-show-container">
+        <div className="habit-show-grid">
+          <br/>
+          <div className="habit-show-body">
+            <h1>{habit.title}</h1>
+            <p>{habit.description}</p>
+          </div>
+          
+          <div className="resource-component-div">
+             <section>
+                <h4 className="resource-title">Resources</h4>
+                <ListGroup variant="flush">
                 {resources.map((resource) => (
-                    <ResourceIndexItem
+                    <ResourceIndexItem 
                         resource={resource}
                         key={resource._id}
                     />
                 ))}
-            </ul>
+                </ListGroup>
+            </section>
+          </div>
+          <Link to="/" />
         </div>
-        <Link to="/" />
       </div>
     );
   }
