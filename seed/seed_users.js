@@ -5,37 +5,30 @@ const User = require("../models/User");
 
 function seedUsers() {
   let userData = loadSeedFile("user.json");
-  console.log("deleting existing users");
-  mongoose.connection.collections["users"].drop();
-
-  console.log("seeding users");
-  const user = userData[0];
-  console.log(userData[0]);
-  return bcrypt.genSalt(10)
-    .then( salt => {
-      console.log(`received salt ${salt}`);
-      return salt})
+  let user;
+  return User.find().then( users=> {
+    if(users.length > 0) {
+      console.log("dropping existing users collection");
+      return User.collection.drop();
+    } else {
+      console.log("empty users db, no need to drop");
+      return Promise.resolve();
+    } })
+    .then( () => {
+      console.log("seeding user");
+      user = userData[0]; })
+    .then(() =>
+      bcrypt.genSalt(10))
     .then( salt =>
       bcrypt.hash(user.password, salt))
-    .then( hash => {
-      console.log(`received hash ${hash}`);
-      return hash; })
     .then( hash =>
       ({
         ...user,
         password: hash,
       }))
     .then( userObj => {
-      console.log(userObj);
-      return userObj;
-    })
-    .then( userObj => {
       const userRec = new User(userObj);
       return userRec.save();
-    })
-    .then( (arg) => {
-      console.log(arg);
-      return arg;
     })
 }
 

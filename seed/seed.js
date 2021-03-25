@@ -14,9 +14,7 @@ function seed() {
       User.find())
     .then( results =>
       console.log(results))
-    //.then(seedHabits())
-    //.then(seedResources())
-    //.finally( process.exit())
+    .finally(() =>  process.exit())
 }
 
 mongoose.connect(dbUri, { useNewUrlParser: true } )
