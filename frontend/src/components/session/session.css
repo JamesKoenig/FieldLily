@@ -1,9 +1,14 @@
-/* .container {
+.container {
     font-family: helvetica;
-    font-size: 30px;
-} */
+    /* font-size: 30px; */
+}
 
-input::placeholder {
+input {
+    font-size: 100px;
+}
+
+/* input::placeholder {
     color: blue;
+    font-family: helvetica;
     font-size: 40px;
-  }
+  } */
