@@ -1,3 +1,20 @@
-{
-    "echo": "hello world"
-}
+[
+    {
+        "title": "Die Hard: a requiem",
+        "description": "a critical and incisive analysis into the underlying motivations and cultural shorthands present in the Die Hard franchise",
+        "featured": true,
+        "habitTitle": "revengeance"
+    },
+    {
+        "title": "Webster's dictionary definition of friendship" ,
+        "description": "1: the state of being friends",
+        "featured": true,
+        "habitTitle": "friendship"
+    },
+    {
+        "title": "how to make friends and influence people",
+        "description": "a pretty great book for this kind of thing",
+        "featured": false,
+        "habitTitle": "friendship"
+    }
+]
