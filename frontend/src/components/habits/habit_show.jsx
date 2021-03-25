@@ -20,7 +20,7 @@ class HabitShow extends React.Component {
       resources = []
     }
     return (
-      <div className="habits-index-container">
+      <div className="habit-show-container">
         <div className="habit-show-grid">
           <br/>
           <div className="habit-show-body">
