@@ -6,6 +6,7 @@ const seedHabits = require ("./seed_habits");
 const seedResources = require("./seed_resources");
 
 const User = require("../models/User");
+const Habit = require("../models/Habit");
 
 function seed() {
   console.log("connected to MongoDB");
@@ -14,6 +15,13 @@ function seed() {
       User.find())
     .then( results =>
       console.log(results))
+    .then( () =>
+      seedHabits())
+    .then( () =>
+      Habit.find())
+    .then( habits =>
+      console.log(habits))
+    .catch( err => { throw err })
     .finally(() =>  process.exit())
 }
 
