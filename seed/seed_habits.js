@@ -1,22 +1,14 @@
-const loadSeedFile = require("./seedfile_parse");
 const User = require("../models/User");
 const Habit = require("../models/Habit");
-const dropModelCollection = require("./drop_model");
+const seedMany = require("./seed_many");
 
 function seedHabits() {
-  let habitData = loadSeedFile("habit.json");
-  return dropModelCollection(Habit)
-    .then( () =>
-      Promise.all(
-        habitData.map( habit =>
-          seedHabit(habit)
-        )
-      )
-    )
+  console.log("in seedHabits");
+  return seedMany("habit.json",Habit,seedHabit);
 }
 
 function seedHabit(habit) {
-  console.log(`seeding ${habit.title}`);
+  console.log(`seeding habit: ${habit.title}`);
   return User.findOne({email: habit.userEmail})
     .then( user =>
       ({

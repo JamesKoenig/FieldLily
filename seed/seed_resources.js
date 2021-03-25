@@ -1,23 +1,14 @@
 const Resource = require("../models/Resource");
 const Habit = require("../models/Habit");
-const loadSeedFile = require("./seedfile_parse");
-const dropModelCollection = require("./drop_model");
+const seedMany = require("./seed_many");
 
 function seedResources() {
-  let resourceData = loadSeedFile("resource.json");
-  return dropModelCollection(Resource)
-    .then( () =>
-      Promise.all(
-        resourceData.map( resource =>
-          seedResource(resource)
-        )
-      )
-    )
-    .catch(err => { throw err });
+  console.log("in seedResources");
+  return seedMany("resource.json", Resource, seedResource);
 }
 
 function seedResource(resource) {
-  console.log(`seeding ${resource.title}`);
+  console.log(`seeding resource: ${resource.title}`);
   return Habit.findOne({title: resource.habitTitle})
     .then( habit =>
       ({
@@ -30,7 +21,6 @@ function seedResource(resource) {
       const resourceRecord = new Resource(resource);
       return resourceRecord.save();
     })
-    .catch(err => { throw err });
 }
 
 module.exports = seedResources;
