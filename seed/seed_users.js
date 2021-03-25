@@ -16,19 +16,8 @@ function seedUsers() {
     )
 }
 
-function dropUsers() {
-  return User.find().then( users=> {
-    console.log("dropping existing users collection");
-    if(users.length > 0) {
-      return User.collection.drop();
-    } else {
-      console.log("empty users db, no need to drop");
-      return Promise.resolve();
-    } })
-}
-
 function seedUser(user) {
-  console.log(`seeding user: ${user.email}`);
+  console.log(`seeding ${user.email}`);
   return bcrypt.genSalt(10)
     .then( salt =>
       bcrypt.hash(user.password, salt))

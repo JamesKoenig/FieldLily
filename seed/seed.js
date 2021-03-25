@@ -25,7 +25,12 @@ function seed() {
     .finally(() =>  process.exit())
 }
 
-mongoose.connect(dbUri, { useNewUrlParser: true } )
+mongoose.connect(dbUri, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const db = mongoose.connection;
 db.on("error",console.error.bind(console, 'connection error:'));
