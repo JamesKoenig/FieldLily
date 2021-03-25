@@ -13,21 +13,9 @@ function seed() {
   console.log("connected to MongoDB");
   seedUsers()
     .then( () =>
-      User.find())
-    .then( results =>
-      console.log(results))
-    .then( () =>
       seedHabits())
     .then( () =>
-      Habit.find())
-    .then( habits =>
-      console.log(habits))
-    .then( () =>
       seedResources())
-    .then( () =>
-      Resource.find())
-    .then( resources =>
-      console.log(resources))
     .catch( err => { throw err })
     .finally(() =>  process.exit())
 }
