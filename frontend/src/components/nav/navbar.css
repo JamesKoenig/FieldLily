@@ -18,6 +18,8 @@
 
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
+    font-family: var(--reggae-one);
+    font-size: 24px;
     text-shadow: -.25px -.25px var(--forever-susan-accent-orange);
 }
 
