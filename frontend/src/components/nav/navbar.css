@@ -20,6 +20,8 @@
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
     font-weight: bold;
+    font-family: var(--reggae-one);
+    font-size: 24px;
 }
 
 .navbar-links {
