@@ -1,0 +1,15 @@
+@keyframes rainbow-shadow {
+    0%     {text-shadow: 0 0 10px red;}
+    14.29% {text-shadow: 0 0 10px orange;}
+    28.57% {text-shadow: 0 0 10px yellow;}
+    42.86% {text-shadow: 0 0 10px green;}
+    57.14% {text-shadow: 0 0 10px blue;}
+    71.43% {text-shadow: 0 0 10px indigo;}
+    85.71% {text-shadow: 0 0 10px violet;}
+    100%   {text-shadow: 0 0 10px red;}
+}
+
+.navbar-logo {
+    animation: rainbow-shadow 5s linear infinite;
+}
+

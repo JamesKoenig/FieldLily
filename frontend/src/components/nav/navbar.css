@@ -10,6 +10,7 @@
 }
 
 .navbar {
+    text-align: center;
     display: flex;
     flex-direction: inherit;
     justify-content: space-between;
@@ -18,7 +19,7 @@
 
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
-    text-shadow: -.25px -.25px var(--forever-susan-accent-orange);
+    font-weight: bold;
 }
 
 .navbar-links {
@@ -27,15 +28,21 @@
     overflow: hidden;
     flex-direction: inherit;
     height: 0;
+    width: 0;
+    right: -1px;
     max-height: 0;
-    bottom: 12px;
+    bottom: 48px;
     justify-content: space-between;
     transition: .5s ease-in-out;
 }
 
 .navbar:hover .navbar-links {
+    bottom: 12px;
     z-index: -1;
     height: 100%;
+    width: 100%;
+    right: 0;
     max-height: 480px;
 }
 
+@import "./navbar_logo_animation.css";
