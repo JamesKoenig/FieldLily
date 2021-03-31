@@ -8,14 +8,13 @@ import NavBarContainer from './nav/navbar_container';
 
 import HabitsContainer from './habits/habits_container';
 import MainPage from './main/main_page';
+import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
 import HabitUpdateContainer from './habits/habit_update_container';
 import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
 
-
-import './app.css';
 import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (
@@ -31,9 +30,7 @@ const App = () => (
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
         <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
     </Switch>
-    <footer id="footer">
-      CC-BY 4.0 &copy; 2021
-    </footer>
+    <Footer />
   </div>
 );
 
