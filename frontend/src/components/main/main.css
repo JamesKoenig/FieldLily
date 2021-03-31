@@ -3,4 +3,7 @@
     width: 100vw;
     color: var(--forever-susan-accent-yellow);
     background-color: var(--forever-susan-dark-crimson);
+    background-image: url("background_image.jpeg");
+    background-size: cover;
 }
+
