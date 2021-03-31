@@ -9,7 +9,13 @@ import './navbar.css';
 const CondLink = ({ path, label }) => (
   <Route
     render={ ( { location } ) => (location.pathname !== path) ?
-        (<Link to={path}>{label}</Link>) : null }
+        (
+          <Link to={path}>
+            <button>
+              {label}
+            </button>
+          </Link>
+        ) : null }
    />
 )
 
