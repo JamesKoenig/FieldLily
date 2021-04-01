@@ -11,6 +11,14 @@ class HabitCompose extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    if(this.props.habit) {
+      //delete the 'draft' if we were editing
+      this.props.receiveNewHabit({title: "", description: ""});
+    }
+
+  }
+
   handleSubmit(e) {
     const { title,
       description,
