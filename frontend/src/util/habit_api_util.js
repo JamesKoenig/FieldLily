@@ -14,3 +14,6 @@ export const getHabitId = id => {
 export const writeHabit = data => {
   return axios.post('/api/habits/', data)
 }
+
+export const patchHabit = (habitId, data) =>
+  axios.put(`/api/habits/${habitId}`, data)

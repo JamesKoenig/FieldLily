@@ -5,13 +5,11 @@ import HabitUpdate from './habit_update';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.user,
-    updateHabit: state.entities.habits.update
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateHabit: data => dispatch(updateHabit(data))
   };
 };
 

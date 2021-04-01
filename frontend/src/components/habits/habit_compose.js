@@ -4,58 +4,79 @@ import HabitBox from './habit_box';
 class HabitCompose extends React.Component {
   constructor(props) {
       super(props);
-
-      this.state = {
-          title: "",
-          description: "",
-          newHabit: ""
+      if(this.props.habit) {
+        this.props.receiveNewHabit(this.props.habit);
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
-  } 
+  }
 
-  componentWillReceiveProps(nextProps) {
-      this.setState({newHabit: nextProps.newHabit.text});
+  componentWillUnmount() {
+    if(this.props.habit) {
+      //delete the 'draft' if we were editing
+      this.props.receiveNewHabit({title: "", description: ""});
+    }
+
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    let habit = {
-      title: this.state.title,
-      description: this.state.description
+    const { title,
+      description,
+      composeHabit,
+      updateHabit,
+      modalFadeAndClose,
+      habit,
+    } = this.props;
+
+    const newHabit = {
+      title,
+      description,
     };
 
-    this.props.composeHabit(habit); 
-    this.setState({title: '',
-                   description: ''})
+    e.preventDefault();
+    if(this.props.habit) {
+      updateHabit(habit._id, newHabit);
+    } else {
+      composeHabit(habit);
+    }
+    modalFadeAndClose();
   }
 
   update(key) {
-    return e => this.setState({
-      [key]: e.currentTarget.value
+    const {
+      title,
+      description,
+      receiveNewHabit,
+    } = this.props;
+
+    return e => {
+      return receiveNewHabit({
+        title,
+        description,
+        [key]: e.currentTarget.value,
     });
+    }
   }
 
   render() {
+    const { title, description } = this.props;
     return (
         <div className="form">
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input type="textarea"
-                        value={this.state.title}
+                        value={title}
                         onChange={this.update("title")}
                         placeholder="Habit title"
                     />
                     <input type="textarea"
-                        value={this.state.description}
+                        value={description}
                         onChange={this.update("description")}
                         placeholder="Habit description"
                     />
                     <input type="submit" value="Submit" />
                 </div>
             </form>
-            <br />
-            <HabitBox text={this.state.newHabit} />
         </div>
     )
   }

@@ -2,18 +2,24 @@ import {
   getHabits,
   getHabitId,
   writeHabit,
+  patchHabit,
   getCurrentUserHabits,
 } from '../util/habit_api_util';
 
 export const RECEIVE_HABITS = "RECEIVE_HABITS";
+export const RECEIVE_HABIT = "RECEIVE_HABIT";
 export const RECEIVE_HABIT_ID = "RECEIVE_HABIT_ID";
 export const RECEIVE_NEW_HABIT = "RECEIVE_NEW_HABIT";
-export const RECEIVE_UPDATED_HABIT = "RECEIVE_UPDATED_HABIT"
 export const RECEIVE_CURRENT_USER_HABITS = "RECEIVE_CURRENT_USER_HABITS";
 
 export const receiveHabits = habits => ({
     type: RECEIVE_HABITS,
     habits
+  });
+
+export const receiveHabit = habit => ({
+    type: RECEIVE_HABIT,
+    habit
   });
 
 export const receiveHabitId = habit => ({
@@ -23,11 +29,6 @@ export const receiveHabitId = habit => ({
 
 export const receiveNewHabit = habit => ({
     type: RECEIVE_NEW_HABIT,
-    habit
-})
-
-export const receiveUpdatedHabit = habit => ({
-    type: RECEIVE_UPDATED_HABIT,
     habit
 })
 
@@ -50,13 +51,13 @@ export const fetchHabitId = id => dispatch => (
 
 export const composeHabit = data => dispatch => (
     writeHabit(data)
-      .then(habit => dispatch(receiveNewHabit(habit)))
+      .then(habit => dispatch(receiveHabit(habit)))
       .catch(err => console.log(err))
   );
 
-export const updateHabit = data => dispatch => (
-    writeHabit(data)
-      .then(habit => dispatch(receiveUpdatedHabit(habit)))
+export const updateHabit = (habitId, data) => dispatch => (
+    patchHabit(habitId, data)
+      .then(habit => dispatch(receiveHabit(habit)))
       .catch(err => console.log(err))
 )
 
