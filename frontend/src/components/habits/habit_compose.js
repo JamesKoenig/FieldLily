@@ -15,17 +15,19 @@ class HabitCompose extends React.Component {
     const { title,
       description,
       composeHabit,
+      updateHabit,
       modalFadeAndClose,
+      habit,
     } = this.props;
 
-    const habit = {
+    const newHabit = {
       title,
       description,
     };
 
     e.preventDefault();
     if(this.props.habit) {
-      throw "update not implemented";
+      updateHabit(habit._id, newHabit);
     } else {
       composeHabit(habit);
     }

@@ -2,6 +2,7 @@ import {
   getHabits,
   getHabitId,
   writeHabit,
+  patchHabit,
   getCurrentUserHabits,
 } from '../util/habit_api_util';
 
@@ -54,9 +55,9 @@ export const composeHabit = data => dispatch => (
       .catch(err => console.log(err))
   );
 
-export const updateHabit = data => dispatch => (
-    writeHabit(data)
-      .then(habit => dispatch(receiveUpdatedHabit(habit)))
+export const updateHabit = (habitId, data) => dispatch => (
+    patchHabit(habitId, data)
+      .then(habit => dispatch(receiveHabit(habit)))
       .catch(err => console.log(err))
 )
 

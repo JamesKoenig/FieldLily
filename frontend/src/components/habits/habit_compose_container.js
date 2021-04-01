@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {
   composeHabit,
+  updateHabit,
   receiveNewHabit,
 } from '../../actions/habit_actions';
 import { modalFadeAndClose }
@@ -25,6 +26,7 @@ const mapDispatchToProps = {
     composeHabit,
     modalFadeAndClose,
     receiveNewHabit,
+    updateHabit,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HabitCompose);
