@@ -17,6 +17,20 @@
     margin: 20px 12px;
 }
 
+.navbar a {
+}
+
+.navbar button {
+    cursor: pointer;
+    align-self: center;
+    width: 66%;
+    padding: 0;
+    height: 48px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+}
+
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
     font-weight: bold;
@@ -32,10 +46,11 @@
     flex-direction: inherit;
     height: 0;
     width: 0;
-    right: -1px;
+    right: 0;
     max-height: 0;
-    bottom: 48px;
-    justify-content: space-between;
+    bottom: 78px;
+    justify-content: space-around;
+    align-itmes: center;
     transition: .5s ease-in-out;
 }
 
