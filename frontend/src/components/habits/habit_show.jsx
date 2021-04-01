@@ -16,9 +16,6 @@ class HabitShow extends React.Component {
     //debugger
     if(!habit)
       return null;
-    if(!resources) {
-      resources = []
-    }
     return (
       <div className="habit-show-container">
         <div className="habit-show-grid">
@@ -27,7 +24,6 @@ class HabitShow extends React.Component {
             <h1>{habit.title}</h1>
             <p>{habit.description}</p>
           </div>
-          
           <div className="resource-component-div">
              <section>
                 <h4 className="resource-title">Resources</h4>

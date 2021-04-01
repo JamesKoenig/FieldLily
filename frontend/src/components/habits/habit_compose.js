@@ -12,7 +12,7 @@ class HabitCompose extends React.Component {
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
-  } 
+  }
 
   componentWillReceiveProps(nextProps) {
       this.setState({newHabit: nextProps.newHabit.text});
