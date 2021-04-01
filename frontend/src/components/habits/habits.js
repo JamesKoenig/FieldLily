@@ -16,6 +16,7 @@ class Habit extends React.Component {
       habits,
       loggedIn,
       openNewHabitModal,
+      openEditHabitModal,
     } = this.props;
     return (
       <div className="habits-index-container">
@@ -37,6 +38,7 @@ class Habit extends React.Component {
                     { habits.map(habit => (
                       <HabitBox key={habit._id}
                                 loggedIn={loggedIn}
+                                openEditHabitModal={openEditHabitModal}
                                 {...habit} />
                     ))}
                   </ul>

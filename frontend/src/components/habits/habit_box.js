@@ -5,7 +5,8 @@ import './habit_box.css';
 
 class HabitBox extends React.Component {
   render() {
-    const { loggedIn, title, description, _id } = this.props;
+    const { loggedIn, title, description, _id,
+            openEditHabitModal } = this.props;
     return (
         <li>
             <ul className="habit-index-box">
@@ -13,9 +14,10 @@ class HabitBox extends React.Component {
               {/* style this so that "indent" is indented */}
               <li><p id="indent">Description: {description}
                 { loggedIn ?
-                  (<Link className="edit-link" to={`/habits/${_id}/update`}>
+                  (<button className="edit-link"
+                      onClick={() => openEditHabitModal(_id) } >
                      Edit
-                   </Link>) : null }
+                   </button>) : null }
               </p></li>
             </ul>
         </li>
