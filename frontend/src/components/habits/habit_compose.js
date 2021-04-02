@@ -37,7 +37,7 @@ class HabitCompose extends React.Component {
     if(this.props.habit) {
       updateHabit(habit._id, newHabit);
     } else {
-      composeHabit(habit);
+      composeHabit(newHabit);
     }
     modalFadeAndClose();
   }
