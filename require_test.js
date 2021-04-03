@@ -7,4 +7,10 @@ const cwd = process.cwd();
 
 console.log(`current directory is: ${cwd}`);
 
-console.log(createRequire(path.join(cwd, "__placeholder__.js")).resolve("eslint-plugin-react"));
+try {
+  console.log(createRequire(path.join(cwd, "__placeholder__.js")).resolve("eslint-plugin-react"));
+} catch (error) {
+  console.log(error);
+  console.log(error.message);
+}
+
