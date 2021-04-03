@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 const validateResourceInput = require('../../validation/resources');
 const Resource = require('../../models/Resource');
+const Habit = require("../../models/Habit");
 const {
   resFromArr,
   resFromObj,
