@@ -19,8 +19,7 @@ const modalManifest = {
 };
 
 function modalManifestFn(type, subtype) {
-  if(modalManifest.hasOwnProperty(type) &&
-     modalManifest[type].hasOwnProperty(subtype)) {
+  if(modalManifest[type] && modalManifest[type][subtype]) {
     return modalManifest[type][subtype];
   } else {
     return null;
