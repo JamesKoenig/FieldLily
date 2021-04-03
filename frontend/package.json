@@ -20,8 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint src/",
-    "test":  "npm run lint",
+    "lint": "eslint --resolve-plugins-relative-to frontend src/",
+    "test": "npm run lint",
     "react-scripts-test": "react-scripts test",
     "eject": "react-scripts eject"
   },
