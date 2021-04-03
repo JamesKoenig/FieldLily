@@ -9,7 +9,7 @@ const mapStateToProps = ({entities: { resources, habits: { all: habits } } },
   let habit = habits[habitId];
   resources = Object.values(resources)
   if (resources) {
-    resources = resources.filter(resource => resource.habit == habitId);
+    resources = resources.filter(resource => resource.habit === habitId);
   }
   return {
     habit,

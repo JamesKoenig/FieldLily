@@ -11,7 +11,6 @@ import MainPage from './main/main_page';
 import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
-import HabitUpdateContainer from './habits/habit_update_container';
 import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
 
@@ -28,7 +27,6 @@ const App = () => (
         <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
-        <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
     </Switch>
     <Footer />
   </div>
