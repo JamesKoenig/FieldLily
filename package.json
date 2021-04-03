@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "seed": "node seed/seed.js",
+    "lint": "eslint app.js routes/**/*.js models/*.js",
     "server": "nodemon app.js",
     "debug": "node --inspect app.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
@@ -33,6 +34,7 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
+    "eslint": "^7.23.0",
     "nodemon": "^2.0.7"
   }
 }
