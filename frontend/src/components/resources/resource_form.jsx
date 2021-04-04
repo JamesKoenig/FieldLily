@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.resource;
+        this.state = {
+          title: "",
+          description: "",
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)

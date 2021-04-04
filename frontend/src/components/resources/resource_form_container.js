@@ -4,14 +4,8 @@ import {
   createResource,
 } from '../../actions/resource_actions';
 
-const mSTP = state => ({
-  resource: {
-    title: '',
-    description: '' },
-});
-
 const mDTP = ({
   createResource,
 });
 
-export default connect(mSTP, mDTP)(ResourceForm);
+export default connect(null, mDTP)(ResourceForm);
