@@ -10,7 +10,6 @@ class Resources extends React.Component {
   render() {
     const {
       resources,
-      openNewResourceModal,
     } = this.props;
     return (
       <div className="resources-index-container">
