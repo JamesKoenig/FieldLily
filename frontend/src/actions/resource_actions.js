@@ -1,14 +1,20 @@
 import * as resources_util from '../util/resources_api_util'
 
 export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
+export const RECEIVE_HABIT_RESOURCES = "RECEIVE_HABIT_RESOURCES";
 export const RECEIVE_RESOURCE = 'RECEIVE_RESOURCE'
 export const REMOVE_RESOURCE = 'REMOVE_RESOURCE'
-
 
 export const receiveAllResources = resources => ({
     type:RECEIVE_ALL_RESOURCES,
     resources
 })
+
+export const receiveHabitResources = (habitId, resources) => ({
+    type: RECEIVE_HABIT_RESOURCES,
+    habitId,
+    resources
+});
 
 export const receiveResource = resource => ({
   type:RECEIVE_RESOURCE,
@@ -24,6 +30,13 @@ export const fetchResources = () => dispatch => {
   return resources_util.fetchResources()
       .then( ({data: resources}) => dispatch(receiveAllResources(resources)))
 }
+
+export const fetchHabitResources = habitId => dispatch =>
+  resources_util.fetchHabitResources(habitId)
+    .then( ({data: resources}) =>
+      dispatch(receiveHabitResources(habitId, resources)))
+    .then( ({data: resources}) =>
+      dispatch(receiveAllResources(resources)))
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
