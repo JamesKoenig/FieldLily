@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 const validateResourceInput = require('../../validation/resources');
 const Resource = require('../../models/Resource');
+const Habit = require("../../models/Habit");
 const {
   resFromArr,
   resFromObj,
@@ -13,21 +13,27 @@ router.get('/', (req, res) => {
     Resource.find()
         .sort({ date: -1 })
         .then(resources => res.json(resFromArr(resources)))
-        .catch(err => res.status(404).json({ noresourcesfound: 'No resources found' }));
+        .catch( () =>
+          res.status(404).json({ noresourcesfound: 'No resources found' }));
 });
 
 router.get('/featured', (req, res) => {
     Resource.find({featured: true})
         .sort({ date: -1 })
         .then(resources => res.json(resFromArr(resources)))
-        .catch(err => res.status(404).json({ noresourcesfound: 'No featured resources found' }));
+        .catch( () => 
+          res.status(404)
+            .json({
+              noresourcesfound: 'No featured resources found' 
+            })
+        );
 });
 
 
 router.get('/:id', (req, res) => {
     Resource.findById(req.params.id)
         .then(resource => res.json(resFromObj(resource)))
-        .catch(err =>
+        .catch( () =>
             res.status(404).json({ noresourcefound: 'No resource found with that ID' })
         );
 });
@@ -36,7 +42,7 @@ router.get('/habits/:habit_id', (req, res) => {
     Resource.find({habit: req.params.habit_id})
         .sort({ date: -1 })
         .then( resources => { res.json(resFromArr(resources)) })
-        .catch( err =>
+        .catch( () =>
             res.status(404).json({
                 nohabitfound: 'No habit found with that ID'
             })

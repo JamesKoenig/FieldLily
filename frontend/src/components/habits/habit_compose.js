@@ -1,5 +1,4 @@
 import React from 'react';
-import HabitBox from './habit_box';
 
 class HabitCompose extends React.Component {
   constructor(props) {
@@ -37,7 +36,7 @@ class HabitCompose extends React.Component {
     if(this.props.habit) {
       updateHabit(habit._id, newHabit);
     } else {
-      composeHabit(habit);
+      composeHabit(newHabit);
     }
     modalFadeAndClose();
   }
