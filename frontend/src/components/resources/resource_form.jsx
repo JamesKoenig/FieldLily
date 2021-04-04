@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.resource
+        this.state = this.props.resource;
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
@@ -20,12 +20,12 @@ class ResourceForm extends React.Component {
         return e => this.setState({ [field]: e.currentTarget.value })
     }
 
-    render() { 
+    render() {
         return (
             <div>
                 <h3>{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
-                
+
                 <label>
                     Title
                     <textarea
@@ -41,7 +41,6 @@ class ResourceForm extends React.Component {
             </div>
         )
   }
-    
 }
- 
+
 export default ResourceForm

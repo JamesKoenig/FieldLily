@@ -25,10 +25,20 @@
     min-height: 40%;
     min-width:  25%;
     display: flex;
+    position: relative;
     flex-direction: column;
     color: white;
     background-color: black;
     border-radius: var(--resources-index-border-radius);
+}
+
+.resources-index-new-button {
+   border: none;
+   border-radius: var(--resources-index-border-radius);
+   position: absolute;
+   right: var(--resources-index-border-radius);
+   top: 15px;
+   width: max-content;
 }
 
 .resources-index-list {
