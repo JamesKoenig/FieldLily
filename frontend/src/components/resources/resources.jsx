@@ -16,10 +16,7 @@ class Resources extends React.Component {
       <div className="resources-index-container">
         <div className="resources-index">
           <h1 className="resources-index-heading">All resources</h1>
-          <button className="resources-index-new-button"
-                  onClick={openNewResourceModal}>New Resource</button>
-            <ul className="resources-index-list">
-
+           <ul className="resources-index-list">
               {resources.map((resource) => (
                   <ResourceIndexItem
                     resource={resource}

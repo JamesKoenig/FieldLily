@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import HabitShow from './habit_show';
 import { fetchResources } from '../../actions/resource_actions';
 import { fetchHabits } from '../../actions/habit_actions';
-
+import { openNewResourceModal }
+  from '../../actions/modal/resource_modal_actions.js'
 
 const mapStateToProps = ({entities: { resources, habits: { all: habits } } },
                          {match: {params: { habitId } } }) => {
@@ -17,9 +18,10 @@ const mapStateToProps = ({entities: { resources, habits: { all: habits } } },
   }
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchResources: () => dispatch(fetchResources()),
-  fetchHabits: () => dispatch(fetchHabits())
-});
+const mapDispatchToProps = {
+  fetchResources,
+  fetchHabits,
+  openNewResourceModal,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HabitShow);

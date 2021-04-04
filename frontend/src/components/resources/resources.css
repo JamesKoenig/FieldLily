@@ -32,15 +32,6 @@
     border-radius: var(--resources-index-border-radius);
 }
 
-.resources-index-new-button {
-   border: none;
-   border-radius: var(--resources-index-border-radius);
-   position: absolute;
-   right: var(--resources-index-border-radius);
-   top: 15px;
-   width: max-content;
-}
-
 .resources-index-list {
     flex-grow: 1;
     display: flex;
