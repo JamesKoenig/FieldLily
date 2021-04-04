@@ -93,3 +93,12 @@
     color:  var(--forever-susan-accent-yellow);
     height: 100vh;
 }
+
+.resources-index-new-button {
+   border: none;
+   border-radius: var(--resources-index-border-radius);
+   right: var(--resources-index-border-radius);
+   top: 15px;
+   width: max-content;
+   cursor: pointer;
+}

@@ -12,7 +12,11 @@ class HabitShow extends React.Component {
   }
 
   render() {
-    const { habit, resources } = this.props;
+    const {
+      habit,
+      resources,
+      openNewResourceModal,
+    } = this.props;
     //debugger
     if(!habit)
       return null;
@@ -22,6 +26,8 @@ class HabitShow extends React.Component {
           <br/>
           <div className="habit-show-body">
             <h1>{habit.title}</h1>
+            <button className="resources-index-new-button"
+                    onClick={openNewResourceModal}>New Resource</button>
             <p>{habit.description}</p>
           </div>
           <div className="resource-component-div">

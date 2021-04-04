@@ -8,13 +8,15 @@ class Resources extends React.Component {
     this.props.fetchResources();
   }
   render() {
-    const { resources } = this.props;
+    const {
+      resources,
+      openNewResourceModal,
+    } = this.props;
     return (
       <div className="resources-index-container">
         <div className="resources-index">
           <h1 className="resources-index-heading">All resources</h1>
-            <ul className="resources-index-list">
-
+           <ul className="resources-index-list">
               {resources.map((resource) => (
                   <ResourceIndexItem
                     resource={resource}

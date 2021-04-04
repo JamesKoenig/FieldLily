@@ -25,6 +25,7 @@
     min-height: 40%;
     min-width:  25%;
     display: flex;
+    position: relative;
     flex-direction: column;
     color: white;
     background-color: black;
