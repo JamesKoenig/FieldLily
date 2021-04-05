@@ -8,11 +8,11 @@ import './habit_show.css';
 class HabitShow extends React.Component {
   componentDidMount() {
     const {
-      fetchHabitId,
+      fetchHabit,
       fetchHabitResources,
       match: { params: { habitId }},
     } = this.props;
-    fetchHabitId(habitId);
+    fetchHabit(habitId);
     fetchHabitResources(habitId);
   }
 

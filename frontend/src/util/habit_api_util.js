@@ -7,7 +7,7 @@ export const getHabits = () => {
 export const getCurrentUserHabits = () =>
   axios.get('/api/habits/currentUser');
 
-export const getHabitId = id => {
+export const getHabit = id => {
   return axios.get(`/api/habits/${id}`)
 };
 

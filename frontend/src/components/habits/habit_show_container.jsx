@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import HabitShow from './habit_show';
 import { fetchHabitResources } from '../../actions/resource_actions';
-import { fetchHabitId } from '../../actions/habit_actions';
+import { fetchHabit } from '../../actions/habit_actions';
 import { openNewResourceModal }
   from '../../actions/modal/resource_modal_actions.js'
 
@@ -33,7 +33,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = {
   fetchHabitResources,
-  fetchHabitId,
+  fetchHabit,
   openNewResourceModal,
 };
 
