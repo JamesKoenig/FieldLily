@@ -1,26 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-          title: "",
-          description: "",
-        };
-
+        if(this.props.resource) {
+          this.props.receiveNewResource(this.props.resource);
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createResource(this.state, this.props.habitId)
+        throw "CREATING NEW RESOURCES NOT YET IMPLEMENTED, SORRY";
+        //this.props.createResource(this.props.resource, this.props.habitId)
     }
 
     update(field) {
-        return e => this.setState({ [field]: e.currentTarget.value })
+      const {
+        title,
+        description,
+        receiveNewResource,
+      } = this.props;
+        return e => {
+          receiveNewResource({
+            title,
+            description,
+            [field]: e.currentTarget.value
+          });
+        }
     }
 
     render() {
@@ -29,18 +37,17 @@ class ResourceForm extends React.Component {
                 <h3>{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
 
-                <label>
-                    Title
-                    <textarea
-                    value={this.state.title}
-                    onChange={this.update('title')}
-                    />
-                </label>
+                  <label>
+                      Title
+                  </label>
+                  <textarea
+                    value={this.props.title}
+                    onChange={this.update('title')} />
 
-                <button type='submit' value={this.props.formType} textarea='add Resource'/>
+                  <button>
+                    add Resource
+                  </button>
                 </form>
-                <Link className="primary" to="/habits">All habits</Link>
-
             </div>
         )
   }
