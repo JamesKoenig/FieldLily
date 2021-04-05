@@ -7,8 +7,13 @@ import './habit_show.css';
 
 class HabitShow extends React.Component {
   componentDidMount() {
-    this.props.fetchHabits();
-    this.props.fetchResources();
+    const {
+      fetchHabitId,
+      fetchHabitResources,
+      match: { params: { habitId }},
+    } = this.props;
+    fetchHabitId(habitId);
+    fetchHabitResources(habitId);
   }
 
   render() {
@@ -17,7 +22,6 @@ class HabitShow extends React.Component {
       resources,
       openNewResourceModal,
     } = this.props;
-    //debugger
     if(!habit)
       return null;
     return (
