@@ -4,7 +4,7 @@ import {
   fetchResources,
 } from '../../actions/resource_actions';
 
-const mSTP = ({entities: { resources } }) => ({
+const mSTP = ({entities: { resources: {all: resources } } }) => ({
   resources: Object.values(resources),
 });
 

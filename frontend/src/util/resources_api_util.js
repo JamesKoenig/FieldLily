@@ -6,6 +6,9 @@ export const createResource = resource =>
 export const fetchResources = () =>
   axios.get('/api/resources');
 
+export const fetchHabitResources = habitId =>
+  axios.get(`/api/resources/habits/${habitId}`);
+
 export const fetchResource = resourceId =>
   axios.get(`/api/resources/${resourceId}`);
 

@@ -4,9 +4,10 @@ import { fetchResource } from '../../actions/resource_actions';
 import { fetchHabits } from '../../actions/habit_actions';
 
 
-const mapStateToProps = ({entities: { resources, habits: { all: habits } } },
+const mapStateToProps = ({entities: { resources: { all: resources },
+                                      habits: { all: habits } } },
                          {match: {params: { resourceId } } }) => {
-  let resource = resources[resourceId]                           
+  let resource = resources[resourceId];
   return {
     resourceId,
     resource,
