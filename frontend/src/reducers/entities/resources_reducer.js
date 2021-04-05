@@ -4,6 +4,8 @@ import { RECEIVE_ALL_RESOURCES,
          RECEIVE_RESOURCE,
          REMOVE_RESOURCE,
          RECEIVE_HABIT_RESOURCES,
+         CLEAR_NEW_RESOURCE,
+         RECEIVE_NEW_RESOURCE,
 } from '../../actions/resource_actions';
 
 const allResources = (oldState = {},
@@ -37,10 +39,28 @@ const resourceHabitReducer = (state={}, {type, habitId, resources } ) => {
   }
 }
 
+const _defaultNewResource = {
+  title: "",
+  description: "",
+}
+
+const newResourceReducer =
+  (state=_defaultNewResource, { type, resource } ) => {
+    Object.freeze(state);
+    switch(type) {
+      case RECEIVE_NEW_RESOURCE:
+        return resource;
+      case CLEAR_NEW_RESOURCE:
+        return _defaultNewResource;
+      default:
+        return state;
+    }
+  }
+
 const resourcesReducer = combineReducers({
   all: allResources,
   by_habit: resourceHabitReducer,
-  new: (state={}) => state,
+  new: newResourceReducer,
 });
 
 export default resourcesReducer;
