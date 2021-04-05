@@ -3,8 +3,6 @@ import * as resources_util from '../util/resources_api_util'
 export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
 export const RECEIVE_HABIT_RESOURCES = "RECEIVE_HABIT_RESOURCES";
 export const RECEIVE_RESOURCE = 'RECEIVE_RESOURCE'
-export const RECEIVE_NEW_RESOURCE = 'RECEIVE_NEW_RESOURCE';
-export const CLEAR_NEW_RESOURCE = "CLEAR_NEW_RESOURCE";
 export const REMOVE_RESOURCE = 'REMOVE_RESOURCE'
 
 export const receiveAllResources = resources => ({
@@ -22,15 +20,6 @@ export const receiveResource = resource => ({
   type:RECEIVE_RESOURCE,
   resource
 })
-
-export const receiveNewResource = resource => ({
-  type: RECEIVE_NEW_RESOURCE,
-  resource,
-})
-
-export const clearNewResource = () => ({
-  type: CLEAR_NEW_RESOURCE,
-});
 
 export const removeResource = resourceId => ({
   type:REMOVE_RESOURCE,
