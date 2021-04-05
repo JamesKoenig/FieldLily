@@ -1,68 +1,46 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { heading: "" };
-        if(this.props.resource) {
-          this.state.heading = "Edit your resource";
-          this.props.receiveNewResource(this.props.resource);
-        } else {
-          this.state.heading = "Create new resource";
-        }
+        this.state = {
+          title: "",
+          description: "",
+        };
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        throw "CREATING NEW RESOURCES NOT YET IMPLEMENTED, SORRY";
-        //this.props.createResource(this.props.resource, this.props.habitId)
+        this.props.createResource(this.state, this.props.habitId)
     }
 
     update(field) {
-      const {
-        title,
-        description,
-        receiveNewResource,
-      } = this.props;
-        return e => {
-          receiveNewResource({
-            title,
-            description,
-            [field]: e.currentTarget.value,
-          });
-        }
+        return e => this.setState({ [field]: e.currentTarget.value })
     }
 
     render() {
-      const {
-        title,
-        description,
-      } = this.props;
-      const { heading } = this.state;
         return (
             <div>
-                <h3>{heading}</h3>
+                <h3>{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
 
-                  <label>
-                      Title
-                  </label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={this.update('title')} />
-                  <label>
-                    Description
-                  </label>
-                  <textarea
-                    value={description}
-                    onChange={this.update('description')} />
-                  <button>
-                    add Resource
-                  </button>
+                <label>
+                    Title
+                    <textarea
+                    value={this.state.title}
+                    onChange={this.update('title')}
+                    />
+                </label>
+
+                <button type='submit' value={this.props.formType} textarea='add Resource'/>
                 </form>
+                <Link className="primary" to="/habits">All habits</Link>
+
             </div>
         )
   }
