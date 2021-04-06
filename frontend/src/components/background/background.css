@@ -1,4 +1,5 @@
-.main-page {
+.background-image {
+    position: fixed;
     height: 100vh;
     width: 100vw;
     color: var(--forever-susan-accent-yellow);

@@ -1,14 +1,14 @@
 import React from 'react';
-import './main.css'
+import './background.css'
 
-class MainPage extends React.Component {
+class Background extends React.Component {
 
   render() {
     return (
-      <div className="main-page">
+      <div className="background-image">
       </div>
     );
   }
 }
 
-export default MainPage;
+export default Background;
