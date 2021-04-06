@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { ProtectedRoute } from '../util/route_util';
 import {
   Switch,
   Route,
@@ -7,7 +7,7 @@ import {
 import NavBarContainer from './nav/navbar_container';
 
 import HabitsContainer from './habits/habits_container';
-import MainPage from './main/main_page';
+import Background from './background/background';
 import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
@@ -18,9 +18,9 @@ import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (
   <div>
+    <Background />
     <NavBarContainer />
     <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
         <Route exact path="/habits" component={HabitsContainer} />
         <Route exact path="/habits/:habitId" component={HabitShowContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />

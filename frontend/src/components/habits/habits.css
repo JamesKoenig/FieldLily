@@ -9,16 +9,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: -1;
-    background-image: linear-gradient(135deg,
-                          var(--forever-susan-dark-green)     79.5%,
-                          var(--forever-susan-accent-lime)      80%,
-                          var(--forever-susan-accent-yellow)    81%,
-                          var(--forever-susan-accent-peach)   81.5%,
-                          var(--forever-susan-dark-crimson)     84%
-                      );
     color:  var(--forever-susan-accent-yellow);
-    height: 100vh;
 }
 
 .habits-index {
