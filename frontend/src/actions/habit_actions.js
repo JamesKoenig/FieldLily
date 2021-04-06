@@ -1,6 +1,6 @@
 import {
   getHabits,
-  getHabitId,
+  getHabit,
   writeHabit,
   patchHabit,
   getCurrentUserHabits,
@@ -22,11 +22,6 @@ export const receiveHabit = habit => ({
     habit
   });
 
-export const receiveHabitId = habit => ({
-    type: RECEIVE_HABIT_ID,
-    habit
-});
-
 export const receiveNewHabit = habit => ({
     type: RECEIVE_NEW_HABIT,
     habit
@@ -43,9 +38,9 @@ export const fetchHabits = () => dispatch => (
       .catch(err => console.log(err))
   );
 
-export const fetchHabitId = id => dispatch => (
-    getHabitId(id)
-      .then(habits => dispatch(receiveHabitId(habits)))
+export const fetchHabit = id => dispatch => (
+    getHabit(id)
+      .then(habits => dispatch(receiveHabit(habits)))
       .catch(err => console.log(err))
 );
 
