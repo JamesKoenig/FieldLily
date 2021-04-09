@@ -18,9 +18,6 @@
     margin: 20px 12px;
 }
 
-.navbar a {
-}
-
 .navbar button {
     cursor: pointer;
     align-self: center;
@@ -28,8 +25,10 @@
     padding: 0;
     height: 48px;
     font-weight: bold;
-    border: none;
+    border: 2px ridge var(--royal-sunset-purple);
     border-radius: 15px;
+    color: var(--royal-sunset-peach);
+    background-color: var(--forever-susan-dark-green);
 }
 
 .navbar-logo {
