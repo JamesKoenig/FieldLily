@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: black;
+    background-color: var(--royal-sunset-wafer);
     border-radius: var(--habits-index-border-radius);
 }
 
@@ -33,7 +33,7 @@
     flex-basis: max-content;
     margin-bottom: 30px;
     padding: 15px 0;
-    background: navy;
+    background: var(--royal-sunset-purple);
     text-align: center;
     font-size: x-large;
     width: 100%;
