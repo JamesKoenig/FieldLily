@@ -43,7 +43,11 @@ class Habit extends React.Component {
                 </>
               )
           }
-          <button onClick={() => openNewHabitModal() } />
+          { loggedIn ?
+              (<button onClick={() => openNewHabitModal() }>
+                 Post a new habit
+               </button>)
+            : null }
         </div>
         <div></div>
       </div>)
