@@ -23,7 +23,7 @@ const mapStateToProps = (
     const resource_ids = Array.from(resource_ids_by_habit[habitId]);
     habit_resources = resource_ids.map( resourceId =>
       resources[resourceId]
-    );
+    ).filter( resource => !!resource);
   }
   return {
     habit,
