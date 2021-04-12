@@ -7,7 +7,6 @@ import {
 import NavBarContainer from './nav/navbar_container';
 
 import HabitsContainer from './habits/habits_container';
-import Background from './background/background';
 import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
@@ -18,7 +17,6 @@ import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (
   <div>
-    <Background />
     <NavBarContainer />
     <Switch>
         <Route exact path="/habits" component={HabitsContainer} />
