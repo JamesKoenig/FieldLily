@@ -27,7 +27,6 @@ class HabitShow extends React.Component {
     return (
       <div className="habit-show-container">
         <div className="habit-show-grid">
-          <br/>
           <div className="habit-show-body">
             <h1>{habit.title}</h1>
             <button className="resources-index-new-button"
