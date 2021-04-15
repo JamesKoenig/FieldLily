@@ -16,7 +16,7 @@ class ResourceShow extends React.Component {
       return null;
     return (
       <div className="resource-show-container">
-         <div>
+         <div className="resource-show">
             <h1>{resource.title}</h1>
             <p>{resource.featured}</p>
             <p>{resource.description}</p>
