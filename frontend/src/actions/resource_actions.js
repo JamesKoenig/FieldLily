@@ -57,11 +57,13 @@ export const fetchResource = ResourceId => dispatch => (
 export const createResource = resource => dispatch => (
   resources_util.createResource(resource)
     .then( ({data: resource}) => dispatch(receiveResource(resource)))
+    .then( () => dispatch(clearNewResource()) )
 )
 
 export const updateResource= resource => dispatch => (
   resources_util.updateResource(resource)
     .then( ({data: resource}) => dispatch(receiveResource(resource)))
+    .then( () => dispatch(clearNewResource()) )
 )
 
 export const deleteResource = resourceId => dispatch => (
