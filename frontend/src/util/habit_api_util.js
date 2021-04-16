@@ -17,3 +17,6 @@ export const writeHabit = data => {
 
 export const patchHabit = (habitId, data) =>
   axios.put(`/api/habits/${habitId}`, data)
+
+export const deleteHabit = habitId =>
+  axios.delete(`/api/habits/${habitId}`);
