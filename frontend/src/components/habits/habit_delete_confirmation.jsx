@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import { connect } from 'react-redux'
 
 import './habit_delete_confirmation.css';
@@ -8,6 +10,12 @@ const mSTP = state => ({
 })
 
 const HabitDeleteConfirmPrompt = ({habit}) => {
+  const [ titleInput, setTitleInput ] = useState('');
+
+  const handleChange = event => {
+    setTitleInput(event.target.value);
+  }
+
   return (
     <div id="habit-delete-confirmation">
       <h2>are you sure you want to delete {habit.title}?</h2>
@@ -16,8 +24,11 @@ const HabitDeleteConfirmPrompt = ({habit}) => {
         if you still want to continue, please enter the habit title below
       </p>
       <form>
-        <input />
-        <button onClick={() => {}}>
+        <input value={titleInput}
+               onChange={handleChange} />
+        <button onClick={() => {}}
+                disabled={ titleInput !== habit.title }>
+          DELETE
         </button>
       </form>
     </div>
