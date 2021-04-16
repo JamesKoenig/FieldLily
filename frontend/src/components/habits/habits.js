@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import HabitBox from './habit_box';
 
-import './habits.css';
+import '../common-stylings/entity-index.css';
 
 class Habit extends React.Component {
   componentDidMount() {
@@ -17,22 +17,22 @@ class Habit extends React.Component {
       openEditHabitModal,
     } = this.props;
     return (
-      <div className="habits-index-container">
-        <div className="habits-index">
+      <div className="entity-index-container">
+        <div className="entity-index">
           { (!habits || habits.length < 1)
             ?
               (
-                <h1 className="habits-index-heading">
+                <h1 className="entity-index-heading">
                   No habits to display
                 </h1>
               )
             :
               (
                 <>
-                  <h1 className="habits-index-heading">
+                  <h1 className="entity-index-heading">
                     All Habits
                   </h1>
-                  <ul className="habits-index-list">
+                  <ul className="entity-index-list">
                     { habits.map(habit => (
                       <HabitBox key={habit._id}
                                 loggedIn={loggedIn}
