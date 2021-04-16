@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListGroupItem } from 'react-bootstrap';
 
-import "./resource_index_item.css";
+import "../common-stylings/entity-index-item.css";
 
 const ResourceIndexItem = ({ resource: { _id, title, description} }) => (
-  <ListGroupItem className="resource-item">
-    <div className="resource-desc-box">
+  <ListGroupItem className="entity-item">
+    <div className="entity-index-box">
         <Link to={`/resources/${_id}`}>{title}</Link>
-        <p className="resource-desc">{description}</p>
+        <p className="entity-desc">{description}</p>
     </div>
   </ListGroupItem>
 );

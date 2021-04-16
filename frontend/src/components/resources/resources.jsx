@@ -1,6 +1,6 @@
 import React from 'react';
 import ResourceIndexItem from './resource_index_item';
-import './resources.css';
+import '../common-stylings/entity-index.css';
 
 
 class Resources extends React.Component {
@@ -12,10 +12,10 @@ class Resources extends React.Component {
       resources,
     } = this.props;
     return (
-      <div className="resources-index-container">
-        <div className="resources-index">
-          <h1 className="resources-index-heading">All resources</h1>
-           <ul className="resources-index-list">
+      <div className="entity-index-container">
+        <div className="entity-index">
+          <h1 className="entity-index-heading">All resources</h1>
+           <ul className="entity-index-list">
               {resources.map((resource) => (
                   <ResourceIndexItem
                     resource={resource}
