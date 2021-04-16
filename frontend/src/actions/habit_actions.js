@@ -70,5 +70,5 @@ export const fetchCurrentUserHabits = () => dispatch =>
 
 export const destroyHabit = habitId => dispatch =>
     deleteHabit(habitId)
-      .then( habit => dispatch(removeHabit(habit._id)) )
+      .then( () => dispatch(removeHabit(habitId)) )
       .catch( err => console.log(err) )

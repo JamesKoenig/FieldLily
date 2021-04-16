@@ -3,6 +3,7 @@ import {
   RECEIVE_HABIT,
   RECEIVE_NEW_HABIT,
   RECEIVE_CURRENT_USER_HABITS,
+  REMOVE_HABIT,
 } from '../../actions/habit_actions';
 
 const _defaultState = {
@@ -30,6 +31,12 @@ const _defaultState = {
       case RECEIVE_NEW_HABIT:
         newState.new = action.habit
         return newState;
+      case REMOVE_HABIT: {
+        const { habitId } = action;
+        delete newState.all[habitId];
+        delete newState.user[habitId];
+        return newState;
+      }
       default:
         return state;
     }
