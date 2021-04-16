@@ -8,11 +8,14 @@ import * as habit_modal_actions
   from '../../actions/modal/habit_modal_actions';
 import * as session_modal_actions
   from '../../actions/modal/session_modal_actions';
+import * as confirmation_modal_actions
+  from '../../actions/modal/confirmation_modal_actions.js';
 
 const modal_actions = {
   ...resource_modal_actions,
   ...habit_modal_actions,
   ...session_modal_actions,
+  ...confirmation_modal_actions,
 };
 
 const status_reducer = (state="closed", { type }) => {

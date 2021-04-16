@@ -4,6 +4,8 @@ import { fetchHabitResources } from '../../actions/resource_actions';
 import { fetchHabit } from '../../actions/habit_actions';
 import { openNewResourceModal }
   from '../../actions/modal/resource_modal_actions.js'
+import { openConfirmHabitDeleteModal }
+  from '../../actions/modal/confirmation_modal_actions.js';
 
 const mapStateToProps = (
   {entities: {
@@ -35,6 +37,7 @@ const mapDispatchToProps = {
   fetchHabitResources,
   fetchHabit,
   openNewResourceModal,
+  openConfirmHabitDeleteModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HabitShow);

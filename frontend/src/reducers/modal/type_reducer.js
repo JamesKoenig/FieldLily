@@ -7,6 +7,8 @@ import * as habit_modal_actions
   from '../../actions/modal/habit_modal_actions';
 import * as session_modal_actions
   from '../../actions/modal/session_modal_actions';
+import * as confirmation_modal_actions
+  from "../../actions/modal/confirmation_modal_actions";
 
 const entities_modal_actions = {
   ...resource_modal_actions,
@@ -18,6 +20,8 @@ const type_reducer = (state="none", { type: actionType }) => {
     return "entities";
   } else if(actionType in session_modal_actions) {
     return "session";
+  } else if (actionType in confirmation_modal_actions) {
+    return "confirmation"
   } else {
     switch(actionType) {
       case MODAL_CLOSED:

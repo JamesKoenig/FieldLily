@@ -2,6 +2,8 @@ import LoginForm  from '../session/login_form_container';
 import SignupForm from '../session/signup_form_container';
 import HabitCompose from '../habits/habit_compose_container';
 import ResourceForm from '../resources/resource_form_container';
+import HabitDeleteConfirmPrompt
+  from '../habits/habit_delete_confirmation';
 
 const sessionModals = {
   'login': LoginForm,
@@ -13,9 +15,14 @@ const entityModals = {
   "resource": ResourceForm,
 };
 
+const confirmationModals = {
+  "delete habit": HabitDeleteConfirmPrompt,
+}
+
 const modalManifest = {
   "session": sessionModals,
   "entities": entityModals,
+  "confirmation": confirmationModals,
 };
 
 function modalManifestFn(type, subtype) {
