@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import HabitShow from './habit_show';
 import { fetchHabitResources } from '../../actions/resource_actions';
 import { fetchHabit } from '../../actions/habit_actions';
+import { openEditHabitModal }
+  from "../../actions/modal/habit_modal_actions";
 import { openNewResourceModal }
   from '../../actions/modal/resource_modal_actions.js'
 import { openConfirmHabitDeleteModal }
@@ -37,6 +39,7 @@ const mapDispatchToProps = {
   fetchHabitResources,
   fetchHabit,
   openNewResourceModal,
+  openEditHabitModal,
   openConfirmHabitDeleteModal,
 };
 
