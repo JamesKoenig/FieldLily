@@ -22,6 +22,7 @@ class HabitShow extends React.Component {
       resources,
       openNewResourceModal,
       openConfirmHabitDeleteModal,
+      openEditHabitModal,
     } = this.props;
     if(!habit)
       return null;
@@ -36,6 +37,10 @@ class HabitShow extends React.Component {
             </button>
             <button className="resources-index-new-button"
                     onClick={openNewResourceModal}>New Resource</button>
+            <button className="edit-link"
+                    onClick={() => openEditHabitModal(habit._id) } >
+              Edit
+            </button>
             <p>{habit.description}</p>
           </div>
           <div className="resource-component-div">
