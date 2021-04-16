@@ -2,6 +2,7 @@ import React, {
   useState,
 } from 'react';
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 
 import { destroyHabit } from "../../actions/habit_actions";
 import { modalFadeAndClose } from "../../actions/modal/modal_common_actions";
@@ -17,8 +18,13 @@ const mDTP = {
   modalFadeAndClose,
 }
 
-const HabitDeleteConfirmPrompt = ({habit, destroyHabit}) => {
+const HabitDeleteConfirmPrompt = ({
+  habit,
+  destroyHabit,
+  modalFadeAndClose
+}) => {
   const [ titleInput, setTitleInput ] = useState('');
+  const history = useHistory();
   const disabled = (titleInput !== habit.title);
 
   const handleChange = event => {
@@ -29,6 +35,7 @@ const HabitDeleteConfirmPrompt = ({habit, destroyHabit}) => {
     event.preventDefault();
     if(!disabled) {
       destroyHabit(habit._id);
+      history.goBack();
       modalFadeAndClose();
     }
   }
