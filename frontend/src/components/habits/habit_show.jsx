@@ -51,7 +51,7 @@ class HabitShow extends React.Component {
                 <h4 className="resource-title">Resources</h4>
                 <ListGroup variant="flush">
                 {resources.map((resource) => (
-                    <ResourceIndexItem 
+                    <ResourceIndexItem
                         resource={resource}
                         key={resource._id}
                     />

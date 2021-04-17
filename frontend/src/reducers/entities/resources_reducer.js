@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { RECEIVE_ALL_RESOURCES,
          RECEIVE_RESOURCE,
          REMOVE_RESOURCE,
+         RECEIVE_HABIT_RESOURCE,
          RECEIVE_HABIT_RESOURCES,
          CLEAR_NEW_RESOURCE,
          RECEIVE_NEW_RESOURCE,
@@ -26,7 +27,8 @@ const allResources = (oldState = {},
     }
 }
 
-const resourceHabitReducer = (state={}, {type, habitId, resources } ) => {
+const resourceHabitReducer = (state={}, {type, habitId,
+                                         resources, resource } ) => {
   Object.freeze(state);
   switch(type) {
     case RECEIVE_HABIT_RESOURCES:
@@ -34,6 +36,15 @@ const resourceHabitReducer = (state={}, {type, habitId, resources } ) => {
         ...state,
         [habitId]: new Set(Object.keys(resources)),
       }
+    case RECEIVE_HABIT_RESOURCE: {
+      const oldHabitRecSet = state[habitId];
+      let newHabitRecSet = new Set(oldHabitRecSet);
+      newHabitRecSet.add(resource);
+      return {
+        ...state,
+        [habitId]: newHabitRecSet,
+      };
+    }
     default:
       return state;
   }

@@ -1,8 +1,9 @@
 import * as resources_util from '../util/resources_api_util'
 
-export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
-export const RECEIVE_HABIT_RESOURCES = "RECEIVE_HABIT_RESOURCES";
 export const RECEIVE_RESOURCE = 'RECEIVE_RESOURCE'
+export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
+export const RECEIVE_HABIT_RESOURCE = "RECEIVE_HABIT_RESOURCE";
+export const RECEIVE_HABIT_RESOURCES = "RECEIVE_HABIT_RESOURCES";
 export const RECEIVE_NEW_RESOURCE = 'RECEIVE_NEW_RESOURCE';
 export const CLEAR_NEW_RESOURCE = "CLEAR_NEW_RESOURCE";
 export const REMOVE_RESOURCE = 'REMOVE_RESOURCE'
@@ -16,6 +17,12 @@ export const receiveHabitResources = (habitId, resources) => ({
     type: RECEIVE_HABIT_RESOURCES,
     habitId,
     resources
+});
+
+export const receiveHabitResource = (habitId, resource) => ({
+    type: RECEIVE_HABIT_RESOURCE,
+    habitId,
+    resource,
 });
 
 export const receiveResource = resource => ({
@@ -44,9 +51,11 @@ export const fetchResources = () => dispatch => {
 
 export const fetchHabitResources = habitId => dispatch =>
   resources_util.fetchHabitResources(habitId)
-    .then( ({data: resources}) =>
-      dispatch(receiveHabitResources(habitId, resources)))
-    .then( ({data: resources}) =>
+    .then( ({data: resources}) => {
+      dispatch(receiveHabitResources(habitId, resources));
+      return resources;
+    })
+    .then( resources =>
       dispatch(receiveAllResources(resources)))
 
 export const fetchResource = ResourceId => dispatch => (
@@ -56,7 +65,14 @@ export const fetchResource = ResourceId => dispatch => (
 
 export const createResource = resource => dispatch => (
   resources_util.createResource(resource)
-    .then( ({data: resource}) => dispatch(receiveResource(resource)))
+    .then( ({ data: resource }) => {
+      dispatch(receiveResource(resource))
+      return resource;
+    })
+    .then( resourceObj => {
+      dispatch(receiveHabitResource(resource.habitId,
+                                    Object.keys(resourceObj)[0]));
+    })
     .then( () => dispatch(clearNewResource()) )
 )
 
