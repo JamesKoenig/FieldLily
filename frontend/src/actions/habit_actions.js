@@ -52,6 +52,9 @@ export const fetchHabits = () => dispatch => (
         habits => dispatch(receiveHabits(habits)), 
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
   );
 
 export const fetchHabit = id => dispatch => (
@@ -60,6 +63,9 @@ export const fetchHabit = id => dispatch => (
         habits => dispatch(receiveHabit(habits)),
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
 );
 
 export const composeHabit = data => dispatch => (
@@ -68,6 +74,9 @@ export const composeHabit = data => dispatch => (
         habit => dispatch(receiveHabit(habit)),
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
   );
 
 export const updateHabit = (habitId, data) => dispatch => (
@@ -76,6 +85,9 @@ export const updateHabit = (habitId, data) => dispatch => (
         habit => dispatch(receiveHabit(habit)), 
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
 )
 
 export const fetchCurrentUserHabits = () => dispatch =>
@@ -84,6 +96,9 @@ export const fetchCurrentUserHabits = () => dispatch =>
         habits => dispatch(receiveCurrentUserHabits(habits)), 
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
 
 export const destroyHabit = habitId => dispatch =>
     deleteHabit(habitId)
@@ -91,3 +106,6 @@ export const destroyHabit = habitId => dispatch =>
         () => dispatch(removeHabit(habitId)), 
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })

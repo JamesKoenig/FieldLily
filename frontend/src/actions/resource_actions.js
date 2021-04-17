@@ -49,6 +49,9 @@ export const fetchResources = () => dispatch => {
         ({data: resources}) => dispatch(receiveAllResources(resources)), 
         err => dispatch(receiveErrors(err.response.data))
       )
+      .catch(err => {
+        dispatch(receiveErrors(err.response.data));
+      })
 }
 
 export const fetchHabitResources = habitId => dispatch =>
@@ -61,6 +64,9 @@ export const fetchHabitResources = habitId => dispatch =>
       ({data: resources}) => dispatch(receiveAllResources(resources)), 
       err => dispatch(receiveErrors(err.response.data))
     )
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
@@ -68,6 +74,9 @@ export const fetchResource = ResourceId => dispatch => (
       ({data: resource}) => dispatch(receiveResource(resource)), 
       err => dispatch(receiveErrors(err.response.data))
     )
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 )
 
 export const createResource = resource => dispatch => (
@@ -76,6 +85,9 @@ export const createResource = resource => dispatch => (
       ({data: resource}) => dispatch(receiveResource(resource)), 
       err => dispatch(receiveErrors(err.response.data))
     )
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 )
 
 export const updateResource= resource => dispatch => (
@@ -84,6 +96,9 @@ export const updateResource= resource => dispatch => (
       ({data: resource}) => dispatch(receiveResource(resource)), 
       err => dispatch(receiveErrors(err.response.data))
     )
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 )
 
 export const deleteResource = resourceId => dispatch => (
@@ -92,4 +107,7 @@ export const deleteResource = resourceId => dispatch => (
       () => dispatch(removeResource(resourceId)), 
       err => dispatch(receiveErrors(err.response.data))
     )
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 )
