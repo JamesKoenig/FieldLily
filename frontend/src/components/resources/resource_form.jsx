@@ -4,9 +4,9 @@ class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { heading: "" };
-        if(this.props.resource) {
+        if(this.props.editResource) {
           this.state.heading = "Edit your resource";
-          this.props.receiveNewResource(this.props.resource);
+          this.props.receiveNewResource(this.props.editResource);
         } else {
           this.state.heading = "Create new resource";
         }
@@ -15,31 +15,39 @@ class ResourceForm extends React.Component {
     }
 
     handleSubmit(e) {
+        const {
+          createResource,
+          newResource,
+        } = this.props;
         e.preventDefault();
-        throw "CREATING NEW RESOURCES NOT YET IMPLEMENTED, SORRY";
-        //this.props.createResource(this.props.resource, this.props.habitId)
+        createResource(newResource)
     }
 
     update(field) {
       const {
-        title,
-        description,
+        newResource: {
+          title,
+          description,
+        },
         receiveNewResource,
+        habitId,
       } = this.props;
+
         return e => {
           receiveNewResource({
             title,
             description,
+            habitId,
             [field]: e.currentTarget.value,
           });
         }
     }
 
     render() {
-      const {
+      const { newResource: {
         title,
         description,
-      } = this.props;
+      }} = this.props;
       const { heading } = this.state;
         return (
             <div>

@@ -1,22 +1,20 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import ResourceForm from './resource_form';
 import {
   createResource,
   receiveNewResource,
 } from '../../actions/resource_actions';
 
-const mSTP = (state, ownProps) => {
-  const { title, description } = state.entities.resources.new;
-  const habitId = ownProps.match.params.habitId;
-  const resourceId = null;
-  const resource = resourceId ?
+const mSTP = (state) => {
+  const newResource = state.entities.resources.new;
+  const { habitId } = state.ui.modal.misc;
+  const resourceId = null; //change when edit button is added
+  const editResource = resourceId ?
     state.entities.resources.all[resourceId] : null;
   return {
-    title,
-    description,
+    newResource,
     habitId,
-    resource,
+    editResource,
   }
 }
 
@@ -25,4 +23,4 @@ const mDTP = ({
   receiveNewResource,
 });
 
-export default withRouter(connect(mSTP, mDTP)(ResourceForm));
+export default connect(mSTP, mDTP)(ResourceForm);
