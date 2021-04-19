@@ -18,25 +18,29 @@ const mapStateToProps = ({entities: { resources: { all: resources },
   }
 };
 
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-  fetchHabits: () => dispatch(fetchHabits()),
-});
+const mapDispatchToProps = {
+  fetchHabits,
+  fetchResource,
+  openEditResourceModal,
+  openConfirmResourceDeleteModal,
+};
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { dispatch } = dispatchProps;
-  const { resourceId }  = stateProps;
-  let newDispatchProps = { ...dispatchProps };
-  delete newDispatchProps.dispatch;
+  const { resourceId } = stateProps;
+  const {
+  fetchResource,
+  openEditResourceModal,
+  openConfirmResourceDeleteModal,
+  } = dispatchProps;
+
   return {
     ...stateProps,
-    ...newDispatchProps,
+    ...dispatchProps,
     ...ownProps, //ensure expected behavior of non-redux props being accessible
-    fetchResource: () => dispatch(fetchResource(resourceId)),
-    openEditResourceModal: () =>
-      dispatch(openEditResourceModal(resourceId)),
+    fetchResource: () => fetchResource(resourceId),
+    openEditResourceModal: () => openEditResourceModal(resourceId),
     openConfirmResourceDeleteModal: () =>
-      dispatch(openConfirmResourceDeleteModal(resourceId)),
+      openConfirmResourceDeleteModal(resourceId),
   }
 }
 

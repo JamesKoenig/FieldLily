@@ -33,7 +33,7 @@ class HabitCompose extends React.Component {
     };
 
     e.preventDefault();
-    if(this.props.habit) {
+    if(habit) {
       updateHabit(habit._id, newHabit);
     } else {
       composeHabit(newHabit);

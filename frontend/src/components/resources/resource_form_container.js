@@ -3,12 +3,12 @@ import ResourceForm from './resource_form';
 import {
   createResource,
   receiveNewResource,
+  updateResource,
 } from '../../actions/resource_actions';
 
 const mSTP = (state) => {
   const newResource = state.entities.resources.new;
-  const { habitId } = state.ui.modal.misc;
-  const resourceId = null; //change when edit button is added
+  const { habitId, resourceId } = state.ui.modal.misc;
   const editResource = resourceId ?
     state.entities.resources.all[resourceId] : null;
   return {
@@ -21,6 +21,7 @@ const mSTP = (state) => {
 const mDTP = ({
   createResource,
   receiveNewResource,
+  updateResource,
 });
 
 export default connect(mSTP, mDTP)(ResourceForm);
