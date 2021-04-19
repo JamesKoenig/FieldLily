@@ -12,7 +12,6 @@ import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
 import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
-
 import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (

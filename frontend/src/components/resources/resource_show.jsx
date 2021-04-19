@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import NotFoundPage from '../error-pages/not_found_page'
 import './resource_show.css'
 
 class ResourceShow extends React.Component {
@@ -13,7 +13,7 @@ class ResourceShow extends React.Component {
   render() {
     const { resource, habit } = this.props;
     if(!resource || !habit)
-      return null;
+      return <NotFoundPage />;
     return (
       <div className="resource-show-container">
          <div className="resource-show">
