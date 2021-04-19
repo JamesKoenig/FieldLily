@@ -30,13 +30,15 @@ const mDTP = {
   deleteEntityCallback: deleteResource,
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return {
   ...stateProps,
   ...dispatchProps,
   ...ownProps,
   deleteEntityCallback: () =>
     dispatchProps.deleteEntityCallback(stateProps.id),
-});
+  }
+};
 
 export default connect(
     mSTP,
