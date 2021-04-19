@@ -5,19 +5,31 @@ import './resource_show.css'
 
 class ResourceShow extends React.Component {
   componentDidMount() {
-    const { resourceId } = this.props;
-    this.props.fetchResource(resourceId);
+    this.props.fetchResource();
     this.props.fetchHabits();
   }
 
   render() {
-    const { resource, habit } = this.props;
+    const { 
+      resource,
+      habit,
+      openEditResourceModal,
+      openConfirmResourceDeleteModal,
+    } = this.props;
     if(!resource || !habit)
       return null;
     return (
       <div className="resource-show-container">
          <div className="resource-show">
             <h1>{resource.title}</h1>
+            <button className="resource-edit"
+                    onClick={openEditResourceModal}>
+              Edit
+            </button>
+            <button className="resource-delete"
+                    onClick={openConfirmResourceDeleteModal}>
+              Delete
+            </button>
             <p>{resource.featured}</p>
             <p>{resource.description}</p>
             <p>belongs to habit {habit.title}</p>
