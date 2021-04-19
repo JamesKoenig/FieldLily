@@ -42,7 +42,7 @@ class ResourceForm extends React.Component {
       } = this.props;
       const { heading } = this.state;
         return (
-            <div>
+            <div className="form">
                 <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
 

@@ -41,7 +41,7 @@ const HabitDeleteConfirmPrompt = ({
   }
 
   return (
-    <div id="habit-delete-confirmation">
+    <div id="habit-delete-confirmation" className="form">
       <h2>are you sure you want to delete {habit.title}?</h2>
       <h1 className="confirmation-warning">this cannot be undone</h1>
       <p>

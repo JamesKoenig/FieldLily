@@ -1,0 +1,4 @@
+.form {
+    transition: width 0.4s ease-in-out;
+    justify-content: flex-end;
+}
