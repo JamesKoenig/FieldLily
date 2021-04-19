@@ -7,13 +7,7 @@
     right: 0;
     flex-direction: column-reverse;
     justify-content: flex-start;
-<<<<<<< HEAD
-    align-items: end;
-    font: helvetica;
-    font-size: x-large;
-=======
     align-items: flex-end;
->>>>>>> 5f53ca5bc90f2eee16c0b457bb4729187cbeb375
 }
 
 .navbar {
@@ -25,7 +19,7 @@
 }
 
 .navbar button {
-    cursor: pointer;
+    cursor: url('https://thumbs.dreamstime.com/b/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-116037477.jpg'), auto;
     align-self: center;
     width: 66%;
     padding: 0;
@@ -57,7 +51,7 @@
     max-height: 0;
     bottom: 70px;
     justify-content: space-around;
-    align-itmes: center;
+    align-items: center;
     transition: .5s ease-in-out;
 }
 
