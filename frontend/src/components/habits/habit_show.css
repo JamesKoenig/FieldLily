@@ -81,5 +81,8 @@
    right: var(--resources-index-border-radius);
    top: 15px;
    width: max-content;
-   cursor: url('https://thumbs.dreamstime.com/b/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-116037477.jpg'), auto;
   }
+
+button {
+  cursor: url('https://thumbs.dreamstime.com/b/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-116037477.jpg'), auto;
+}
