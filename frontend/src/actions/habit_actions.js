@@ -13,6 +13,13 @@ export const RECEIVE_HABIT_ID = "RECEIVE_HABIT_ID";
 export const RECEIVE_NEW_HABIT = "RECEIVE_NEW_HABIT";
 export const RECEIVE_CURRENT_USER_HABITS = "RECEIVE_CURRENT_USER_HABITS";
 export const REMOVE_HABIT = "REMOVE_HABIT";
+export const RECEIVE_HABIT_ERRORS = "RECEIVE_HABIT_ERRORS";
+
+export const receiveHabitErrors = errors => ({
+    type: RECEIVE_HABIT_ERRORS,
+    errors
+});
+
 
 export const receiveHabits = habits => ({
     type: RECEIVE_HABITS,
@@ -41,34 +48,58 @@ export const removeHabit = habitId => ({
 
 export const fetchHabits = () => dispatch => (
     getHabits()
-      .then(habits => dispatch(receiveHabits(habits)))
-      .catch(err => console.log(err))
+      .then(
+        habits => dispatch(receiveHabits(habits))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
   );
 
 export const fetchHabit = id => dispatch => (
     getHabit(id)
-      .then(habits => dispatch(receiveHabit(habits)))
-      .catch(err => console.log(err))
+      .then(
+        habits => dispatch(receiveHabit(habits))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
 );
 
 export const composeHabit = data => dispatch => (
     writeHabit(data)
-      .then(habit => dispatch(receiveHabit(habit)))
-      .catch(err => console.log(err))
+      .then(
+        habit => dispatch(receiveHabit(habit))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
   );
 
 export const updateHabit = (habitId, data) => dispatch => (
     patchHabit(habitId, data)
-      .then(habit => dispatch(receiveHabit(habit)))
-      .catch(err => console.log(err))
+      .then(
+        habit => dispatch(receiveHabit(habit))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
 )
 
 export const fetchCurrentUserHabits = () => dispatch =>
     getCurrentUserHabits()
-      .then( habits => dispatch(receiveCurrentUserHabits(habits)) )
-      .catch( err => console.log(err) );
+      .then( 
+        habits => dispatch(receiveCurrentUserHabits(habits))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
 
 export const destroyHabit = habitId => dispatch =>
     deleteHabit(habitId)
-      .then( () => dispatch(removeHabit(habitId)) )
-      .catch( err => console.log(err) )
+      .then( 
+        () => dispatch(removeHabit(habitId))
+      )
+      .catch(err => {
+        dispatch(receiveHabitErrors(err.response.data));
+      })
