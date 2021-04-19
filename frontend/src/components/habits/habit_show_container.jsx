@@ -10,7 +10,9 @@ import { openConfirmHabitDeleteModal }
   from '../../actions/modal/confirmation_modal_actions.js';
 
 const mapStateToProps = (
-  {entities: {
+  {
+    session: { user: currentUser },
+    entities: {
       resources: {
         all: resources,
         by_habit: resource_ids_by_habit,
@@ -31,6 +33,7 @@ const mapStateToProps = (
   }
   return {
     habit,
+    currentUser,
     resources: habit_resources,
   }
 };
