@@ -19,7 +19,6 @@
 }
 
 .navbar button {
-    cursor: url('https://thumbs.dreamstime.com/b/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-116037477.jpg'), auto;
     align-self: center;
     width: 66%;
     padding: 0;
@@ -29,8 +28,7 @@
     border-radius: 15px;
     color: var(--royal-sunset-peach);
     background-color: var(--forever-susan-dark-green);
-    cursor: url('https://thumbs.dreamstime.com/b/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-116037477.jpg'), auto;
-}
+    cursor: url('https://i.ibb.co/VM0C9B4/lily-flowers-vector-black-white-contour-drawing-vector-black-white-contour-drawing-lily-flowers-1160.png'), auto;}
 
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
