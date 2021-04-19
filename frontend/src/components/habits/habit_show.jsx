@@ -26,19 +26,22 @@ class HabitShow extends React.Component {
     } = this.props;
     if(!habit)
       return null;
+    const habitId = habit._id;
     return (
       <div className="habit-show-container">
         <div className="habit-show-grid">
           <div className="habit-show-body">
             <h1>{habit.title}</h1>
             <button className="habit-delete"
-                    onClick={() => openConfirmHabitDeleteModal(habit._id)} >
+                    onClick={() => openConfirmHabitDeleteModal(habitId)} >
               delete habit
             </button>
             <button className="resources-index-new-button"
-                    onClick={openNewResourceModal}>New Resource</button>
+                    onClick={() => openNewResourceModal(habitId)}>
+              New Resource
+            </button>
             <button className="edit-link"
-                    onClick={() => openEditHabitModal(habit._id) } >
+                    onClick={() => openEditHabitModal(habitId) } >
               Edit
             </button>
             <p>{habit.description}</p>
@@ -48,7 +51,7 @@ class HabitShow extends React.Component {
                 <h4 className="resource-title">Resources</h4>
                 <ListGroup variant="flush">
                 {resources.map((resource) => (
-                    <ResourceIndexItem 
+                    <ResourceIndexItem
                         resource={resource}
                         key={resource._id}
                     />

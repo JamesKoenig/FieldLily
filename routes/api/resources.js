@@ -17,6 +17,34 @@ router.get('/', (req, res) => {
           res.status(404).json({ noresourcesfound: 'No resources found' }));
 });
 
+router.post('/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const resource = {
+            title: req.body.title,
+            description: req.body.description,
+            habit: req.body.habitId,
+            featured: req.body.featured
+        };
+
+        const { errors, isValid } = validateResourceInput(resource);
+
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+
+        const newResource = new Resource(resource);
+
+        Habit.findById(resource.habit).then((habit) => {
+            if (habit.user != req.user.id){
+                res.status(401).json({ wronguser: 'Resource can only be added by owner' });
+            }else{
+                newResource.save().then(resource => res.json(resFromObj(resource)));
+            }
+        })
+    }
+);
+
 router.get('/featured', (req, res) => {
     Resource.find({featured: true})
         .sort({ date: -1 })
@@ -48,34 +76,6 @@ router.get('/habits/:habit_id', (req, res) => {
             })
         );
 });
-
-router.post('/habits/:habit_id',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        const resource = {
-            title: req.body.title,
-            description: req.body.description,
-            habit: req.params.habit_id,
-            featured: req.body.featured
-        };
-
-        const { errors, isValid } = validateResourceInput(resource);
-
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
-        const newResource = new Resource(resource);
-
-        Habit.findById(resource.habit).then((habit) => {
-            if (habit.user != req.user.id){
-                res.status(401).json({ wronguser: 'Resource can only be added by owner' });
-            }else{
-                newResource.save().then(resource => res.json(resFromObj(resource)));
-            }
-        })
-    }
-);
 
 router.put('/:id',
     passport.authenticate('jwt', { session: false }),
