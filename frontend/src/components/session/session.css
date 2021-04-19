@@ -1,0 +1,29 @@
+.session-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-form input {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.session-form:first-child() {
+    margin-top: 0;
+}
+
+.session-button {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.session-errors {
+    margin-top: 10px;
+    background-color: gray;
+    padding: 4px;
+    text-size: small;
+    color: white;
+}

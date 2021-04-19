@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 const validateHabitInput = require('../../validation/habits');
 const {
@@ -16,7 +15,8 @@ router.get('/', (req, res) => {
     Habit.find()
         .sort({ date: -1 })
         .then(habits => res.json(resFromArr(habits)))
-        .catch(err => res.status(404).json({ nohabitsfound: 'No habits found' }));
+        .catch( () => 
+          res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
 router.get(
@@ -26,7 +26,7 @@ router.get(
     Habit.find( { user: req.user.id })
       .sort({ date: -1 })
       .then(  habits => res.json(resFromArr(habits)))
-      .catch( err    => res.status(402)
+      .catch( () => res.status(402)
                            .json({ nocurrentuser: "no current user" })
             )
   }
@@ -35,8 +35,13 @@ router.get(
 router.get('/:id', (req, res) => {
     Habit.findById(req.params.id)
         .then(habit => res.json(resFromObj(habit)))
-        .catch(err =>
-            res.status(404).json({ nohabitfound: 'No habit found with that ID' })
+        .catch( () =>
+            res.status(404)
+              .json(
+                {
+                  nohabitfound: 'No habit found with that ID'
+                }
+              )
         );
 });
 
@@ -115,7 +120,7 @@ router.delete("/:id",
                 if (habit.user != req.user.id){
                     res.status(401).json({ wronguser: 'can only be deleted by owner' });
                 } else {
-                    Resource.deleteMany({habit: req.params.id}, function(err, result) {
+                    Resource.deleteMany({habit: req.params.id}, function(err) {
                         if (err) {
                             res.send(err);
                         } else {

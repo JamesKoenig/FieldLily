@@ -1,46 +1,70 @@
 import * as resources_util from '../util/resources_api_util'
 
 export const RECEIVE_ALL_RESOURCES = 'RECEIVE_ALL_RESOURCES'
+export const RECEIVE_HABIT_RESOURCES = "RECEIVE_HABIT_RESOURCES";
 export const RECEIVE_RESOURCE = 'RECEIVE_RESOURCE'
+export const RECEIVE_NEW_RESOURCE = 'RECEIVE_NEW_RESOURCE';
+export const CLEAR_NEW_RESOURCE = "CLEAR_NEW_RESOURCE";
 export const REMOVE_RESOURCE = 'REMOVE_RESOURCE'
-
 
 export const receiveAllResources = resources => ({
     type:RECEIVE_ALL_RESOURCES,
     resources
 })
 
+export const receiveHabitResources = (habitId, resources) => ({
+    type: RECEIVE_HABIT_RESOURCES,
+    habitId,
+    resources
+});
+
 export const receiveResource = resource => ({
   type:RECEIVE_RESOURCE,
   resource
 })
 
-export const removeResource = ResourceId => ({
+export const receiveNewResource = resource => ({
+  type: RECEIVE_NEW_RESOURCE,
+  resource,
+})
+
+export const clearNewResource = () => ({
+  type: CLEAR_NEW_RESOURCE,
+});
+
+export const removeResource = resourceId => ({
   type:REMOVE_RESOURCE,
-  ResourceId
+  resourceId
 })
 
 export const fetchResources = () => dispatch => {
   return resources_util.fetchResources()
-      .then(resources => dispatch(receiveAllResources(resources)))
+      .then( ({data: resources}) => dispatch(receiveAllResources(resources)))
 }
+
+export const fetchHabitResources = habitId => dispatch =>
+  resources_util.fetchHabitResources(habitId)
+    .then( ({data: resources}) =>
+      dispatch(receiveHabitResources(habitId, resources)))
+    .then( ({data: resources}) =>
+      dispatch(receiveAllResources(resources)))
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
 export const createResource = resource => dispatch => (
   resources_util.createResource(resource)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
 export const updateResource= resource => dispatch => (
   resources_util.updateResource(resource)
-    .then(resource => dispatch(receiveResource(resource)))
+    .then( ({data: resource}) => dispatch(receiveResource(resource)))
 )
 
-export const deleteResource = ResourceId => dispatch => (
-  resources_util.deleteResource(ResourceId)
-    .then(() => dispatch(removeResource(ResourceId)))
+export const deleteResource = resourceId => dispatch => (
+  resources_util.deleteResource(resourceId)
+    .then(() => dispatch(removeResource(resourceId)))
 )

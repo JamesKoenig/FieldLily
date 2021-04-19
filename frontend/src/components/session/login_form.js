@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './session.css';
 
+import './session.css';
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -9,19 +11,11 @@ class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/habits');
-    }
-
-    this.setState({errors: nextProps.errors})
+    this.handleDemoUser = this.handleDemoUser.bind(this);
   }
 
   update(field) {
@@ -41,12 +35,23 @@ class LoginForm extends React.Component {
     this.props.login(user); 
   }
 
+  handleDemoUser(e) {
+    e.preventDefault();
+    const demoUser = {
+      email: 'fieldlily@gmail.com',
+      password: 'lilylily'
+    };
+
+    this.props.login(demoUser); 
+  }
+
+
   renderErrors() {
     return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
+      <ul className="session-errors">
+        {Object.keys(this.props.errors).map((error, i) => (
           <li key={`error-${i}`}>
-            {this.state.errors[error]}
+            {this.props.errors[error]}
           </li>
         ))}
       </ul>
@@ -57,20 +62,26 @@ class LoginForm extends React.Component {
     return (
       <div className="form">
         <form onSubmit={this.handleSubmit}>
-          <div>
+          <div className="login-form session-form">
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
               />
-            <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
               />
-            <br/>
-            <input type="submit" value="Submit" />
+            <button className="session-button">
+              Sign In
+            </button>
+            <button
+              id="demo-login"
+              className="session-button"
+              onClick={this.handleDemoUser}>
+                      Demo Login
+            </button>
             {this.renderErrors()}
           </div>
         </form>

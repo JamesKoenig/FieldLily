@@ -1,0 +1,12 @@
+#habit-delete-confirmation {
+    display: flex;
+    flex-direction: column;
+}
+
+.confirmation-warning {
+    font-size: 24px;
+    font-weight: bolder;
+    color: red;
+    background-color: green;
+}
+

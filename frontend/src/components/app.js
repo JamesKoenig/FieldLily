@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { ProtectedRoute } from '../util/route_util';
 import {
   Switch,
   Route,
@@ -7,30 +7,26 @@ import {
 import NavBarContainer from './nav/navbar_container';
 
 import HabitsContainer from './habits/habits_container';
-import MainPage from './main/main_page';
-import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
-import HabitUpdateContainer from './habits/habit_update_container'
+import HabitShowContainer from './habits/habit_show_container'
+import ResourcesContainer from './resources/resources_container';
 
-
-
-import './app.css';
+import ResourceShowContainer from './resources/resource_show_container';
 
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
         <Route exact path="/habits" component={HabitsContainer} />
+        <Route exact path="/habits/:habitId" component={HabitShowContainer} />
+        <Route exact path="/resources" component={ResourcesContainer} />
+        <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
-        <ProtectedRoute exact path="/habits/:habit_id/update" component={HabitUpdateContainer} />
     </Switch>
-    <footer id="footer">
-      CC-BY 4.0 &copy; 2021
-    </footer>
+    <Footer />
   </div>
 );
 

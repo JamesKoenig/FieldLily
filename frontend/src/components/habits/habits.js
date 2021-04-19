@@ -1,47 +1,53 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import HabitBox from './habit_box';
-import HabitCompose from './habit_compose_container'
 
-
-import './habits.css';
+import '../common-stylings/entity-index.css';
 
 class Habit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchHabits();
   }
 
   render() {
-    const { habits, loggedIn } = this.props;
-    if (!habits || habits.length < 1) {
-      return (
-      <div className="habits-index-container">
-        <div className="habits-index">
-          <h1 className="habits-index-heading">There are no Habits</h1>
-          {loggedIn ? (<HabitCompose />) : null }
+    const {
+      habits,
+      loggedIn,
+      openNewHabitModal,
+    } = this.props;
+    return (
+      <div className="entity-index-container">
+        <div className="entity-index">
+          { (!habits || habits.length < 1)
+            ?
+              (
+                <h1 className="entity-index-heading">
+                  No habits to display
+                </h1>
+              )
+            :
+              (
+                <>
+                  <h1 className="entity-index-heading">
+                    All Habits
+                  </h1>
+                  <ul className="entity-index-list">
+                    { habits.map(habit => (
+                      <HabitBox key={habit._id}
+                                {...habit} />
+                    ))}
+                  </ul>
+                </>
+              )
+          }
+          { loggedIn ?
+              (<button onClick={() => openNewHabitModal() }>
+                 Post a new habit
+               </button>)
+            : null }
         </div>
         <div></div>
       </div>)
-    } else {
-      return (
-        <div className="habits-index-container">
-          <div className="habits-index">
-            <h1 className="habits-index-heading">All Habits</h1>
-            <ul className="habits-index-list">
-              { habits.map(habit => (
-                <HabitBox key={habit._id} {...habit} loggedIn={loggedIn} />
-              ))}
-              { loggedIn ?  (<HabitCompose />) : null }
-            </ul>
-          </div>
-          <div></div>
-        </div>
-      );
-    }
   }
 }
 

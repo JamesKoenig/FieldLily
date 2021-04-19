@@ -1,47 +1,71 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.resource
-
+        this.state = { heading: "" };
+        if(this.props.resource) {
+          this.state.heading = "Edit your resource";
+          this.props.receiveNewResource(this.props.resource);
+        } else {
+          this.state.heading = "Create new resource";
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createResource(this.state, this.props.habitId)
+        throw "CREATING NEW RESOURCES NOT YET IMPLEMENTED, SORRY";
+        //this.props.createResource(this.props.resource, this.props.habitId)
     }
 
     update(field) {
-        return e => this.setState({ [field]: e.currentTarget.value })
+      const {
+        title,
+        description,
+        receiveNewResource,
+      } = this.props;
+        return e => {
+          receiveNewResource({
+            title,
+            description,
+            [field]: e.currentTarget.value,
+          });
+        }
     }
 
-    render() { 
+    render() {
+      const {
+        title,
+        description,
+      } = this.props;
+      const { heading } = this.state;
         return (
             <div>
-                <h3>{this.props.formType}</h3>
+                <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
-                
-                <label>
-                    Title
-                    <textarea
-                    value={this.state.title}
-                    onChange={this.update('title')}
-                    />
-                </label>
 
-                <button type='submit' value={this.props.formType} textarea='add Resource'/>
+                  <label>
+                      Title
+                  </label>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={this.update('title')} />
+                  <label>
+                    Description
+                  </label>
+                  <textarea
+                    value={description}
+                    onChange={this.update('description')} />
+                  <button>
+                    add Resource
+                  </button>
                 </form>
-                <Link className="primary" to="/habits">All habits</Link>
-
             </div>
         )
   }
-    
 }
- 
+
 export default ResourceForm

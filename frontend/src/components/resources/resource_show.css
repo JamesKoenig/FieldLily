@@ -1,0 +1,27 @@
+.resource-show-container {
+    position: fixed;
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: -1;
+    color:  var(--forever-susan-accent-yellow);
+    height: 100vh;
+}
+
+.resource-show {
+    padding: 10px;
+    border-radius: 7px;
+    background-color: var(--forever-susan-dark-green);
+}
+
+.resource-show-container h1 {
+    font-size: 30px;
+    color: var(--royal-sunset-purple);
+}
+
+.resource-show-container p {
+    margin-top: 10px;
+    font-size: 20px;
+}

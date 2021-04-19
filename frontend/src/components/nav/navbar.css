@@ -1,4 +1,5 @@
 .navbar-flex-container {
+    z-index: 1;
     position: fixed;
     display: flex;
     height: 100vh;
@@ -6,21 +7,42 @@
     right: 0;
     flex-direction: column-reverse;
     justify-content: flex-start;
+<<<<<<< HEAD
     align-items: end;
     font: helvetica;
     font-size: x-large;
+=======
+    align-items: flex-end;
+>>>>>>> 5f53ca5bc90f2eee16c0b457bb4729187cbeb375
 }
 
 .navbar {
+    text-align: center;
     display: flex;
     flex-direction: inherit;
     justify-content: space-between;
     margin: 20px 12px;
 }
 
+.navbar button {
+    cursor: pointer;
+    align-self: center;
+    width: 66%;
+    padding: 0;
+    height: 48px;
+    font-weight: bold;
+    border: 2px ridge var(--royal-sunset-purple);
+    border-radius: 15px;
+    color: var(--royal-sunset-peach);
+    background-color: var(--forever-susan-dark-green);
+}
+
 .navbar-logo {
     color: var(--forever-susan-accent-peach);
-    text-shadow: -.25px -.25px var(--forever-susan-accent-orange);
+    font-weight: bold;
+    font-family: var(--reggae-one);
+    font-size: 48px;
+    padding: 15px;
 }
 
 .navbar-links {
@@ -28,17 +50,23 @@
     display: flex;
     overflow: hidden;
     flex-direction: inherit;
-    height: 0;
+    height: 100%;
+    width: 100%;
+    right: -52px;
+    transform: scale(0);
     max-height: 0;
-    bottom: 12px;
-    justify-content: space-between;
-    z-index: -100;
+    bottom: 70px;
+    justify-content: space-around;
+    align-itmes: center;
     transition: .5s ease-in-out;
 }
 
 .navbar:hover .navbar-links {
-    z-index: auto;
-    height: 100%;
+    bottom: 12px;
+    z-index: -1;
+    transform: scale(1);
+    right: 0;
     max-height: 480px;
 }
 
+@import "./navbar_logo_animation.css";

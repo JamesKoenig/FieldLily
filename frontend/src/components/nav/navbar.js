@@ -1,8 +1,28 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom'
+import {
+  Link,
+  Route,
+} from 'react-router-dom'
 import Modal from '../modal/modal_container';
 import './navbar.css';
+
+const CondLink = ({ path, label }) => (
+  <Route
+    render={ ( { location } ) => (location.pathname !== path) ?
+        (
+          <Link to={path}>
+            <button>
+              {label}
+            </button>
+          </Link>
+        ) : null }
+   />
+)
+
+const arrToCondLinks = arr =>
+  arr.map( ([path,label]) => {
+    return (<CondLink key={path} {...{path,label}} />);
+  });
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -18,23 +38,34 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
-    const { openModal, loggedIn } = this.props;
+    const {
+      loggedIn,
+      openLoginModal,
+      openSignupModal,
+    } = this.props;
+
       if (loggedIn) {
         return [
-          <Link key="habits"  to={'/habits'}>All Habits</Link>,
-          <Link key="profile" to={'/profile'}>Profile</Link>,
-          <Link key="new_habit" to={"/new_habit"}>New Habit</Link>,
+          ...arrToCondLinks([
+            ["/habits", "All Habits"],
+            ["/profile", "Profile"],
+            ["/resources", "All Resources"],
+            ]),
           <button key="logout" onClick={this.logoutUser}>Logout</button>,
         ];
       } else {
         return [
-          <Link key="habits" to={"/habits"}>All Habits</Link>,
+          ...arrToCondLinks([
+            ["/","Home"],
+            ["/habits","All Habits"],
+            ["/resources", "All Resources"],
+          ]),
           <button key="login"
-                  onClick={ () => openModal('login') }>
+                  onClick={ () => openLoginModal() }>
             Login
           </button>,
           <button key="signup"
-                  onClick={ () => openModal('signup') }>
+                  onClick={ () => openSignupModal() }>
             Sign Up
           </button>,
         ];
@@ -50,7 +81,7 @@ class NavBar extends React.Component {
                { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
           </div>
-          { this.props.loggedIn ? null : <Modal /> }
+          <Modal />
         </div>
       );
   }

@@ -1,0 +1,15 @@
+:root {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    color: var(--forever-susan-accent-yellow);
+    background-color: var(--forever-susan-dark-crimson);
+<<<<<<< HEAD:frontend/src/components/main/main.css
+    font: helvetica;
+    font-size: large;
+=======
+    background-image: url("background_image.jpeg");
+    background-size: cover;
+>>>>>>> 5f53ca5bc90f2eee16c0b457bb4729187cbeb375:frontend/public/background.css
+}
+

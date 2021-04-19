@@ -1,0 +1,12 @@
+[
+    {
+        "handle": "Lily",
+        "email": "fieldlily@gmail.com",
+        "password": "lilylily"
+    },
+    {
+        "handle": "foomatic",
+        "email": "foo@foo.foo",
+        "password": "foofoo"
+    }
+]
