@@ -16,7 +16,7 @@ const mSTP = ({
       }
     }
   },
-})=> {
+}) => {
   const { _id: id, title } = habits[habitId] ||
      { _id: undefined, title: undefined };
   return {

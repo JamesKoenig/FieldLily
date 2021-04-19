@@ -36,7 +36,7 @@ const entityDeleteConfirmPrompt = ({
       <form onSubmit={handleSubmit}>
         <input value={titleInput}
                onChange={handleChange} />
-        <button {...disabled}>
+        <button disabled={disabled} >
           DELETE
         </button>
       </form>
