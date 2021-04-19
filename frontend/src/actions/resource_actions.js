@@ -8,7 +8,7 @@ export const CLEAR_NEW_RESOURCE = "CLEAR_NEW_RESOURCE";
 export const REMOVE_RESOURCE = 'REMOVE_RESOURCE'
 export const RECEIVE_RESOURCE_ERRORS = "RECEIVE_RESOURCE_ERRORS";
 
-export const receiveErrors = errors => ({
+export const receiveResourceErrors = errors => ({
     type: RECEIVE_RESOURCE_ERRORS,
     errors
 });
@@ -46,68 +46,61 @@ export const removeResource = resourceId => ({
 export const fetchResources = () => dispatch => {
   return resources_util.fetchResources()
       .then( 
-        ({data: resources}) => dispatch(receiveAllResources(resources)), 
-        err => dispatch(receiveErrors(err.response.data))
+        ({data: resources}) => dispatch(receiveAllResources(resources))
       )
       .catch(err => {
-        dispatch(receiveErrors(err.response.data));
+        dispatch(receiveResourceErrors(err.response.data));
       })
 }
 
 export const fetchHabitResources = habitId => dispatch =>
   resources_util.fetchHabitResources(habitId)
     .then( 
-      ({data: resources}) => dispatch(receiveHabitResources(habitId, resources)), 
-      err => dispatch(receiveErrors(err.response.data))
+      ({data: resources}) => dispatch(receiveHabitResources(habitId, resources))
     )
     .then( 
-      ({data: resources}) => dispatch(receiveAllResources(resources)), 
-      err => dispatch(receiveErrors(err.response.data))
+      ({data: resources}) => dispatch(receiveAllResources(resources))
     )
     .catch(err => {
-      dispatch(receiveErrors(err.response.data));
+      dispatch(receiveResourceErrors(err.response.data));
     })
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
     .then( 
-      ({data: resource}) => dispatch(receiveResource(resource)), 
-      err => dispatch(receiveErrors(err.response.data))
+      ({data: resource}) => dispatch(receiveResource(resource))
     )
     .catch(err => {
-      dispatch(receiveErrors(err.response.data));
+      dispatch(receiveResourceErrors(err.response.data));
     })
 )
 
 export const createResource = resource => dispatch => (
   resources_util.createResource(resource)
     .then( 
-      ({data: resource}) => dispatch(receiveResource(resource)), 
-      err => dispatch(receiveErrors(err.response.data))
+      ({data: resource}) => dispatch(receiveResource(resource))
     )
     .catch(err => {
-      dispatch(receiveErrors(err.response.data));
+      dispatch(receiveResourceErrors(err.response.data));
     })
 )
 
 export const updateResource= resource => dispatch => (
   resources_util.updateResource(resource)
     .then( 
-      ({data: resource}) => dispatch(receiveResource(resource)), 
-      err => dispatch(receiveErrors(err.response.data))
+      ({data: resource}) => dispatch(receiveResource(resource))
     )
     .catch(err => {
-      dispatch(receiveErrors(err.response.data));
+      dispatch(receiveResourceErrors(err.response.data));
     })
 )
 
 export const deleteResource = resourceId => dispatch => (
   resources_util.deleteResource(resourceId)
     .then(
-      () => dispatch(removeResource(resourceId)), 
-      err => dispatch(receiveErrors(err.response.data))
+      () => dispatch(removeResource(resourceId))
     )
     .catch(err => {
-      dispatch(receiveErrors(err.response.data));
+      dispatch(receiveResourceErrors(err.response.data));
     })
 )
