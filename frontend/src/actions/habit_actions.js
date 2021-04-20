@@ -46,14 +46,19 @@ export const removeHabit = habitId => ({
     habitId,
 });
 
+const _handleHabitErrors = err => dispatch => {
+  dispatch(receiveHabitErrors(err.response.data));
+  return "fail";
+}
+
 export const fetchHabits = () => dispatch => (
     getHabits()
       .then(
         habits => dispatch(receiveHabits(habits))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )
   );
 
 export const fetchHabit = id => dispatch => (
@@ -61,9 +66,9 @@ export const fetchHabit = id => dispatch => (
       .then(
         habits => dispatch(receiveHabit(habits))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )
 );
 
 export const composeHabit = data => dispatch => (
@@ -71,9 +76,9 @@ export const composeHabit = data => dispatch => (
       .then(
         habit => dispatch(receiveHabit(habit))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )
   );
 
 export const updateHabit = (habitId, data) => dispatch => (
@@ -81,9 +86,9 @@ export const updateHabit = (habitId, data) => dispatch => (
       .then(
         habit => dispatch(receiveHabit(habit))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )
 )
 
 export const fetchCurrentUserHabits = () => dispatch =>
@@ -91,15 +96,15 @@ export const fetchCurrentUserHabits = () => dispatch =>
       .then( 
         habits => dispatch(receiveCurrentUserHabits(habits))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )
 
 export const destroyHabit = habitId => dispatch =>
     deleteHabit(habitId)
       .then( 
         () => dispatch(removeHabit(habitId))
       )
-      .catch(err => {
-        dispatch(receiveHabitErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleHabitErrors(err))
+      )

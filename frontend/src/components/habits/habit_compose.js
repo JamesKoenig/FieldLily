@@ -25,20 +25,23 @@ class HabitCompose extends React.Component {
       updateHabit,
       closeModal,
       habit,
+      receiveNewHabit,
     } = this.props;
 
     const newHabit = {
       title,
       description,
     };
-
     e.preventDefault();
-    if(habit) {
-      updateHabit(habit._id, newHabit);
-    } else {
-      composeHabit(newHabit);
-    }
-    closeModal();
+    const promiseAction = habit ? () => updateHabit(habit._id, newHabit)
+                                : () => composeHabit(newHabit);
+    promiseAction()
+      .then(res => {
+        if(res !== "fail") {
+          receiveNewHabit({title: "", description: ""});
+          closeModal();
+        }
+      });
   }
 
   update(key) {

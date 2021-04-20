@@ -5,6 +5,8 @@ import {
   receiveNewResource,
   updateResource,
 } from '../../actions/resource_actions';
+import { closeModal }
+  from '../../actions/modal/modal_common_actions';
 
 const mSTP = (state) => {
   const newResource = state.entities.resources.new;
@@ -22,6 +24,7 @@ const mDTP = ({
   createResource,
   receiveNewResource,
   updateResource,
+  closeModal,
 });
 
 export default connect(mSTP, mDTP)(ResourceForm);

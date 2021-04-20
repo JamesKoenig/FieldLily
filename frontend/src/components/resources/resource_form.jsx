@@ -22,16 +22,21 @@ class ResourceForm extends React.Component {
           updateResource,
           newResource,
           editResource,
+          closeModal,
         } = this.props;
         e.preventDefault();
-        if(editResource) {
-          updateResource({
-            ...newResource,
-            _id: editResource._id,
-          });
-        } else {
-          createResource(newResource);
-        }
+      const promiseAction =
+        editResource ? () => updateResource(
+                               {...newResource, _id: editResource.id } 
+                             )
+                     : () => createResource(newResource);
+
+      promiseAction()
+        .then( res => {
+          if(res !== "fail") {
+            closeModal();
+          }
+        });
     }
 
     update(field) {
