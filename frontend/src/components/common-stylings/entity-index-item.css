@@ -16,7 +16,6 @@ input {
     transition: width 0.4s ease-in-out;
 }
 
-
 ::placeholder {
     color: #e1d0d3;
 }

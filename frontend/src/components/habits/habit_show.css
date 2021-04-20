@@ -87,3 +87,15 @@
    width: max-content;
    cursor: pointer;
 }
+
+.text {
+  border: 2px ridge var(--royal-sunset-purple);
+  border-radius: 5px;
+  cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
+  background-color: #847030;
+  color: #e1d0d3;
+}
+
+a:-webkit-any-link {
+	cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
+}
