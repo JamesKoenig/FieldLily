@@ -2,7 +2,7 @@ button {
 	cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
 }
 
-.form {
+input {
     transition: width 0.4s ease-in-out;
     justify-content: flex-end;
 }
