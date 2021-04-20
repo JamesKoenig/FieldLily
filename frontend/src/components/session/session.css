@@ -19,6 +19,12 @@
     padding: 10px;
     border-radius: 5px;
 	cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
+    background-color: #847030;
+    color: #e1d0d3;
+}
+
+.session-button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .session-errors {
@@ -29,7 +35,7 @@
     color: white;
 }
 
-.form {
+input {
     transition: width 0.4s ease-in-out;
 }
 
