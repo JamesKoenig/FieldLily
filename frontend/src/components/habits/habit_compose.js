@@ -23,7 +23,7 @@ class HabitCompose extends React.Component {
       description,
       composeHabit,
       updateHabit,
-      modalFadeAndClose,
+      closeModal,
       habit,
     } = this.props;
 
@@ -38,7 +38,7 @@ class HabitCompose extends React.Component {
     } else {
       composeHabit(newHabit);
     }
-    modalFadeAndClose();
+    closeModal();
   }
 
   update(key) {

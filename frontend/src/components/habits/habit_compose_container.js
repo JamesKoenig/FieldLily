@@ -4,7 +4,7 @@ import {
   updateHabit,
   receiveNewHabit,
 } from '../../actions/habit_actions';
-import { modalFadeAndClose }
+import { closeModal }
   from '../../actions/modal/modal_common_actions';
 import HabitCompose from './habit_compose';
 
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     composeHabit,
-    modalFadeAndClose,
+    closeModal,
     receiveNewHabit,
     updateHabit,
 };
