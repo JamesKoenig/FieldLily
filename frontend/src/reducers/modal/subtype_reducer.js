@@ -12,7 +12,10 @@ import {
   OPEN_SIGNUP_MODAL,
 } from '../../actions/modal/session_modal_actions';
 
-import { OPEN_CONFIRM_HABIT_DELETE_MODAL }
+import {
+  OPEN_CONFIRM_HABIT_DELETE_MODAL,
+  OPEN_CONFIRM_RESOURCE_DELETE_MODAL,
+}
   from "../../actions/modal/confirmation_modal_actions";
 
 const _defaultState = "none"
@@ -30,6 +33,8 @@ const subtype_reducer = (state=_defaultState, { type })  => {
         return "signup";
       case OPEN_CONFIRM_HABIT_DELETE_MODAL:
         return "delete habit";
+      case OPEN_CONFIRM_RESOURCE_DELETE_MODAL:
+        return "delete resource";
       case MODAL_CLOSED:
         return _defaultState;
       default:

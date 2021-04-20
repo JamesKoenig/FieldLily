@@ -6,9 +6,11 @@ class ResourceForm extends React.Component {
         this.state = { heading: "" };
         if(this.props.editResource) {
           this.state.heading = "Edit your resource";
+          this.state.submitText = "submit changes";
           this.props.receiveNewResource(this.props.editResource);
         } else {
           this.state.heading = "Create new resource";
+          this.state.submitText = "add Resource";
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
@@ -17,10 +19,19 @@ class ResourceForm extends React.Component {
     handleSubmit(e) {
         const {
           createResource,
+          updateResource,
           newResource,
+          editResource,
         } = this.props;
         e.preventDefault();
-        createResource(newResource)
+        if(editResource) {
+          updateResource({
+            ...newResource,
+            _id: editResource._id,
+          });
+        } else {
+          createResource(newResource);
+        }
     }
 
     update(field) {
@@ -45,10 +56,11 @@ class ResourceForm extends React.Component {
 
     render() {
       const { newResource: {
-        title,
-        description,
-      }} = this.props;
-      const { heading } = this.state;
+          title,
+          description,
+        },
+      } = this.props;
+      const { heading, submitText } = this.state;
         return (
             <div>
                 <h3>{heading}</h3>
@@ -68,7 +80,7 @@ class ResourceForm extends React.Component {
                     value={description}
                     onChange={this.update('description')} />
                   <button>
-                    add Resource
+                    {submitText}
                   </button>
                 </form>
             </div>

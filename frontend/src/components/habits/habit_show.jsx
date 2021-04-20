@@ -32,7 +32,7 @@ class HabitShow extends React.Component {
       <div className="habit-show-container">
         <div className="habit-show-grid">
           <div className="habit-show-body">
-            <h1>{habit.title}</h1> 
+            <h1>{habit.title}</h1>
             {currentUser && currentUser.id === habit.user ? (
             <div>
                 <button className="habit-delete"

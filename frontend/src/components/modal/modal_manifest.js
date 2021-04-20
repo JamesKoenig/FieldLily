@@ -4,6 +4,8 @@ import HabitCompose from '../habits/habit_compose_container';
 import ResourceForm from '../resources/resource_form_container';
 import HabitDeleteConfirmPrompt
   from '../habits/habit_delete_confirmation';
+import ResourceDeleteConfirmPrompt
+  from "../resources/resource_delete_confirmation";
 
 const sessionModals = {
   'login': LoginForm,
@@ -17,6 +19,7 @@ const entityModals = {
 
 const confirmationModals = {
   "delete habit": HabitDeleteConfirmPrompt,
+  "delete resource": ResourceDeleteConfirmPrompt
 }
 
 const modalManifest = {

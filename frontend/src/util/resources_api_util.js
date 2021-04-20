@@ -13,7 +13,7 @@ export const fetchResource = resourceId =>
   axios.get(`/api/resources/${resourceId}`);
 
 export const updateResource = resource =>
-  axios.patch(`api/resources/${resource._id}`,resource);
+  axios.put(`api/resources/${resource._id}`,resource);
 
 export const deleteResource = resourceId =>
   axios.delete(`/api/resources/${resourceId}`);

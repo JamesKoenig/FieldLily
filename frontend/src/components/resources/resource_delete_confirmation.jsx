@@ -1,48 +1,47 @@
-import { connect } from 'react-redux'
-import { destroyHabit } from "../../actions/habit_actions";
+import { connect } from 'react-redux';
 
+import { deleteResource } from '../../actions/resource_actions';
 import entityDeleteConfirmPrompt from '../modal/confirm_delete';
 
 const mSTP = ({
   entities: {
-    habits: {
-      all: habits,
+    resources: {
+      all: resources,
     }
   },
   ui: {
     modal: {
       misc: {
-        habitId,
+        resourceId,
       }
-
     }
   },
 }) => {
-  const { _id: id, title } = habits[habitId] ||
+  const { _id: id, title } = resources[resourceId] ||
      { _id: undefined, title: undefined };
   return {
-    type: "habit",
+    type: "resource",
     id,
     title,
   }
 }
 
 const mDTP = {
-  deleteEntityCallback: destroyHabit,
+  deleteEntityCallback: deleteResource,
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return {
   ...stateProps,
   ...dispatchProps,
   ...ownProps,
   deleteEntityCallback: () =>
     dispatchProps.deleteEntityCallback(stateProps.id),
-});
+  }
+};
 
 export default connect(
     mSTP,
     mDTP,
     mergeProps,
-  )(
-    entityDeleteConfirmPrompt
-  );
+  )(entityDeleteConfirmPrompt);
