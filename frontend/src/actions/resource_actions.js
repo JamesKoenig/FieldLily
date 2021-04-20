@@ -50,14 +50,19 @@ export const removeResource = resourceId => ({
   resourceId
 })
 
+const _handleResourceErrors = err => dispatch => {
+  dispatch(receiveResourceErrors(err.response.data));
+  return "fail";
+}
+
 export const fetchResources = () => dispatch => {
   return resources_util.fetchResources()
       .then( 
         ({data: resources}) => dispatch(receiveAllResources(resources))
       )
-      .catch(err => {
-        dispatch(receiveResourceErrors(err.response.data));
-      })
+      .catch(err =>
+        dispatch(_handleResourceErrors(err))
+      )
 }
 
 export const fetchHabitResources = habitId => dispatch =>
@@ -68,18 +73,18 @@ export const fetchHabitResources = habitId => dispatch =>
     })
     .then( resources =>
       dispatch(receiveAllResources(resources)))
-    .catch(err => {
-      dispatch(receiveResourceErrors(err.response.data));
-    })
+    .catch(err =>
+      dispatch(_handleResourceErrors(err))
+    )
 
 export const fetchResource = ResourceId => dispatch => (
   resources_util.fetchResource(ResourceId)
     .then( 
       ({data: resource}) => dispatch(receiveResource(resource))
     )
-    .catch(err => {
-      dispatch(receiveResourceErrors(err.response.data));
-    })
+    .catch(err =>
+      dispatch(_handleResourceErrors(err))
+    )
 )
 
 export const createResource = resource => dispatch => (
@@ -93,18 +98,18 @@ export const createResource = resource => dispatch => (
                                     Object.keys(resourceObj)[0]));
     })
     .then( () => dispatch(clearNewResource()) )
-    .catch(err => {
-      dispatch(receiveResourceErrors(err.response.data));
-    })
+    .catch(err =>
+      dispatch(_handleResourceErrors(err))
+    )
 )
 
 export const updateResource= resource => dispatch => (
   resources_util.updateResource(resource)
     .then( ({data: resource}) => dispatch(receiveResource(resource)))
     .then( () => dispatch(clearNewResource()) )
-    .catch(err => {
-      dispatch(receiveResourceErrors(err.response.data));
-    })
+    .catch(err =>
+      dispatch(_handleResourceErrors(err))
+    )
 )
 
 export const deleteResource = resourceId => dispatch => (
@@ -112,7 +117,7 @@ export const deleteResource = resourceId => dispatch => (
     .then(
       () => dispatch(removeResource(resourceId))
     )
-    .catch(err => {
-      dispatch(receiveResourceErrors(err.response.data));
-    })
+    .catch(err =>
+      dispatch(_handleResourceErrors(err))
+    )
 )

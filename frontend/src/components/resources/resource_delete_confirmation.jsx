@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import { deleteResource } from '../../actions/resource_actions';
 import entityDeleteConfirmPrompt from '../modal/confirm_delete';
+import { closeModal } from '../../actions/modal/modal_common_actions';
 
 const mSTP = ({
   entities: {
@@ -28,6 +29,7 @@ const mSTP = ({
 
 const mDTP = {
   deleteEntityCallback: deleteResource,
+  closeModal,
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

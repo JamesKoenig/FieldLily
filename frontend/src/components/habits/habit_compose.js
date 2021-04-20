@@ -25,6 +25,7 @@ class HabitCompose extends React.Component {
       updateHabit,
       closeModal,
       habit,
+      receiveNewHabit,
     } = this.props;
 
     const newHabit = {
@@ -36,9 +37,10 @@ class HabitCompose extends React.Component {
                                 : () => composeHabit(newHabit);
     promiseAction()
       .then(res => {
-        console.log(res);
-        if(res !== "fail")
+        if(res !== "fail") {
+          receiveNewHabit({title: "", description: ""});
           closeModal();
+        }
       });
   }
 
