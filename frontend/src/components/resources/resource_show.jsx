@@ -32,7 +32,10 @@ class ResourceShow extends React.Component {
             </button>
             <p>{resource.featured}</p>
             <p>{resource.description}</p>
-            <p>belongs to habit {habit.title}</p>
+            <Link to={`/habits/${resource.habit}`}>
+             <h2> <button>belongs to habit {habit.title}</button> </h2>
+            </Link>
+
         </div>
         <Link to="/" />
       </div>
