@@ -83,3 +83,12 @@
    width: max-content;
    cursor: pointer;
 }
+
+.habit-errors {
+    margin-top: 10px;
+    background-color: gray;
+    padding: 4px;
+    text-size: small;
+    color: white;
+    text-align: center;
+}

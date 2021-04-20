@@ -6,6 +6,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import './habit_show.css';
 
 class HabitShow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderErrors = this.renderErrors.bind(this);
+  }
+
   componentDidMount() {
     const {
       fetchHabit,
@@ -14,6 +19,18 @@ class HabitShow extends React.Component {
     } = this.props;
     fetchHabit(habitId);
     fetchHabitResources(habitId);
+  }
+
+  renderErrors() {
+    return(
+      <ul className="habit-errors">
+        {Object.keys(this.props.errors).map((error, i) => (
+          <li key={`error-${i}`}>
+            {this.props.errors[error]}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   render() {
@@ -64,6 +81,7 @@ class HabitShow extends React.Component {
                 </ListGroup>
             </section>
           </div>
+          {this.renderErrors()}
           <Link to="/" />
         </div>
       </div>

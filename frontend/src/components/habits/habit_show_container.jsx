@@ -19,7 +19,8 @@ const mapStateToProps = (
       },
       habits: {
         all: habits }
-      },
+    },
+    errors: {habit: errors}
   },
   {match: {params: { habitId } } },
 ) => {
@@ -35,6 +36,7 @@ const mapStateToProps = (
     habit,
     currentUser,
     resources: habit_resources,
+    errors,
   }
 };
 
