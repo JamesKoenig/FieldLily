@@ -8,6 +8,7 @@ import { openNewResourceModal }
   from '../../actions/modal/resource_modal_actions.js'
 import { openConfirmHabitDeleteModal }
   from '../../actions/modal/confirmation_modal_actions.js';
+import {receiveHabitErrors} from '../../actions/habit_actions';
 
 const mapStateToProps = (
   {
@@ -46,6 +47,7 @@ const mapDispatchToProps = {
   openNewResourceModal,
   openEditHabitModal,
   openConfirmHabitDeleteModal,
+  receiveHabitErrors,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HabitShow);

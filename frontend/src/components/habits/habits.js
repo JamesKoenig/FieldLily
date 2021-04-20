@@ -14,12 +14,20 @@ class Habit extends React.Component {
     this.props.fetchHabits();
   }
 
+  componentWillUnmount(){
+    this.props.receiveHabitErrors({})
+  }
+
   renderErrors() {
+    const errors = this.props.errors
+    if (!errors || Object.keys(errors).length == 0) {
+      return null
+    }
     return(
       <ul className="habit-errors">
-        {Object.keys(this.props.errors).map((error, i) => (
+        {Object.keys(errors).map((error, i) => (
           <li key={`error-${i}`}>
-            {this.props.errors[error]}
+            {errors[error]}
           </li>
         ))}
       </ul>
