@@ -76,7 +76,11 @@
 }
 
 .resources-index-new-button {
-   border: none;
+   border: 2px ridge var(--royal-sunset-purple);
+   border-radius: 5px;
+	 cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
+   background-color: #847030;
+   color: #e1d0d3;
    border-radius: var(--resources-index-border-radius);
    right: var(--resources-index-border-radius);
    top: 15px;
