@@ -20,6 +20,8 @@
     color: white;
     background-color: var(--royal-sunset-wafer);
     border-radius: var(--entity-index-border-radius);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .entity-index-list {
