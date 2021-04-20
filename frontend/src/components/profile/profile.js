@@ -11,7 +11,7 @@ class Profile extends React.Component {
     }
 
     render() {
-        if (this.state.habits.length === 0) {
+        if (this.props.habits.length === 0) {
           return (<div>This user has no Habits</div>)
         } else {
           return (
