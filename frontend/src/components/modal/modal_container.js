@@ -7,9 +7,10 @@ import { connect } from 'react-redux';
 import Modal from './modal';
 
 const mSTP = ({session: { isAuthenticated },
-               ui: { modal: { type, subtype }}}) => ({
+               ui: { modal: { type, subtype, status }}}) => ({
   Component: modalManifest(type, subtype),
-  autoClose: type === "session" ? isAuthenticated : false,
+  autoClose: (type === "session" && isAuthenticated)
+              || (status === "closing"),
 });
 
 const mDTP = dispatch => ({
