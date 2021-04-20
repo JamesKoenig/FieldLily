@@ -3,7 +3,7 @@
     position: fixed;
     display: flex;
     height: 50vh;
-    top: 0;
+    bottom: 0;
     right: 0;
     flex-direction: column-reverse;
     justify-content: flex-start;
