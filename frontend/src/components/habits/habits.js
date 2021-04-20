@@ -5,8 +5,25 @@ import HabitBox from './habit_box';
 import '../common-stylings/entity-index.css';
 
 class Habit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderErrors = this.renderErrors.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchHabits();
+  }
+
+  renderErrors() {
+    return(
+      <ul className="habit-errors">
+        {Object.keys(this.props.errors).map((error, i) => (
+          <li key={`error-${i}`}>
+            {this.props.errors[error]}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   render() {
@@ -45,6 +62,7 @@ class Habit extends React.Component {
                  Post a new habit
                </button>)
             : null }
+          {this.renderErrors()}
         </div>
         <div></div>
       </div>)
