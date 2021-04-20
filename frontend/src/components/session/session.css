@@ -21,6 +21,7 @@
 	cursor: url('https://i.ibb.co/cCd2FgT/lilycursor.jpg'), auto;
     background-color: #847030;
     color: #e1d0d3;
+    width: 100%;
 }
 
 .session-button:hover {
@@ -37,10 +38,10 @@
 
 input {
     transition: width 0.4s ease-in-out;
-    width: 80px;
+    width: 110px;
 }
 
 input:focus {
-    width: 120px;
+    width: 115px;
     transform: translateX(-9px);
 }
