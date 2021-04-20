@@ -8,6 +8,7 @@ import './confirm_delete.css';
 const entityDeleteConfirmPrompt = ({
   type,
   title,
+  closeModal,
   deleteEntityCallback,
 }) => {
   const [ titleInput, setTitleInput ] = useState('');
@@ -21,8 +22,13 @@ const entityDeleteConfirmPrompt = ({
   const handleSubmit = event => {
     event.preventDefault();
     if(!disabled) {
-      deleteEntityCallback();
-      history.goBack();
+      deleteEntityCallback()
+        .then(res => {
+          if(res !== "fail") {
+            history.goBack();
+            closeModal();
+          }
+        })
     }
   }
 

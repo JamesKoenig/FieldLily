@@ -31,14 +31,15 @@ class HabitCompose extends React.Component {
       title,
       description,
     };
-
     e.preventDefault();
-    if(habit) {
-      updateHabit(habit._id, newHabit);
-    } else {
-      composeHabit(newHabit);
-    }
-    closeModal();
+    const promiseAction = habit ? () => updateHabit(habit._id, newHabit)
+                                : () => composeHabit(newHabit);
+    promiseAction()
+      .then(res => {
+        console.log(res);
+        if(res !== "fail")
+          closeModal();
+      });
   }
 
   update(key) {
