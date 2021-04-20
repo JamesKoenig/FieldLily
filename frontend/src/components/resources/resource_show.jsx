@@ -21,7 +21,9 @@ class ResourceShow extends React.Component {
     return (
       <div className="resource-show-container">
          <div className="resource-show">
-            <h1>{resource.title}</h1>
+            <h1 style={{
+                'margin-bottom': '10px',
+              }}>{resource.title}</h1>
             <button className="resource-edit"
                     onClick={openEditResourceModal}>
               Edit
@@ -32,7 +34,17 @@ class ResourceShow extends React.Component {
             </button>
             <p>{resource.featured}</p>
             <p>{resource.description}</p>
-            <p>belongs to habit {habit.title}</p>
+
+            <Link 
+              style={{
+                'color': 'red',
+                'display': 'block',
+                'margin-top': '5px',
+              }}
+              to={`/habits/${resource.habit}`}>
+              return to habit {habit.title}
+            </Link>
+
         </div>
         <Link to="/" />
       </div>
