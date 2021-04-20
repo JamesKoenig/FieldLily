@@ -4,7 +4,9 @@ import { fetchResource } from '../../actions/resource_actions';
 import { fetchHabits } from '../../actions/habit_actions';
 
 
-const mapStateToProps = ({entities: { resources: { all: resources },
+const mapStateToProps = ({
+                            session: { user: currentUser },
+                            entities: { resources: { all: resources },
                                       habits: { all: habits } } },
                          {match: {params: { resourceId } } }) => {
   let resource = resources[resourceId];
@@ -12,6 +14,7 @@ const mapStateToProps = ({entities: { resources: { all: resources },
     resourceId,
     resource,
     habit: resource ? habits[resource.habit] : undefined,
+    currentUser: currentUser,
   }
 };
 

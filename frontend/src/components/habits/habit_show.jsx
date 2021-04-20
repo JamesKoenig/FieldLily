@@ -19,6 +19,7 @@ class HabitShow extends React.Component {
   render() {
     const {
       habit,
+      currentUser,
       resources,
       openNewResourceModal,
       openConfirmHabitDeleteModal,
@@ -31,19 +32,23 @@ class HabitShow extends React.Component {
       <div className="habit-show-container">
         <div className="habit-show-grid">
           <div className="habit-show-body">
-            <h1>{habit.title}</h1>
-            <button className="habit-delete"
-                    onClick={() => openConfirmHabitDeleteModal(habitId)} >
-              delete habit
-            </button>
-            <button className="resources-index-new-button"
-                    onClick={() => openNewResourceModal(habitId)}>
-              New Resource
-            </button>
-            <button className="edit-link"
-                    onClick={() => openEditHabitModal(habitId) } >
-              Edit
-            </button>
+            <h1>{habit.title}</h1> 
+            {currentUser && currentUser.id === habit.user ? (
+            <div>
+                <button className="habit-delete"
+                        onClick={() => openConfirmHabitDeleteModal(habitId)} >
+                  delete habit
+                </button>
+                <button className="resources-index-new-button"
+                        onClick={() => openNewResourceModal(habitId)}>
+                  New Resource
+                </button>
+                <button className="edit-link"
+                        onClick={() => openEditHabitModal(habitId) } >
+                  Edit
+                </button>
+            </div>
+            ) : null}
             <p>{habit.description}</p>
           </div>
           <div className="resource-component-div">
