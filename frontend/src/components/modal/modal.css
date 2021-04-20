@@ -7,16 +7,17 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: radial-gradient(rgba(0,0,0,0),rgba(0,0,0,0.3));
+    /* background: radial-gradient(circle at 100%, #333, #333 50%, #eee 75%, #333 75%); */
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal-fade-in {
-    animation: modal-fade-in .25s ease-in;
+    animation: modal-fade-in 0.45s ease-in;
     animation-fill-mode: forwards;
 }
 
 .modal-fade-out {
-    animation: modal-fade-out .25s ease-out;
+    animation: modal-fade-out 0.45s ease-out;
     animation-fill-mode: forwards;
 }
 
