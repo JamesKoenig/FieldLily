@@ -7,8 +7,8 @@
     left: 0;
     height: 100%;
     width: 100%;
-    /* background: radial-gradient(circle at 100%, #333, #333 50%, #eee 75%, #333 75%); */
-    background-color: rgba(0, 0, 0, 0.75);
+    background: radial-gradient(circle at 100%, #333, #333 50%, #eee 75%, #333 75%);
+    /* background-color: rgba(0, 0, 0, 0.75); */
 }
 
 .modal-fade-in {
