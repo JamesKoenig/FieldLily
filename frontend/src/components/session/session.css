@@ -37,5 +37,10 @@
 
 input {
     transition: width 0.4s ease-in-out;
+    width: 80px;
 }
 
+input:focus {
+    width: 120px;
+    transform: translateX(-9px);
+}
