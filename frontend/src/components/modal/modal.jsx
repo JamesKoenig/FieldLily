@@ -33,7 +33,7 @@ class Modal extends React.Component {
       <div id="modal-background"
            className="modal-fade-in"
            onClick={ closeModal } >
-        <div className="modal"
+        <div id="modal"
              onClick={event => event.stopPropagation() } >
           <Component closeModal={closeModal} />
         </div>

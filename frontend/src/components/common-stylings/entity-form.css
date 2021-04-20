@@ -1,0 +1,11 @@
+.entity-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.entity-form * {
+    padding: 5px;
+    margin: 5px;
+}

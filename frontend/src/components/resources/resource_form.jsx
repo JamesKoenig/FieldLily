@@ -51,9 +51,9 @@ class ResourceForm extends React.Component {
       const { heading } = this.state;
         return (
             <div>
-                <h3>{heading}</h3>
-                <form onSubmit={this.handleSubmit}>
-
+                <form className="entity-form"
+                      onSubmit={this.handleSubmit}>
+                  <h3>{heading}</h3>
                   <label>
                       Title
                   </label>

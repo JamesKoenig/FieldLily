@@ -1,5 +1,7 @@
 import React from 'react';
 
+import "../common-stylings/entity-form.css";
+
 class HabitCompose extends React.Component {
   constructor(props) {
       super(props);
@@ -61,7 +63,8 @@ class HabitCompose extends React.Component {
     const { title, description } = this.props;
     return (
         <div className="form">
-            <form onSubmit={this.handleSubmit}>
+            <form className="entity-form"
+                  onSubmit={this.handleSubmit}>
                 <div>
                     <input type="textarea"
                         value={title}

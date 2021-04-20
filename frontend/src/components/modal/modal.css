@@ -10,6 +10,19 @@
     background: radial-gradient(rgba(0,0,0,0),rgba(0,0,0,0.3));
 }
 
+#modal {
+    border-radius: 80px;
+    background-color: gray;
+    padding: 5%;
+    height: max-content;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px #0F0F0F;
+}
+
 .modal-fade-in {
     animation: modal-fade-in .25s ease-in;
     animation-fill-mode: forwards;
