@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { closeModal } from '../../actions/modal/modal_common_actions';
-import { destroyHabit } from "../../actions/habit_actions";
+import { logout } from "../../actions/session_actions";
 
 import entityDeleteConfirmPrompt from '../modal/confirm_delete';
 
