@@ -9,7 +9,7 @@ class ResourceForm extends React.Component {
           this.state.submitText = "submit changes";
           this.props.receiveNewResource(this.props.editResource);
         } else {
-          this.state.heading = "Create new resource";
+          this.state.heading = "New resource";
           this.state.submitText = "add Resource";
         }
         this.handleSubmit = this.handleSubmit.bind(this)
