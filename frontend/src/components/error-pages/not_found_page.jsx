@@ -11,6 +11,7 @@ class NotFoundPage extends React.Component{
                            "color":"white",
                            "fontSize": "large"}}>Go to Home </Link>
                 </p>
+                <h1 style={{'font-size': '50px'}}>404 Not Found</h1>
             </div>
         );
     }
