@@ -14,6 +14,9 @@
     padding: 10px;
     border-radius: 7px;
     background-color: var(--forever-susan-dark-green);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
 }
 
 .resource-show-container h1 {
