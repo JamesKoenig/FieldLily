@@ -42,7 +42,7 @@ class ResourceShow extends React.Component {
                 'margin-top': '5px',
               }}
               to={`/habits/${resource.habit}`}>
-              return to habit {habit.title}
+              belongs to habit {habit.title}
             </Link>
 
         </div>
