@@ -76,10 +76,21 @@
 }
 
 .resources-index-new-button {
-   border: none;
+   border: 2px ridge var(--royal-sunset-purple);
+   border-radius: 5px;
+   background-color: #847030;
+   color: #e1d0d3;
    border-radius: var(--resources-index-border-radius);
    right: var(--resources-index-border-radius);
    top: 15px;
    width: max-content;
    cursor: pointer;
 }
+
+.text {
+  border: 2px ridge var(--royal-sunset-purple);
+  border-radius: 5px;
+  background-color: #847030;
+  color: #e1d0d3;
+}
+

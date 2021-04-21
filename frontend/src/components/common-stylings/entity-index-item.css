@@ -9,3 +9,13 @@
     background: var(--royal-sunset-purple);
     border-radius: 5px;
 }
+
+input {
+    background-color: #847030;
+    color: #e1d0d3;
+    transition: width 0.4s ease-in-out;
+}
+
+::placeholder {
+    color: #e1d0d3;
+}

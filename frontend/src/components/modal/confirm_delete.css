@@ -10,3 +10,10 @@
     background-color: green;
 }
 
+button {
+    border: 2px ridge var(--royal-sunset-purple);
+    border-radius: 5px;
+    background-color: #847030;
+    color: #e1d0d3;
+}
+

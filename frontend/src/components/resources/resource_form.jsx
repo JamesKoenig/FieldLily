@@ -70,9 +70,8 @@ class ResourceForm extends React.Component {
             <div>
                 <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
-
                   <label>
-                      Title
+                    Title
                   </label>
                   <input
                     type="text"
@@ -81,7 +80,7 @@ class ResourceForm extends React.Component {
                   <label>
                     Description
                   </label>
-                  <textarea
+                  <textarea className="text"
                     value={description}
                     onChange={this.update('description')} />
                   <button>

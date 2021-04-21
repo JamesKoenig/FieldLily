@@ -2,8 +2,8 @@
     z-index: 1;
     position: fixed;
     display: flex;
-    height: 100vh;
-    top: 0;
+    height: 50vh;
+    bottom: 0;
     right: 0;
     flex-direction: column-reverse;
     justify-content: flex-start;
@@ -29,6 +29,11 @@
     border-radius: 15px;
     color: var(--royal-sunset-peach);
     background-color: var(--forever-susan-dark-green);
+}
+
+.navbar > a {
+    display: inline-block;
+
 }
 
 .navbar-logo {
