@@ -27,7 +27,7 @@
 .entity-index-list {
     flex-grow: 1;
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column;
     justify-content: space-around;
 }
