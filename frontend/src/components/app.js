@@ -12,19 +12,21 @@ import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
 import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
-
 import ResourceShowContainer from './resources/resource_show_container';
+import NotFoundPage from './error-pages/not_found_page'
 
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
+        <Route exact path="/" component={null} />
         <Route exact path="/habits" component={HabitsContainer} />
         <Route exact path="/habits/:habitId" component={HabitShowContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />
         <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />
         <ProtectedRoute exact path="/profile" component={ProfileContainer} />
         <ProtectedRoute exact path="/new_habit" component={HabitComposeContainer} />
+        <Route component={NotFoundPage} />
     </Switch>
     <Footer />
   </div>

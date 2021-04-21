@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ResourceIndexItem from '../resources/resource_index_item';
 import ListGroup from 'react-bootstrap/ListGroup';
+import NotFoundPage from '../error-pages/not_found_page'
 
 import './habit_show.css';
 
@@ -26,7 +27,7 @@ class HabitShow extends React.Component {
       openEditHabitModal,
     } = this.props;
     if(!habit)
-      return null;
+      return <NotFoundPage/>;
     const habitId = habit._id;
     return (
       <div className="habit-show-container">
