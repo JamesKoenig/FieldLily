@@ -1,14 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import './confirm_delete.css';
+import { logout } from '../../actions/session_actions'
+
+const MDTP = { logout }
 
 const LogoutConfirmPrompt = ({
     user,
-    closeModal
+    closeModal,
+    logout
   }) => {
   
     const handleSubmit = event => {
       event.preventDefault();
-      
+      logout();
       closeModal();
       }
   
@@ -25,4 +30,4 @@ const LogoutConfirmPrompt = ({
     );
 }
 
-export default LogoutConfirmPrompt
+export default connect (null, MDTP) (LogoutConfirmPrompt)
