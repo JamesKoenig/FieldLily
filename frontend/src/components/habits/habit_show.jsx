@@ -7,6 +7,10 @@ import NotFoundPage from '../error-pages/not_found_page'
 import './habit_show.css';
 
 class HabitShow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     const {
       fetchHabit,

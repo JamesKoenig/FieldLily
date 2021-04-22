@@ -5,6 +5,10 @@ import HabitBox from './habit_box';
 import '../common-stylings/entity-index.css';
 
 class Habit extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     this.props.fetchHabits();
   }
