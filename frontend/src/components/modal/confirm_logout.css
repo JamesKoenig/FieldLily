@@ -4,18 +4,20 @@
     border: 2px ridge var(--royal-sunset-purple);
     border-radius: 5px;
     background-color: #847030;
+    padding: 20px;
 }
 
 .confirmation-msg {
     font-size: 20px;
-
+    margin: 10px;
 }
 
 button {
-    border: 2px ridge var(--royal-sunset-purple);
+    border: 2px ridge ;
     border-radius: 5px;
     background-color: #847030;
     color: #e1d0d3;
     font-size: 16px;
+    margin: 10px;
 }
 
