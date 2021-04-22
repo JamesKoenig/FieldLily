@@ -4,8 +4,6 @@ import {
   openNewHabitModal,
 } from '../../actions/modal/habit_modal_actions';
 import Habits from './habits';
-import {receiveHabitErrors} from '../../actions/habit_actions';
-
 
 const mapStateToProps = (state) => {
   return {
@@ -20,7 +18,6 @@ const mapDispatchToProps = dispatch => {
     fetchHabits: () => dispatch(fetchHabits()),
     openNewHabitModal: () =>
       dispatch(openNewHabitModal()),
-    receiveHabitErrors: (errors) => dispatch(receiveHabitErrors(errors)),
   };
 };
 

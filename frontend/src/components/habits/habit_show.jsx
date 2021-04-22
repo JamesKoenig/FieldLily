@@ -9,7 +9,6 @@ import './habit_show.css';
 class HabitShow extends React.Component {
   constructor(props) {
     super(props);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentDidMount() {
@@ -20,26 +19,6 @@ class HabitShow extends React.Component {
     } = this.props;
     fetchHabit(habitId);
     fetchHabitResources(habitId);
-  }
-
-  componentWillUnmount(){
-    this.props.receiveHabitErrors({})
-  }
-
-  renderErrors() {
-    const errors = this.props.errors
-    if (!errors || Object.keys(errors).length == 0) {
-      return null
-    }
-    return(
-      <ul className="habit-errors">
-        {Object.keys(errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
   }
 
   render() {
@@ -90,7 +69,6 @@ class HabitShow extends React.Component {
                 </ListGroup>
             </section>
           </div>
-          {this.renderErrors()}
           <Link to="/" />
         </div>
       </div>

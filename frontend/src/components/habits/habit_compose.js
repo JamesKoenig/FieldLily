@@ -8,6 +8,7 @@ class HabitCompose extends React.Component {
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentWillUnmount() {
@@ -15,7 +16,26 @@ class HabitCompose extends React.Component {
       //delete the 'draft' if we were editing
       this.props.receiveNewHabit({title: "", description: ""});
     }
+    const errors = this.props.errors;
+    if(errors && Object.keys(errors).length > 0) {
+      this.props.clearHabitErrors();
+    }
+  }
 
+  renderErrors() {
+    const errors = this.props.errors
+    if (!errors || Object.keys(errors).length == 0) {
+      return null
+    }
+    return(
+      <ul className="habit-errors">
+        {Object.keys(errors).map((error, i) => (
+          <li key={`error-${i}`}>
+            {errors[error]}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   handleSubmit(e) {
@@ -79,6 +99,7 @@ class HabitCompose extends React.Component {
                     <input type="submit" value="Submit" />
                 </div>
             </form>
+            {this.renderErrors()}
         </div>
     )
   }

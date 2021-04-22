@@ -7,31 +7,10 @@ import '../common-stylings/entity-index.css';
 class Habit extends React.Component {
   constructor(props) {
     super(props);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchHabits();
-  }
-
-  componentWillUnmount(){
-    this.props.receiveHabitErrors({})
-  }
-
-  renderErrors() {
-    const errors = this.props.errors
-    if (!errors || Object.keys(errors).length == 0) {
-      return null
-    }
-    return(
-      <ul className="habit-errors">
-        {Object.keys(errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
   }
 
   render() {
@@ -70,7 +49,6 @@ class Habit extends React.Component {
                  Post a new habit
                </button>)
             : null }
-          {this.renderErrors()}
         </div>
         <div></div>
       </div>)
