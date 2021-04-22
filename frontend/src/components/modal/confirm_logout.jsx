@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './confirm_delete.css';
 
 const LogoutConfirmPrompt = ({
     user,
     closeModal
   }) => {
-    const [ titleInput, setTitleInput ] = useState('');
   
     const handleSubmit = event => {
       event.preventDefault();

@@ -7,7 +7,7 @@ import HabitDeleteConfirmPrompt
 import ResourceDeleteConfirmPrompt
   from "../resources/resource_delete_confirmation";
 import LogoutConfirmPrompt
-  from './confirm_delete'
+  from './confirm_logout'
 
 const sessionModals = {
   'login': LoginForm,
