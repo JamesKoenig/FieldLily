@@ -10,7 +10,6 @@ const MSTP = (state) => ({
 const MDTP = { logout }
 
 const LogoutConfirmPrompt = ({
-    // user,
     closeModal,
     logout
   }) => {

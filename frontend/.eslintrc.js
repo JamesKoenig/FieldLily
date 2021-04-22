@@ -18,7 +18,6 @@ module.exports = {
         "react"
     ],
     "rules": {
-      "react/prop-types": "off",
-      "no-debugger": "warn"
+      "react/prop-types": "off"    
     }
 };
