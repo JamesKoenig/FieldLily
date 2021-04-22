@@ -3,8 +3,8 @@ import {
 } from '../actions/display_actions';
 
 const _initialState = {
-  height: undefined,
-  width: undefined,
+  height: window.innerHeight,
+  width: window.innerWidth,
 }
 
 const windowReducer = (state=_initialState, {type, dimensions}) => {

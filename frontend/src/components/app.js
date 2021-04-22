@@ -14,12 +14,13 @@ import HabitShowContainer from './habits/habit_show_container'
 import ResourcesContainer from './resources/resources_container';
 import ResourceShowContainer from './resources/resource_show_container';
 import NotFoundPage from './error-pages/not_found_page'
+import Main from './main/main_container'; 
 
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-        <Route exact path="/" component={null} />
+        <Route exact path="/" component={Main} />
         <Route exact path="/habits" component={HabitsContainer} />
         <Route exact path="/habits/:habitId" component={HabitShowContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />
