@@ -5,8 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
-
-import HabitsContainer from './habits/habits_container';
+import HabitsIndexPage from './habits/habits_page';
 import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
@@ -21,7 +20,7 @@ const App = () => (
     <NavBarContainer />
     <Switch>
         <Route exact path="/" component={Main} />
-        <Route exact path="/habits" component={HabitsContainer} />
+        <Route exact path="/habits" component={HabitsIndexPage} />
         <Route exact path="/habits/:habitId" component={HabitShowContainer} />
         <Route exact path="/resources" component={ResourcesContainer} />
         <Route exact path="/resources/:resourceId" component={ResourceShowContainer} />

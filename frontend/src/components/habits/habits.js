@@ -20,7 +20,6 @@ class Habit extends React.Component {
       openNewHabitModal,
     } = this.props;
     return (
-      <div className="entity-index-container">
         <div className="entity-index">
           { (!habits || habits.length < 1)
             ?
@@ -50,8 +49,7 @@ class Habit extends React.Component {
                </button>)
             : null }
         </div>
-        <div></div>
-      </div>)
+      )
   }
 }
 
