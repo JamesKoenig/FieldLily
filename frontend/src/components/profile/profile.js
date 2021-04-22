@@ -23,7 +23,7 @@ class Profile extends React.Component {
                                 <div className="col-sm-4 bg-c-lite-green user-profile">
                                     <div className="card-block text-center text-white">
                                         <h6 className="f-w-600">{currentUser.email}</h6>
-                                        <p>App Academy</p> <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                        <h6 className="f-w-600">{currentUser.handle}</h6>
                                   </div>
                                 </div>
                                 <div className="col-sm-8">
