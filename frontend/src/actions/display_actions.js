@@ -1,9 +1,24 @@
-export const RECEIVE_WINDOW_SIZE = "RECEIVE_WINDOW_SIZE";
+export const RECEIVE_DISPLAY_UPDATE = "RECEIVE_DISPLAY_UPDATE";
 
-export const receiveWindowSize = (height,width) => ({
-  type: RECEIVE_WINDOW_SIZE,
-  dimensions: { height, width },
-});
+export const receiveDisplayUpdate = stateUpdate => ({
+  type: RECEIVE_DISPLAY_UPDATE,
+  newState: stateUpdate,
+})
+
+export const receiveWindowSize = (height,width) =>
+  receiveDisplayUpdate({height, width});
+
+export const putMainToSleep = () =>
+  receiveDisplayUpdate({
+    mainStatus: "dormant",
+    activeElement: undefined,
+  });
+
+export const receiveActiveElement = activeElement =>
+  receiveDisplayUpdate({
+    mainStatus: "active",
+    activeElement,
+  });
 
 export const handleWindowResize = () => dispatch => {
   const {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import HabitBox from './habit_box';
+import HabitBox from './habit_box_container';
 
 import '../common-stylings/entity-index.css';
 
@@ -19,6 +19,7 @@ class Habit extends React.Component {
       loggedIn,
       openNewHabitModal,
     } = this.props;
+
     return (
         <div className="entity-index">
           { (!habits || habits.length < 1)

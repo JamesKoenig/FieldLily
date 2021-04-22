@@ -1,17 +1,19 @@
 import {
-  RECEIVE_WINDOW_SIZE,
+  RECEIVE_DISPLAY_UPDATE,
 } from '../actions/display_actions';
 
 const _initialState = {
   height: window.innerHeight,
   width: window.innerWidth,
+  mainStatus: "dormant",
+  activeElement: undefined,
 }
 
-const windowReducer = (state=_initialState, {type, dimensions}) => {
+const windowReducer = (state=_initialState, {type, newState}) => {
   Object.freeze(state);
   switch(type) {
-    case RECEIVE_WINDOW_SIZE:
-      return dimensions;
+    case RECEIVE_DISPLAY_UPDATE:
+      return {...state, ...newState};
     default:
       return state;
   }

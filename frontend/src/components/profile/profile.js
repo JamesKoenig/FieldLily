@@ -1,5 +1,5 @@
 import React from 'react';
-import HabitBox from '../habits/habit_box';
+import HabitBox from '../habits/habit_box_container';
 
 class Profile extends React.Component {
     constructor(props) {

@@ -4,11 +4,21 @@ import React from 'react';
 import HabitsContainer from '../habits/habits_container';
 
 
-const Main = ({height,width}) => {
-  //set the state for the styling of the 
-  console.log([height,width]);
+const Main = ({
+  height,
+  width,
+  mainStatus: state,
+  activeElement,
+  putMainToSleep,
+}) => {
+  console.log([height,width,state,activeElement]);
   return (
-    <HabitsContainer />
+    <div onClick={ () => putMainToSleep() }>
+      <div>
+        <HabitsContainer />
+      </div>
+    </div>
   );
 }
+
 export default Main;
