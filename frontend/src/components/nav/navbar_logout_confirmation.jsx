@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { closeModal } from '../../actions/modal/modal_common_actions';
 import { logout } from "../../actions/session_actions";
 
-import logoutConfirmPrompt from '../modal/confirm_logout';
+import LogoutConfirmPrompt from '../modal/confirm_logout';
 
 const mSTP = (state) => state.user
 
@@ -22,5 +22,5 @@ export default connect(
     mDTP,
     mergeProps,
   )(
-    logoutConfirmPrompt
+    LogoutConfirmPrompt
   );

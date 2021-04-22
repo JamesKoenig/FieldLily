@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './confirm_delete.css';
 
-const logoutConfirmPrompt = ({
+const LogoutConfirmPrompt = ({
     user,
     closeModal
   }) => {
@@ -26,4 +26,4 @@ const logoutConfirmPrompt = ({
     );
 }
 
-export default logoutConfirmPrompt
+export default LogoutConfirmPrompt

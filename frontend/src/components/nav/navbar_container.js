@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+// import { logout } from '../../actions/session_actions';
 import {
   openLoginModal,
   openSignupModal,
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout,
+  // logout,
   openLoginModal,
   openSignupModal,
   openConfirmLogoutModal

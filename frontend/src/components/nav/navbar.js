@@ -3,6 +3,7 @@ import {
   Link,
   Route,
 } from 'react-router-dom'
+// import { openConfirmLogoutModal } from '../../actions/modal/confirmation_modal_actions';
 import Modal from '../modal/modal_container';
 import './navbar.css';
 
@@ -33,7 +34,6 @@ class NavBar extends React.Component {
 
   logoutUser(e) {
       e.preventDefault();
-      
       this.props.logout();
   }
 
@@ -43,6 +43,7 @@ class NavBar extends React.Component {
       loggedIn,
       openLoginModal,
       openSignupModal,
+      openConfirmLogoutModal
     } = this.props;
 
       if (loggedIn) {
@@ -52,7 +53,10 @@ class NavBar extends React.Component {
             ["/profile", "Profile"],
             ["/resources", "All Resources"],
             ]),
-          <button key="logout" onClick={this.logoutUser}>Logout</button>,
+          <button key="logout" 
+                  onClick={ () => openConfirmLogoutModal() }>
+            Logout
+          </button>,
         ];
       } else {
         return [
