@@ -4,6 +4,7 @@ import {
   openLoginModal,
   openSignupModal,
 } from '../../actions/modal/session_modal_actions';
+import { openConfirmLogoutModal } from '../../actions/modal/confirmation_modal_actions'
 
 import NavBar from './navbar';
 
@@ -15,6 +16,7 @@ const mapDispatchToProps = {
   logout,
   openLoginModal,
   openSignupModal,
+  openConfirmLogoutModal
 }
 
 export default connect(
