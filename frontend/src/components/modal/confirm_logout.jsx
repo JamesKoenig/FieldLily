@@ -23,7 +23,8 @@ const handleSubmit = event => {
 return (
     <div id="logout-confirmation">
     <h2 className="confirmation-msg">Are you sure you want to logout?</h2>
-    <button onClick={handleSubmit} >
+    <button className="logout-button"
+            onClick={handleSubmit} >
         LOGOUT
     </button>
     </div>

@@ -1,19 +1,30 @@
 #entity-delete-confirmation {
     display: flex;
     flex-direction: column;
+    border: 2px ridge var(--royal-sunset-purple);
+    border-radius: 5px;
+    background-color: #847030;
+    padding: 20px;
 }
+
+/* .confirmation-check {
+} */
 
 .confirmation-warning {
     font-size: 24px;
     font-weight: bolder;
-    color: red;
-    background-color: green;
+    color: #9c3a87;
+    background-color: #203812;
+    margin: 20px;
+    width: 60%;
 }
 
 button {
     border-radius: 5px;
     background-color: #847030;
     color: #e1d0d3;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 button:hover {
