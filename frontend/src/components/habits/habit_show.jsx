@@ -38,7 +38,7 @@ class HabitShow extends React.Component {
             <div>
                 <button className="habit-delete"
                         onClick={() => openConfirmHabitDeleteModal(habitId)} >
-                  delete habit
+                  Delete Habit
                 </button>
                 <button className="resources-index-new-button"
                         onClick={() => openNewResourceModal(habitId)}>

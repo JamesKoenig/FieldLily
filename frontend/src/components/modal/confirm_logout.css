@@ -1,6 +1,12 @@
 #logout-confirmation {
     display: flex;
     flex-direction: column;
+    border: 2px ridge var(--royal-sunset-purple);
+    border-radius: 5px;
+}
+
+.confirmation-msg {
+    background-color: aqua;
 }
 
 button {
@@ -8,5 +14,6 @@ button {
     border-radius: 5px;
     background-color: #847030;
     color: #e1d0d3;
+    font-size: 20px;
 }
 
