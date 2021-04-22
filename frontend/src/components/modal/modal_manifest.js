@@ -11,12 +11,12 @@ import LogoutConfirmPrompt
 
 const sessionModals = {
   'login': LoginForm,
-  'signup': SignupForm,
+  'signup': SignupForm
 };
 
 const entityModals = {
   "habit": HabitCompose,
-  "resource": ResourceForm,
+  "resource": ResourceForm
 };
 
 const confirmationModals = {
@@ -28,7 +28,7 @@ const confirmationModals = {
 const modalManifest = {
   "session": sessionModals,
   "entities": entityModals,
-  "confirmation": confirmationModals,
+  "confirmation": confirmationModals
 };
 
 function modalManifestFn(type, subtype) {

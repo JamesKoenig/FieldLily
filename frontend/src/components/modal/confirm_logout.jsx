@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import './confirm_delete.css';
 import { logout } from '../../actions/session_actions'
 
+const MSTP = (state) => ({
+  user: state.session.user
+})
+
 const MDTP = { logout }
 
 const LogoutConfirmPrompt = ({
-    user,
+    // user,
     closeModal,
     logout
   }) => {
@@ -16,13 +20,10 @@ const LogoutConfirmPrompt = ({
       logout();
       closeModal();
       }
-  
+    debugger
     return (
         <div id="logout-confirmation">
-        <h2>are you sure you want to logout {user}?</h2>
-        <p>
-            if you still want to continue, please click the button
-        </p>
+        <h2>are you sure you want to logout?</h2>
         <button onClick={handleSubmit} >
             LOGOUT
         </button>
@@ -30,4 +31,4 @@ const LogoutConfirmPrompt = ({
     );
 }
 
-export default connect (null, MDTP) (LogoutConfirmPrompt)
+export default connect (MSTP, MDTP) (LogoutConfirmPrompt)
