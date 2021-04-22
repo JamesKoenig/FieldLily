@@ -18,6 +18,14 @@ module.exports = {
         "react"
     ],
     "rules": {
-      "react/prop-types": "off"    
-    }
+      "react/prop-types": "off",
+    },
+    "settings": {
+      "react": {
+        "version": "detect",
+      }
+    },
+    "overrides": [{
+      "files": ["*.js","*.jsx"],
+    }]
 };

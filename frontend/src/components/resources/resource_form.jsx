@@ -13,7 +13,31 @@ class ResourceForm extends React.Component {
           this.state.submitText = "add Resource";
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.renderErrors = this.renderErrors.bind(this)
         this.update = this.update.bind(this)
+    }
+
+    componentWillUnmount() {
+      const errors = this.props.errors;
+      if(errors && Object.keys(errors).length > 0) {
+        this.props.clearResourceErrors();
+      }
+    }
+
+    renderErrors() {
+      const errors = this.props.errors
+      if (!errors || Object.keys(errors).length == 0) {
+        return null
+      }
+      return(
+        <ul className="habit-errors">
+          {Object.keys(errors).map((error, i) => (
+            <li key={`error-${i}`}>
+              {errors[error]}
+            </li>
+          ))}
+        </ul>
+      );
     }
 
     handleSubmit(e) {
@@ -87,6 +111,7 @@ class ResourceForm extends React.Component {
                     {submitText}
                   </button>
                 </form>
+                {this.renderErrors()}
             </div>
         )
   }

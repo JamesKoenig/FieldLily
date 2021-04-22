@@ -13,8 +13,8 @@
 }
 
 .entity-index {
-    min-height: 40%;
-    min-width:  25%;
+    margin: auto;
+    max-height: 80%;
     display: flex;
     flex-direction: column;
     color: white;
@@ -27,6 +27,7 @@
 .entity-index-list {
     flex-grow: 1;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     justify-content: space-around;
 }

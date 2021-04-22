@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
   return {
     habits: Object.values(state.entities.habits.all),
     loggedIn: state.session.isAuthenticated,
+    errors: state.errors.habit,
   };
 };
 
