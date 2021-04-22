@@ -3,10 +3,12 @@
     flex-direction: column;
     border: 2px ridge var(--royal-sunset-purple);
     border-radius: 5px;
+    background-color: #847030;
 }
 
 .confirmation-msg {
-    background-color: aqua;
+    font-size: 20px;
+
 }
 
 button {
@@ -14,6 +16,6 @@ button {
     border-radius: 5px;
     background-color: #847030;
     color: #e1d0d3;
-    font-size: 20px;
+    font-size: 16px;
 }
 
