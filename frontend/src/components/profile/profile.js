@@ -20,13 +20,13 @@ class Profile extends React.Component {
                     <div className="col-xl-6 col-md-12">
                         <div className="card user-card-full">
                             <div className="row m-l-0 m-r-0">
-                                <div className="col-sm-4 bg-c-lite-green user-profile">
+                                <div className="col-sm-4 bg-c-lite-green user-çç" style={{"position":"absolute", "top":"0", "width":"100%"}}>
                                     <div className="card-block text-center text-white">
                                         <h6 className="f-w-600">{currentUser.email}</h6>
                                         <h6 className="f-w-600">{currentUser.handle}</h6>
                                   </div>
                                 </div>
-                                <div className="col-sm-8">
+                                <div className="col-sm-8" style={{"margin-top" : "30px"}}>
                                     <div className="card-block">
                                         <h5 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Habits</h5>
                                         { habits.map(habit => (
