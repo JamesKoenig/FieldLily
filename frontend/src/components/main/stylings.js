@@ -2,36 +2,42 @@ export const container = {
   height: "100vh",
   width: "100vw",
   position: "fixed",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
 }
 
 const _common = {
   transition: ".75s ease-in-out",
+  position: "absolute",
 }
 
 export const dormant = (windowHeight, windowWidth) => {
   //max height leaves margins
   const height = (windowHeight - 80);
   const width  = (windowWidth - (.4*windowWidth));
+  const top = (windowHeight - height)/2;
+  const left = (windowWidth - width)/2;
 
   return {
     ..._common,
-    position: "absolute",
     height,
     width,
+    top,
+    left,
   }
 }
 
 export const active = (windowHeight, windowWidth) => {
-  console.log(windowHeight, windowWidth);
-
+  const width = windowWidth/3;
+  const height = windowHeight-80;
+  const top = (windowHeight - height)/2;
+  const left = (windowWidth - width)/2;
+  console.log([width,height,top,left]);
   return {
     ..._common,
-    transform: `translateX(-${windowHeight/3}px)`,
-    height: windowHeight-80,
-    width: windowWidth/3,
+    width,
+    height,
+    top,
+    left,
+    transform: `translateX(-${windowWidth/(3.25)}px)`,
   }
 }
 
