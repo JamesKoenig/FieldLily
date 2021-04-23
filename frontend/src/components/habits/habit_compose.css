@@ -7,8 +7,13 @@ input {
     border: 2px ridge var(--royal-sunset-purple);
     border-radius: 5px;
     padding: 20px;
-    display: flex;
-    flex-direction: row;
+    display: inline-block;
+    /* flex-direction: column; */
+}
+
+label, input {
+    display: block;
+    margin: 20px;
 }
 
 h3 {

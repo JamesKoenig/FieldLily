@@ -92,16 +92,18 @@ class HabitCompose extends React.Component {
           <h3> {heading} </h3>
             <form onSubmit={this.handleSubmit}>
                 <div className="habit-input">
+                  <label>Title</label>
                     <input type="textarea"
                         value={title}
                         onChange={this.update("title")}
-                        placeholder="Habit title"
-                    />
+                        placeholder="Habit title"/>
+                    <label>Description</label>
                     <input type="textarea"
                         value={description}
                         onChange={this.update("description")}
                         placeholder="Habit description"
                     />
+                    <label></label>
                     <input type="submit" value="Submit" />
                 </div>
             </form>
