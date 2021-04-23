@@ -3,6 +3,7 @@ import Main from './main';
 
 import {
   putMainToSleep,
+  detatchMain,
 } from "../../actions/display_actions";
 
 const mSTP = ({ui: {display}}) => ({
@@ -11,6 +12,7 @@ const mSTP = ({ui: {display}}) => ({
 
 const mDTP = {
   putMainToSleep,
+  detatchMain,
 }
 
 export default connect(mSTP,mDTP)(Main);

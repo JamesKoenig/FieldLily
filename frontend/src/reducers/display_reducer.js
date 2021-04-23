@@ -5,7 +5,7 @@ import {
 const _initialState = {
   height: window.innerHeight,
   width: window.innerWidth,
-  mainStatus: "dormant",
+  mainStatus: "detatched",
   activeElement: undefined,
 }
 

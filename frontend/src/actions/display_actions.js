@@ -8,6 +8,12 @@ export const receiveDisplayUpdate = stateUpdate => ({
 export const receiveWindowSize = (height,width) =>
   receiveDisplayUpdate({height, width});
 
+export const detatchMain = () =>
+  receiveDisplayUpdate({
+    mainStatus: "detatched",
+    activeElement: undefined,
+  });
+
 export const putMainToSleep = () =>
   receiveDisplayUpdate({
     mainStatus: "dormant",
