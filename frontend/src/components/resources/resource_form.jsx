@@ -94,19 +94,15 @@ class ResourceForm extends React.Component {
             <div>
                 <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Title
-                  </label>
                   <input
                     type="text"
                     value={title}
-                    onChange={this.update('title')} />
-                  <label>
-                    Description
-                  </label>
+                    onChange={this.update('title')} 
+                    placeholder="Resource title"/>
                   <textarea className="text"
                     value={description}
-                    onChange={this.update('description')} />
+                    onChange={this.update('description')} 
+                    placeholder="Resource description"/>
                   <button>
                     {submitText}
                   </button>
