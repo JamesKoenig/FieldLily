@@ -85,7 +85,7 @@ class HabitCompose extends React.Component {
     return (
         <div className="form">
             <form onSubmit={this.handleSubmit}>
-                <div>
+                <div className="habit-form">
                     <input type="textarea"
                         value={title}
                         onChange={this.update("title")}

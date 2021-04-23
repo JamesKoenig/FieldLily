@@ -1,3 +1,13 @@
 input {
     transition: width 0.4s ease-in-out;
 }
+
+.habit-form {
+    background-color: #847030;
+    border: 2px ridge var(--royal-sunset-purple);
+    border-radius: 5px;
+}
+
+form {
+    padding: 100px;
+}
