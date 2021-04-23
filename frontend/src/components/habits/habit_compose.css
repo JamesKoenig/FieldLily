@@ -3,11 +3,14 @@ input {
 }
 
 .habit-form {
-    background-color: #847030;
+    background-color: #e1d0d3;
     border: 2px ridge var(--royal-sunset-purple);
     border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
-form {
-    padding: 100px;
+.habit-input {
+    background-color: #9c3a87;
 }

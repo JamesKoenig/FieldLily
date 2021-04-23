@@ -1,4 +1,5 @@
 import React from 'react';
+import './habit_compose.css'
 
 class HabitCompose extends React.Component {
   constructor(props) {
@@ -83,9 +84,9 @@ class HabitCompose extends React.Component {
   render() {
     const { title, description } = this.props;
     return (
-        <div className="form">
+        <div className="habit-form">
             <form onSubmit={this.handleSubmit}>
-                <div className="habit-form">
+                <div className="habit-input">
                     <input type="textarea"
                         value={title}
                         onChange={this.update("title")}
