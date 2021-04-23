@@ -47,6 +47,7 @@ class NavBar extends React.Component {
       if (loggedIn) {
         return [
           ...arrToCondLinks([
+            ["/","Home"],
             ["/habits", "All Habits"],
             ["/profile", "Profile"],
             ["/resources", "All Resources"],

@@ -21,7 +21,6 @@ export const dormant = (windowHeight, windowWidth) => {
     position: "absolute",
     height,
     width,
-    overflowY: "scroll",
   }
 }
 
