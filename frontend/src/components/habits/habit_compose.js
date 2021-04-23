@@ -4,6 +4,8 @@ import './habit_compose.css'
 class HabitCompose extends React.Component {
   constructor(props) {
       super(props);
+      this.state = { heading: "" };
+      this.state.heading = "Add habit"
       if(this.props.habit) {
         this.props.receiveNewHabit(this.props.habit);
       }
@@ -40,7 +42,8 @@ class HabitCompose extends React.Component {
   }
 
   handleSubmit(e) {
-    const { title,
+    const { 
+      title,
       description,
       composeHabit,
       updateHabit,
@@ -83,8 +86,10 @@ class HabitCompose extends React.Component {
 
   render() {
     const { title, description } = this.props;
+    const { heading } = this.state
     return (
-        <div className="habit-form">
+      <div className="habit-form">
+          <h3> {heading} </h3>
             <form onSubmit={this.handleSubmit}>
                 <div className="habit-input">
                     <input type="textarea"

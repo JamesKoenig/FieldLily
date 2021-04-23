@@ -1,4 +1,5 @@
 import React from 'react';
+import './resource_form.css'
 
 class ResourceForm extends React.Component {
     constructor(props) {

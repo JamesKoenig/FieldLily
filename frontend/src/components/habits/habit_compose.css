@@ -11,6 +11,12 @@ input {
     flex-direction: row;
 }
 
+h3 {
+    color: #9c3a87;
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .habit-input {
     background-color: #9c3a87;
 }
