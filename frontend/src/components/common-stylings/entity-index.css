@@ -26,15 +26,15 @@
 
 .entity-index-list {
     flex-grow: 1;
-    display: flex;
+    display: block;
     overflow-y: auto;
     flex-direction: column;
     justify-content: space-around;
+    padding-top: 20px;
 }
 
 .entity-index-heading {
     flex-basis: max-content;
-    margin-bottom: 30px;
     padding: 15px 0;
     background: var(--royal-sunset-purple);
     text-align: center;
