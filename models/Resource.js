@@ -17,7 +17,12 @@ const ResourceSchema = new Schema({
     featured: {
       type: Boolean,
       required: false
-     }
+     },
+    totalLikes: {
+      type: Number,
+      required: true,
+      default: 0,
+    }
   }, {
     timestamps: true,
   }

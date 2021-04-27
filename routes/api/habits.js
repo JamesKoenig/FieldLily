@@ -112,7 +112,7 @@ router.put('/:id',
 
 
 
-router.delete("/:id",  
+router.delete("/:id",
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Habit.findById(req.params.id).then((habit) => {
@@ -124,7 +124,12 @@ router.delete("/:id",
                         if (err) {
                             res.send(err);
                         } else {
-                            habit.delete().then((habit) => res.json(resFromObj(habit)));
+                          Like.deleteMany({habitId: req.params.id})
+                            .then( () =>
+                              habit.delete())
+                            .then((habit) =>
+                                res.json(resFromObj(habit)))
+                            .catch( err => res.send(err) );
                         }
                     })
                 }
@@ -135,10 +140,31 @@ router.delete("/:id",
     }
 );
 
+
+function _updateHabitLikesCount(habitId) {
+  return Habit.findById(habitId).then( habit =>
+    Like.count({habitId}).then( count => {
+      habit.totalLikes = count;
+      return habit.save();
+    })
+  )
+}
+
+const _genErr = (status, description) =>
+  ({ status, description })
+
 router.post("/:id/like",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Habit.findById(req.params.id)
+    const { id: habitId } = req.params;
+    const { id: userId }  = req.user;
+    let _like = undefined;
+    Like.findOne({habitId, userId})
+      .then( like => {
+        if(like)
+          throw _genErr(409, "you have already liked this post");
+      })
+      .then(() => Habit.findById(habitId))
       .then( (habit) => {
         if(!habit) {
           throw {
@@ -152,13 +178,16 @@ router.post("/:id/like",
       .then( habit => {
           const newLike = new Like({
             userId: req.user.id,
-            habitId: habit._id,
+            habitId,
           });
           return newLike.save()
       })
-      .then( like => res.json(resFromObj(like)), err => {
-        throw { status: 500, description: { mongo: err } };
+      .then( like => {
+        _like = like;
+        return like
       })
+      .then( () => _updateHabitLikesCount(habitId))
+      .then( () => res.json(resFromObj(_like)) )
       .catch( (error) => {
         const { status, description } = error;
         console.log(error);
@@ -168,15 +197,13 @@ router.post("/:id/like",
   }
 );
 
-const _genErr = (status, description) =>
-  ({ status, description })
-
 router.delete("/:id/like",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    const { id: habitId } = req.params;
     Like.findOneAndDelete({
       userId: req.user.id,
-      habitId: req.params.id,
+      habitId,
     })
       .then( (like) => {
         if(!like) {
@@ -184,6 +211,7 @@ router.delete("/:id/like",
         } else {
           return res.json(resFromObj(like))
         }})
+      .then(() => _updateHabitLikesCount(habitId))
       .catch( (error) => {
         const { status, description } = error || { undefined, undefined };
         if(status) { return res.status(status).json(description) }

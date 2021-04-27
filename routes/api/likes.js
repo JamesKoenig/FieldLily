@@ -9,7 +9,7 @@ router.get("/currentUser",
   (req, res) => {
     Like.find({ userId: req.user.id })
       .then(likes => {
-        likesObj = {byResourceId: {},  byHabitId: {}, byLikeId: {} };
+        likesObj = { byResourceId: {},  byHabitId: {}, byLikeId: {} };
         likes.forEach( like => {
           if(like.habitId) {
             likesObj.byHabitId[like.habitId] = like._id;
