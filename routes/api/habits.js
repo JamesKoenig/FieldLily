@@ -7,15 +7,15 @@ const {
   resFromObj,
 } = require("./utils");
 
-
 const Habit = require('../../models/Habit');
 const Resource = require('../../models/Resource');
+const Like = require('../../models/Like');
 
 router.get('/', (req, res) => {
     Habit.find()
         .sort({ date: -1 })
         .then(habits => res.json(resFromArr(habits)))
-        .catch( () => 
+        .catch( () =>
           res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
@@ -133,6 +133,63 @@ router.delete("/:id",
             }
         })
     }
+);
+
+router.post("/:id/like",
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Habit.findById(req.params.id)
+      .then( (habit) => {
+        if(!habit) {
+          throw {
+            status: 404,
+            description:
+              { nohabitfound: "No habit found with that ID" }
+          }
+        } else {
+          return habit;
+        }})
+      .then( habit => {
+          const newLike = new Like({
+            userId: req.user.id,
+            habitId: habit._id,
+          });
+          return newLike.save()
+      })
+      .then( like => res.json(resFromObj(like)), err => {
+        throw { status: 500, description: { mongo: err } };
+      })
+      .catch( (error) => {
+        const { status, description } = error;
+        console.log(error);
+        if(status) { return res.status(status).json(description) }
+        else { return res.send(error) }
+      })
+  }
+);
+
+const _genErr = (status, description) =>
+  ({ status, description })
+
+router.delete("/:id/like",
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Like.findOneAndDelete({
+      userId: req.user.id,
+      habitId: req.params.id,
+    })
+      .then( (like) => {
+        if(!like) {
+          throw _genErr(404, { noLikeFound: "user has not liked that habit" });
+        } else {
+          return res.json(resFromObj(like))
+        }})
+      .catch( (error) => {
+        const { status, description } = error || { undefined, undefined };
+        if(status) { return res.status(status).json(description) }
+        else { return res.send(error) }
+      })
+  }
 );
 
 module.exports = router;
