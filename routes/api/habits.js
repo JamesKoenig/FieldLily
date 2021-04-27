@@ -32,17 +32,39 @@ router.get(
   }
 );
 
-router.get('/:id', (req, res) => {
-    Habit.findById(req.params.id)
-        .then(habit => res.json(resFromObj(habit)))
-        .catch( () =>
-            res.status(404)
-              .json(
-                {
-                  nohabitfound: 'No habit found with that ID'
+router.get("/:id", (req, res) => {
+  Habit.findById(req.params.id)
+    .then( habit =>
+      new Promise( (resolve,reject) => {
+        passport.authenticate('jwt', { session: false }, (err, user) => {
+          if(err) reject(err);
+          if(user) {
+            Like.findOne({ habitId: req.params.id, userId: user.id })
+              .then( like => {
+                let retVal = habit.toJSON();
+                if(like) {
+                  Object.assign(retVal, {liked: true});
+                  resolve(retVal);
+                } else {
+                  resolve(retVal);
                 }
-              )
-        );
+              })
+          } else {
+            resolve(habit.toJSON());
+          }
+        })(req)     /* passport.authenticate must be called explicitly if */
+      })            /* used like this                                     */
+    )
+    .then( habit => { console.log(habit); return habit } )
+    .then( habit => res.json(resFromObj(habit)))
+    .catch( err => {
+      //maybe more than 'habit not found' can go wrong here, so I'm logging
+      //here for posterity... in case that happens
+      console.log(`catch in GET /api/habits/${req.params.id}`);
+      console.log(err);
+      return res.status(404)
+          .json({ nohabitfound: 'No habit found with that ID' })
+    })
 });
 
 router.post('/',
@@ -81,7 +103,6 @@ router.post('/',
                     }
                     habit.save().then((habit) => res.json(resFromObj(habit)));
                 }
-                
             } else {
                 res.status(404).json({ nohabitfound: 'No habit with that ID' });
             }
@@ -110,8 +131,6 @@ router.put('/:id',
     }
 );
 
-
-
 router.delete("/:id",
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -138,86 +157,6 @@ router.delete("/:id",
             }
         })
     }
-);
-
-
-function _updateHabitLikesCount(habitId) {
-  return Habit.findById(habitId).then( habit =>
-    Like.count({habitId}).then( count => {
-      habit.totalLikes = count;
-      return habit.save();
-    })
-  )
-}
-
-const _genErr = (status, description) =>
-  ({ status, description })
-
-router.post("/:id/like",
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { id: habitId } = req.params;
-    const { id: userId }  = req.user;
-    let _like = undefined;
-    Like.findOne({habitId, userId})
-      .then( like => {
-        if(like)
-          throw _genErr(409, "you have already liked this post");
-      })
-      .then(() => Habit.findById(habitId))
-      .then( (habit) => {
-        if(!habit) {
-          throw {
-            status: 404,
-            description:
-              { nohabitfound: "No habit found with that ID" }
-          }
-        } else {
-          return habit;
-        }})
-      .then( habit => {
-          const newLike = new Like({
-            userId: req.user.id,
-            habitId,
-          });
-          return newLike.save()
-      })
-      .then( like => {
-        _like = like;
-        return like
-      })
-      .then( () => _updateHabitLikesCount(habitId))
-      .then( () => res.json(resFromObj(_like)) )
-      .catch( (error) => {
-        const { status, description } = error;
-        console.log(error);
-        if(status) { return res.status(status).json(description) }
-        else { return res.send(error) }
-      })
-  }
-);
-
-router.delete("/:id/like",
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { id: habitId } = req.params;
-    Like.findOneAndDelete({
-      userId: req.user.id,
-      habitId,
-    })
-      .then( (like) => {
-        if(!like) {
-          throw _genErr(404, { noLikeFound: "user has not liked that habit" });
-        } else {
-          return res.json(resFromObj(like))
-        }})
-      .then(() => _updateHabitLikesCount(habitId))
-      .catch( (error) => {
-        const { status, description } = error || { undefined, undefined };
-        if(status) { return res.status(status).json(description) }
-        else { return res.send(error) }
-      })
-  }
 );
 
 module.exports = router;

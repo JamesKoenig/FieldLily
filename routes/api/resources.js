@@ -61,10 +61,35 @@ router.get('/featured', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Resource.findById(req.params.id)
+        .then( resource =>
+          new Promise( (resolve,reject) =>
+            passport.authenticate('jwt', { session: false }, (err, user) => {
+              if(err) reject(err); //kick the can down the road...
+              if(user) {
+                Like.findOne({ resourceId: req.params.id, userId: user.id })
+                  .then( like => {
+                    let retVal = resource.toJSON();
+                    if(like) {
+                      resolve(Object.assign(retVal, { liked: true }));
+                    } else {
+                      resolve(retVal);
+                    }
+                  })
+              } else {
+                resolve(resource.toJSON())
+              }
+            })(req) // passport.authenticate must be called when not used as
+          )         // connect middleware
+        )
         .then(resource => res.json(resFromObj(resource)))
-        .catch( () =>
-            res.status(404).json({ noresourcefound: 'No resource found with that ID' })
-        );
+        .catch( err => {
+          // as I wrote in the habits.js route, 'resource not found' _might_
+          // not be the only thing that goes wrong here... so log
+          console.log(`catch in GET /api/resources/${req.params.id}`);
+          console.log(err);
+          return res.status(404)
+            .json({ noresourcefound: 'No resource found with that ID' })
+        });
 });
 
 router.get('/habits/:habit_id', (req, res) => {
@@ -118,7 +143,11 @@ router.delete("/:id",
                     if (habit.user != req.user.id){
                         res.status(401).json({ wronguser: 'Resource can only be deleted by owner' });
                     }else{
-                        resource.delete().then((resource) => res.json(resFromObj(resource)));
+                      Like.deleteMany({resourceId: req.params.id})
+                        .then( () =>
+                          resource.delete().then((resource) =>
+                            res.json(resFromObj(resource)))
+                        )
                     }
                 })
             } else {
@@ -127,54 +156,5 @@ router.delete("/:id",
         });
     }
 );
-
-function _updateResourceLikesCount(resourceId) {
-  return Resource.findById(resourceId).then( resource =>
-    Like.count({resourceId}).then( count => {
-      resource.totalLikes = count;
-      return resource.save();
-    })
-  )
-}
-
-const _genErr = (status, description) =>
-  ({ status, description })
-
-router.post("/:id/like",
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { id: resourceId } = req.params;
-    Resource.findById(resourceId)
-      .then( resource => {
-        if(!resource) {
-          throw _genErr(404,
-            { noResourceFound: "No resource found with that ID" })
-        } else {
-          return resource;
-        }
-      })
-      .then( resource => {
-        const newLike = new Like({
-          userId: req.user.id,
-          resourceId,
-        });
-        return newLike.save();
-      })
-      .then( like => {
-        return _updateResourceLikesCount(resourceId)
-          .then(
-            () => res.json(resfromObj(like)),
-            err => _genErr(500, { mongo: err }),
-          );
-      })
-      .catch( error => {
-        const { status, description } = error || { undefined, undefined };
-        if(status)
-          return res.status(status).json(description);
-        return res.status(400).send(error);
-      })
-  }
-)
-
 
 module.exports = router;
