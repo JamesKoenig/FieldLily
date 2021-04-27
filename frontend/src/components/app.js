@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
+import SearchBarContainer from './nav/searchbar';
 
 import HabitsContainer from './habits/habits_container';
 import Footer from './footer/footer';
@@ -17,6 +18,7 @@ import NotFoundPage from './error-pages/not_found_page'
 
 const App = () => (
   <div>
+    <SearchBarContainer />
     <NavBarContainer />
     <Switch>
         <Route exact path="/" component={null} />
