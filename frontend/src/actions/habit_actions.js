@@ -47,6 +47,7 @@ export const removeHabit = habitId => ({
 });
 
 const _handleHabitErrors = err => dispatch => {
+  console.log(err);
   dispatch(receiveHabitErrors(err.response.data));
   return "fail";
 }

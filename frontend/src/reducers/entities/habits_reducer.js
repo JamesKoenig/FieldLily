@@ -6,6 +6,10 @@ import {
   REMOVE_HABIT,
 } from '../../actions/habit_actions';
 
+import {
+  RECEIVE_HABIT_LIKE_STATUSES,
+} from '../../actions/like_actions';
+
 const _defaultState = {
   all: {},
   user: {},
@@ -19,6 +23,11 @@ const _defaultState = {
     Object.freeze(state);
     let newState = Object.assign({}, state);
     switch(action.type) {
+      case RECEIVE_HABIT_LIKE_STATUSES:
+        Object.values(action.likeStatus).forEach( habit =>
+          newState.all[habit._id].liked = habit.liked
+        );
+        return newState;
       case RECEIVE_HABITS:
         newState.all = action.habits.data;
         return newState;
