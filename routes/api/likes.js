@@ -6,60 +6,24 @@ const Like = require("../../models/Like");
 const Habit = require("../../models/Habit");
 const Resource = require("../../models/Resource");
 
-const {
-  resFromArr,
-  resFromObj,
-} = require("./utils");
+const _idKeys = {
+  "habits": "habitId",
+  "resources": "resourceId",
+}
 
-/* these next two functions are pretty hard on my eyes but I have no idea  *
- * how I'd refactor them currently...                                      */
-router.get("/currentUser",
+router.get("/:entityType/:id/",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Like.find({ userId: req.user.id })
-      .then(likes => {
-        likesObj = { byResourceId: {}, byHabitId: {}, byLikeId: {} };
-        likes.forEach( like => {
-          if(like.habitId) {
-            likesObj.byHabitId[like.habitId] = like._id;
-          } else if(like.resourceId) {
-            likesObj.byResourceId[like.resourceId] = like._id;
-          }
-          likesObj.byLikeId[like._id] = like;
+    const { entityType, id: entityId } = req.params;
+    const idKey = _idKeys[entityType];
+    Like.findOne({ [idKey]: entityId, userId: req.user.id })
+      .then(like =>
+        res.json({
+          [entityType]: {[entityId]: {_id: entityId, liked: !!like}}
         })
-        return likesObj;
-      })
-      .then( likesObj =>
-        res.json(likesObj))
-  }
-);
-
-const _entityResponse = idKey => (req, res) => {
-  Like.find({ [idKey]: req.params.id })
-    .then(likes => {
-      likesObj = { byUserId: {}, byLikeId: {} };
-      likes.forEach( like => {
-        likesObj.byUserId[like.userId] = like._id;
-        likesObj.byLikeId[like._id] = like;
-      })
-      return likesObj;
-    })
-    .then( likesObj =>
-      res.json(likesObj))
-}
-
-router.get("/habits/:id", _entityResponse("habitId"));
-
-router.get("/resources/:id",_entityResponse('resourceId'));
-
-function _updateResourceLikesCount(resourceId) {
-  return Resource.findById(resourceId).then( resource =>
-    Like.count({resourceId}).then( count => {
-      resource.totalLikes = count;
-      return resource.save();
-    })
-  )
-}
+      );
+    }
+)
 
 const _genErr = (status, description) =>
   ({ status, description })
@@ -70,9 +34,9 @@ const _metaInfo = {
 }
 
 function _postEntityLike(req, res) {
-  const [ Model, entityName ] = _metaInfo[req.params.resourceType];
+  const { entityType, id: entityId } = req.params;
+  const [ Model, entityName ] = _metaInfo[entityType];
   const entityKey = `${entityName}Id`;
-  const { id: entityId } = req.params;
   const { id: userId }   = req.user;
 
   if(!Model)
@@ -102,11 +66,15 @@ function _postEntityLike(req, res) {
               entity.totalLikes = count;
               return entity.save();
             })
-            .then( () => res.json(resFromObj(like)))
+          .then( () =>
+            res.json({
+              [entityType]: {[entityId]: {_id: entityId, liked: !!like}}}
+            )
+          )
         )
     })
     .catch( error => {
-      const { status, description } = error || { undefined, undefined };
+      const { status, description } = error || {};
         if(status)
           return res.status(status).json(description);
         console.log("SENDING THE USER A 500 ERROR, INFO FOLLOWS:");
@@ -115,15 +83,15 @@ function _postEntityLike(req, res) {
       })
 }
 
-router.post("/:resourceType/:id/",
+router.post("/:entityType/:id/",
   passport.authenticate('jwt', {session: false }),
   _postEntityLike
 );
 
 function _deleteEntityLike(req, res) {
-  const [ Model, entityName ] = _metaInfo[req.params.resourceType];
+  const { entityType, id: entityId } = req.params;
+  const [ Model, entityName ] = _metaInfo[entityType];
   const entityKey = `${entityName}Id`;
-  const { id: entityId } = req.params;
   const { id: userId }   = req.user;
 
   if(!Model)
@@ -142,10 +110,12 @@ function _deleteEntityLike(req, res) {
             return entity.save();
           })
         )
-        .then( () => res.json(resFromObj(like)))
+        .then( () => res.json({
+          [entityType]: { [entityId]: {_id: entityId, liked: false} }
+        }))
     })
     .catch( error => {
-      const { status, description } = error || { undefined, undefined };
+      const { status, description } = error || {};
         if(status)
           return res.status(status).json(description);
         console.log("SENDING THE USER A 500 ERROR, INFO FOLLOWS:");
@@ -154,7 +124,7 @@ function _deleteEntityLike(req, res) {
       })
 }
 
-router.delete("/:resourceType/:id/",
+router.delete("/:entityType/:id/",
   passport.authenticate('jwt', {session: false }),
   _deleteEntityLike
 );

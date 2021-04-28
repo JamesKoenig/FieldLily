@@ -14,7 +14,7 @@ const resFromObj = obj => ({
 
 const promiseMap = (arr, promiseFn) => {
   return new Promise( (resolve, reject) => {
-    res = [];
+    let res = [];
 
     Promise.all(arr.map( (ele,idx) => {
       return promiseFn(ele).then(result => res[idx] = result);
