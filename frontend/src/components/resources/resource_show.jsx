@@ -15,6 +15,7 @@ class ResourceShow extends React.Component {
       currentUser,
       resourceId,
       resource,
+      totalLikes,
       habit,
       openEditResourceModal,
       openConfirmResourceDeleteModal,
@@ -44,6 +45,7 @@ class ResourceShow extends React.Component {
                <ResourceLikeButton resourceId={resourceId} />
              ) : null }
            </div>
+             <p>liked {totalLikes} time{ totalLikes != 1 ? "s" : null }</p>
              <p>{resource.featured}</p>
              <p>{resource.description}</p>
 

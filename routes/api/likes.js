@@ -11,27 +11,46 @@ const _idKeys = {
   "resources": "resourceId",
 }
 
+const _metaInfo = {
+  "habits": [ Habit, "habit" ],
+  "resources": [ Resource, "resource" ],
+}
+
+
 router.get("/:entityType/:id/",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { entityType, id: entityId } = req.params;
     const idKey = _idKeys[entityType];
-    Like.findOne({ [idKey]: entityId, userId: req.user.id })
-      .then(like =>
-        res.json({
-          [entityType]: {[entityId]: {_id: entityId, liked: !!like}}
+    const [ Model, entityName ] = _metaInfo[entityType];
+    if(!Model)
+      return res.status(404).send(`invalid path: ${req.originalUrl}`);
+
+    Model.findById(entityId)
+      .then( entity => {
+        if(!entity)
+          throw _genErr(404, `No ${entityName} found with that ID`);
+        Like.findOne({ [idKey]: entityId, userId: req.user.id })
+          .then(like =>
+            res.json({
+              [entityType]: {[entityId]: {
+                _id: entityId,
+                liked: !!like,
+                totalLikes: entity ? entity.totalLikes : 0,
+              }}
+            })
+          )
         })
-      );
-    }
-)
+      .catch( err => {
+        console.log("oh god something went wrong, sending a 500 error");
+        console.log(err);
+        return res.status(500).send("SOMETHING WENT WRONG");
+      })
+  }
+);
 
 const _genErr = (status, description) =>
   ({ status, description })
-
-const _metaInfo = {
-  "habits": [ Habit, "habit" ],
-  "resources": [ Resource, "resource" ],
-}
 
 function _postEntityLike(req, res) {
   const { entityType, id: entityId } = req.params;
@@ -68,8 +87,12 @@ function _postEntityLike(req, res) {
             })
           .then( () =>
             res.json({
-              [entityType]: {[entityId]: {_id: entityId, liked: !!like}}}
-            )
+              [entityType]: {[entityId]: {
+                _id: entityId,
+                liked: !!like,
+                totalLikes: entity.totalLikes,
+              }}
+            })
           )
         )
     })
@@ -109,10 +132,14 @@ function _deleteEntityLike(req, res) {
             entity.totalLikes = count;
             return entity.save();
           })
+          .then( () => res.json({
+            [entityType]: { [entityId]: {
+              _id: entityId,
+              liked: false,
+              totalLikes: count,
+            }}
+          }))
         )
-        .then( () => res.json({
-          [entityType]: { [entityId]: {_id: entityId, liked: false} }
-        }))
     })
     .catch( error => {
       const { status, description } = error || {};

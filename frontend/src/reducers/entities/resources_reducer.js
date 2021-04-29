@@ -20,9 +20,12 @@ const allResources = (oldState = {},
     switch (type) {
         case RECEIVE_RESOURCE_LIKE_STATUSES: {
           let newState = {...oldState};
-          Object.values(likeStatus).forEach( resource =>
-            newState[resource._id].liked = resource.liked
-          );
+          Object.values(likeStatus).forEach( resource => {
+            let newResource = newState[resource._id];
+            newResource.liked = resource.liked;
+            newResource.totalLikes = resource.totalLikes;
+            Object.assign(newState[resource._id], { resource });
+          });
           return newState;
         }
         case RECEIVE_ALL_RESOURCES:

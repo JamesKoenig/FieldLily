@@ -25,6 +25,7 @@ class HabitShow extends React.Component {
   render() {
     const {
       habit,
+      totalLikes,
       currentUser,
       resources,
       openNewResourceModal,
@@ -58,6 +59,7 @@ class HabitShow extends React.Component {
             ) : null}
             { currentUser.id ? (<HabitLikeButton habitId={habit._id} />) : null }
             </div>
+            <p>liked {totalLikes} time{ totalLikes != 1 ? "s" : null }</p>
             <p>{habit.description}</p>
           </div>
           <div className="resource-component-div">

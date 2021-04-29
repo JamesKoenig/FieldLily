@@ -24,9 +24,11 @@ const _defaultState = {
     let newState = Object.assign({}, state);
     switch(action.type) {
       case RECEIVE_HABIT_LIKE_STATUSES:
-        Object.values(action.likeStatus).forEach( habit =>
-          newState.all[habit._id].liked = habit.liked
-        );
+        Object.values(action.likeStatus).forEach( habit => {
+          let newHabit = newState.all[habit._id];
+          newHabit.liked = habit.liked;
+          newHabit.totalLikes = habit.totalLikes;
+        });
         return newState;
       case RECEIVE_HABITS:
         newState.all = action.habits.data;
