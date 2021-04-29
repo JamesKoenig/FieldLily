@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  // logout,
   openLoginModal,
   openSignupModal,
   openConfirmLogoutModal

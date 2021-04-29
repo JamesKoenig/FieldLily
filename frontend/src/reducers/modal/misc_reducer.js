@@ -8,7 +8,6 @@ import { OPEN_EDIT_HABIT_MODAL }
 import {
   OPEN_CONFIRM_RESOURCE_DELETE_MODAL,
   OPEN_CONFIRM_HABIT_DELETE_MODAL,
-  OPEN_CONFIRM_LOGOUT_MODAL
 }
   from '../../actions/modal/confirmation_modal_actions';
 
@@ -21,7 +20,6 @@ const misc_reducer = (store={}, action) => {
     case OPEN_NEW_RESOURCE_MODAL: //fall-through
     case OPEN_EDIT_HABIT_MODAL:
       return { habitId: action.habitId };
-    case OPEN_CONFIRM_LOGOUT_MODAL:
     case MODAL_CLOSED:
       return {};
     default:

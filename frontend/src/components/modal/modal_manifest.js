@@ -11,24 +11,24 @@ import LogoutConfirmPrompt
 
 const sessionModals = {
   'login': LoginForm,
-  'signup': SignupForm
+  'signup': SignupForm,
 };
 
 const entityModals = {
   "habit": HabitCompose,
-  "resource": ResourceForm
+  "resource": ResourceForm,
 };
 
 const confirmationModals = {
   "delete habit": HabitDeleteConfirmPrompt,
   "delete resource": ResourceDeleteConfirmPrompt,
-  "logout": LogoutConfirmPrompt
+  "logout": LogoutConfirmPrompt,
 }
 
 const modalManifest = {
   "session": sessionModals,
   "entities": entityModals,
-  "confirmation": confirmationModals
+  "confirmation": confirmationModals,
 };
 
 function modalManifestFn(type, subtype) {

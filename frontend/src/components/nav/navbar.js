@@ -3,7 +3,6 @@ import {
   Link,
   Route,
 } from 'react-router-dom'
-// import { openConfirmLogoutModal } from '../../actions/modal/confirmation_modal_actions';
 import Modal from '../modal/modal_container';
 import './navbar.css';
 

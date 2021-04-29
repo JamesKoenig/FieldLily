@@ -8,5 +8,3 @@ export const openLoginModal = () => ({
 export const openSignupModal = () => ({
   type: OPEN_SIGNUP_MODAL,
 });
-
-
