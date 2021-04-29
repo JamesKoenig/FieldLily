@@ -55,7 +55,6 @@ router.get("/:id", (req, res) => {
         })(req)     /* passport.authenticate must be called explicitly if */
       })            /* used like this                                     */
     )
-    .then( habit => { console.log(habit); return habit } )
     .then( habit => res.json(resFromObj(habit)))
     .catch( err => {
       //maybe more than 'habit not found' can go wrong here, so I'm logging
