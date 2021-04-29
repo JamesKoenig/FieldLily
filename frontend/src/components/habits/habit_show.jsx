@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ResourceIndexItem from '../resources/resource_index_item';
 import ListGroup from 'react-bootstrap/ListGroup';
 import NotFoundPage from '../error-pages/not_found_page'
+import HabitLikeButton from './habit_like_button_container';
 
 import './habit_show.css';
 
@@ -38,8 +39,9 @@ class HabitShow extends React.Component {
         <div className="habit-show-grid">
           <div className="habit-show-body">
             <h1>{habit.title}</h1>
-            {currentUser && currentUser.id === habit.user ? (
             <div>
+            {currentUser && currentUser.id === habit.user ? (
+              <>
                 <button className="habit-delete"
                         onClick={() => openConfirmHabitDeleteModal(habitId)} >
                   delete habit
@@ -52,8 +54,10 @@ class HabitShow extends React.Component {
                         onClick={() => openEditHabitModal(habitId) } >
                   Edit
                 </button>
-            </div>
+              </>
             ) : null}
+            { currentUser.id ? (<HabitLikeButton habitId={habit._id} />) : null }
+            </div>
             <p>{habit.description}</p>
           </div>
           <div className="resource-component-div">
