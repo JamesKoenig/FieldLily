@@ -13,6 +13,10 @@ class Habit extends React.Component {
     this.props.fetchHabits();
   }
 
+  componentWillUnmount() {
+      this.props.clearSearch()
+  }
+
   render() {
     const {
       habits,

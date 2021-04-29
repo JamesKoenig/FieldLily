@@ -1,13 +1,22 @@
 import { connect } from 'react-redux';
-import { fetchHabits } from '../../actions/habit_actions';
+import { fetchHabits, receiveSearch } from '../../actions/habit_actions';
 import {
   openNewHabitModal,
 } from '../../actions/modal/habit_modal_actions';
 import Habits from './habits';
 
 const mapStateToProps = (state) => {
+  let habits = Object.values(state.entities.habits.all)
+
+  let searchTerm = state.search.term
+
+  if (habits && searchTerm) {
+      habits = habits.filter(habit => habit.title && habit.title.includes(searchTerm))
+  }
+
   return {
-    habits: Object.values(state.entities.habits.all),
+    habits,
+    searchTerm,
     loggedIn: state.session.isAuthenticated,
     errors: state.errors.habit,
   };
@@ -18,6 +27,7 @@ const mapDispatchToProps = dispatch => {
     fetchHabits: () => dispatch(fetchHabits()),
     openNewHabitModal: () =>
       dispatch(openNewHabitModal()),
+    clearSearch: () => dispatch(receiveSearch(""))
   };
 };
 
