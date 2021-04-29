@@ -34,9 +34,9 @@ const entityDeleteConfirmPrompt = ({
 
   return (
     <div id="entity-delete-confirmation">
-      <h2>are you sure you want to delete {title}?</h2>
+      <h2 className="confirmation-check">are you sure you want to delete `{title}`?</h2>
       <h1 className="confirmation-warning">this cannot be undone</h1>
-      <p>
+      <p className="confirmation-check">
         if you still want to continue, please enter the {type} title below
       </p>
       <form onSubmit={handleSubmit}>
