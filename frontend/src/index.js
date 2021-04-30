@@ -10,6 +10,7 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 
 import { logout } from './actions/session_actions';
+import { handleWindowResize } from './actions/display_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -33,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore({});
   }
+
+  window.onresize = () => store.dispatch(handleWindowResize());
 
   const root = document.getElementById('root');
 

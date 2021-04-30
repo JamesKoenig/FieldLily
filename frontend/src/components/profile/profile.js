@@ -1,5 +1,4 @@
 import React from 'react';
-// import HabitBox from '../habits/habit_box';
 import "./profile.css"
 
 class Profile extends React.Component {
