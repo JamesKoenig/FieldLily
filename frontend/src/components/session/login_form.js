@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="login-form session-form" style={{"color":"#fe9e48"}}>
+          <div className="login-form session-form">
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
