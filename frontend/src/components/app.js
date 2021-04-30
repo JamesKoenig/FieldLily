@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import HabitsIndexPage from './habits/habits_page';
+import SearchBarContainer from './nav/searchbar';
+
 import Footer from './footer/footer';
 import ProfileContainer from './profile/profile_container';
 import HabitComposeContainer from './habits/habit_compose_container';
@@ -19,6 +21,7 @@ import Modal from './modal/modal_container';
 const App = () => (
   <div>
     <Modal />
+    <SearchBarContainer />
     <NavBarContainer />
     <Switch>
         <Route exact path="/" component={Main} />

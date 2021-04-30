@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../session/session.css';
+
 class ResourceForm extends React.Component {
     constructor(props) {
         super(props);
@@ -94,22 +96,20 @@ class ResourceForm extends React.Component {
             <div>
                 <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={this.update('title')} />
-                  <label>
-                    Description
-                  </label>
-                  <textarea className="text"
-                    value={description}
-                    onChange={this.update('description')} />
-                  <button>
-                    {submitText}
-                  </button>
+                  <div className="login-form session-form">
+                    <input
+                      type="text"
+                      value={title}
+                      onChange={this.update('title')}
+                      placeholder="Title" />
+                    <input className="text"
+                      value={description}
+                      onChange={this.update('description')}
+                      placeholder="Description" />
+                    <button className="session-button">
+                      {submitText}
+                    </button>
+                  </div>
                 </form>
                 {this.renderErrors()}
             </div>

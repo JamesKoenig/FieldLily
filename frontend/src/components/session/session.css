@@ -7,7 +7,13 @@
     margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
+    background-color: white;
 }
+
+input { 
+    color: #fe9e48 !important; 
+} 
+
 
 .session-form:first-child() {
     margin-top: 0;

@@ -9,10 +9,25 @@ import { RECEIVE_ALL_RESOURCES,
          RECEIVE_NEW_RESOURCE,
 } from '../../actions/resource_actions';
 
+import {
+  RECEIVE_RESOURCE_LIKE_STATUSES,
+} from '../../actions/like_actions';
+
 const allResources = (oldState = {},
-                         {type, resources, resource, resourceId}) => {
+                         {type, resources, resource, resourceId,
+                          likeStatus }) => {
     Object.freeze(oldState)
     switch (type) {
+        case RECEIVE_RESOURCE_LIKE_STATUSES: {
+          let newState = {...oldState};
+          Object.values(likeStatus).forEach( resource => {
+            let newResource = newState[resource._id];
+            newResource.liked = resource.liked;
+            newResource.totalLikes = resource.totalLikes;
+            Object.assign(newState[resource._id], { resource });
+          });
+          return newState;
+        }
         case RECEIVE_ALL_RESOURCES:
             return Object.assign({}, oldState, resources)
         case RECEIVE_RESOURCE:

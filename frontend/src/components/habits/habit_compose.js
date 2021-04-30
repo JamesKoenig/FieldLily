@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../session/session.css';
+
 class HabitCompose extends React.Component {
   constructor(props) {
       super(props);
@@ -83,9 +85,9 @@ class HabitCompose extends React.Component {
   render() {
     const { title, description } = this.props;
     return (
-        <div className="form">
+        <div>
             <form onSubmit={this.handleSubmit}>
-                <div>
+                  <div className="login-form session-form">
                     <input type="textarea"
                         value={title}
                         onChange={this.update("title")}
@@ -96,7 +98,9 @@ class HabitCompose extends React.Component {
                         onChange={this.update("description")}
                         placeholder="Habit description"
                     />
-                    <input type="submit" value="Submit" />
+                    <button className="session-button">
+                      Submit
+                    </button>
                 </div>
             </form>
             {this.renderErrors()}

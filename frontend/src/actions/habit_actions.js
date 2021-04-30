@@ -14,6 +14,7 @@ export const RECEIVE_NEW_HABIT = "RECEIVE_NEW_HABIT";
 export const RECEIVE_CURRENT_USER_HABITS = "RECEIVE_CURRENT_USER_HABITS";
 export const REMOVE_HABIT = "REMOVE_HABIT";
 export const RECEIVE_HABIT_ERRORS = "RECEIVE_HABIT_ERRORS";
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 
 export const receiveHabitErrors = errors => ({
     type: RECEIVE_HABIT_ERRORS,
@@ -46,7 +47,13 @@ export const removeHabit = habitId => ({
     habitId,
 });
 
+export const receiveSearch = term => ({
+  type:RECEIVE_SEARCH,
+  term
+})
+
 const _handleHabitErrors = err => dispatch => {
+  console.log(err);
   dispatch(receiveHabitErrors(err.response.data));
   return "fail";
 }

@@ -16,6 +16,7 @@ const mapStateToProps = ({
   return {
     resourceId,
     resource,
+    totalLikes: resource.totalLikes,
     habit: resource ? habits[resource.habit] : undefined,
     currentUser: currentUser,
   }

@@ -6,6 +6,8 @@ import HabitDeleteConfirmPrompt
   from '../habits/habit_delete_confirmation';
 import ResourceDeleteConfirmPrompt
   from "../resources/resource_delete_confirmation";
+import LogoutConfirmPrompt
+  from '../session/confirm_logout_container'
 
 const sessionModals = {
   'login': LoginForm,
@@ -19,7 +21,8 @@ const entityModals = {
 
 const confirmationModals = {
   "delete habit": HabitDeleteConfirmPrompt,
-  "delete resource": ResourceDeleteConfirmPrompt
+  "delete resource": ResourceDeleteConfirmPrompt,
+  "logout": LogoutConfirmPrompt,
 }
 
 const modalManifest = {

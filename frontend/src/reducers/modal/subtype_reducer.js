@@ -15,6 +15,7 @@ import {
 import {
   OPEN_CONFIRM_HABIT_DELETE_MODAL,
   OPEN_CONFIRM_RESOURCE_DELETE_MODAL,
+  OPEN_CONFIRM_LOGOUT_MODAL
 }
   from "../../actions/modal/confirmation_modal_actions";
 
@@ -35,6 +36,8 @@ const subtype_reducer = (state=_defaultState, { type })  => {
         return "delete habit";
       case OPEN_CONFIRM_RESOURCE_DELETE_MODAL:
         return "delete resource";
+      case OPEN_CONFIRM_LOGOUT_MODAL:
+        return "logout"
       case MODAL_CLOSED:
         return _defaultState;
       default:
