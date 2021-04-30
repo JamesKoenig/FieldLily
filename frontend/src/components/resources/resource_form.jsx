@@ -96,7 +96,7 @@ class ResourceForm extends React.Component {
             <div>
                 <h3>{heading}</h3>
                 <form onSubmit={this.handleSubmit}>
-                  <div className="login-form session-form">
+                  <div className="login-form session-form" style={{"color":"#fe9e48"}}>
                     <input
                       type="text"
                       value={title}
