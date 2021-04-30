@@ -53,6 +53,7 @@ export const receiveSearch = term => ({
 })
 
 const _handleHabitErrors = err => dispatch => {
+  console.log(err);
   dispatch(receiveHabitErrors(err.response.data));
   return "fail";
 }

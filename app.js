@@ -9,6 +9,7 @@ const path = require('path');
 const users = require("./routes/api/users");
 const habits = require("./routes/api/habits");
 const resources = require("./routes/api/resources");
+const likes = require("./routes/api/likes");
 
 
 mongoose
@@ -36,6 +37,7 @@ app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/habits", habits);
 app.use("/api/resources", resources);
+app.use("/api/likes", likes);
 
 
 const port = process.env.PORT || 5000;

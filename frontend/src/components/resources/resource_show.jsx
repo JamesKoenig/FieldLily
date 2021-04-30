@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotFoundPage from '../error-pages/not_found_page'
+import ResourceLikeButton from './resource_like_button_container';
 import './resource_show.css'
 
 class ResourceShow extends React.Component {
@@ -10,8 +11,11 @@ class ResourceShow extends React.Component {
   }
 
   render() {
-    const { 
+    const {
+      currentUser,
+      resourceId,
       resource,
+      totalLikes,
       habit,
       openEditResourceModal,
       openConfirmResourceDeleteModal,
@@ -24,16 +28,26 @@ class ResourceShow extends React.Component {
             <h1 style={{
                 'margin-bottom': '10px',
               }}>{resource.title}</h1>
-            <button className="resource-edit"
-                    onClick={openEditResourceModal}>
-              Edit
-            </button>
-            <button className="resource-delete"
-                    onClick={openConfirmResourceDeleteModal}>
-              Delete
-            </button>
-            <p>{resource.featured}</p>
-            <p>{resource.description}</p>
+           <div>
+            { currentUser && currentUser.id === habit.user ? (
+              <>
+                <button className="resource-edit"
+                        onClick={openEditResourceModal}>
+                  Edit
+                </button>
+                <button className="resource-delete"
+                        onClick={openConfirmResourceDeleteModal}>
+                  Delete
+                </button>
+              </>
+            ) : null }
+             { currentUser.id ? (
+               <ResourceLikeButton resourceId={resourceId} />
+             ) : null }
+           </div>
+             <p>liked {totalLikes} time{ totalLikes != 1 ? "s" : null }</p>
+             <p>{resource.featured}</p>
+             <p>{resource.description}</p>
 
             <Link 
               style={{

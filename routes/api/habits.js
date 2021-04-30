@@ -7,15 +7,15 @@ const {
   resFromObj,
 } = require("./utils");
 
-
 const Habit = require('../../models/Habit');
 const Resource = require('../../models/Resource');
+const Like = require('../../models/Like');
 
 router.get('/', (req, res) => {
     Habit.find()
         .sort({ date: -1 })
         .then(habits => res.json(resFromArr(habits)))
-        .catch( () => 
+        .catch( () =>
           res.status(404).json({ nohabitsfound: 'No habits found' }));
 });
 
@@ -32,17 +32,38 @@ router.get(
   }
 );
 
-router.get('/:id', (req, res) => {
-    Habit.findById(req.params.id)
-        .then(habit => res.json(resFromObj(habit)))
-        .catch( () =>
-            res.status(404)
-              .json(
-                {
-                  nohabitfound: 'No habit found with that ID'
+router.get("/:id", (req, res) => {
+  Habit.findById(req.params.id)
+    .then( habit =>
+      new Promise( (resolve,reject) => {
+        passport.authenticate('jwt', { session: false }, (err, user) => {
+          if(err) reject(err);
+          if(user) {
+            Like.findOne({ habitId: req.params.id, userId: user.id })
+              .then( like => {
+                let retVal = habit.toJSON();
+                if(like) {
+                  Object.assign(retVal, {liked: true});
+                  resolve(retVal);
+                } else {
+                  resolve(retVal);
                 }
-              )
-        );
+              })
+          } else {
+            resolve(habit.toJSON());
+          }
+        })(req)     /* passport.authenticate must be called explicitly if */
+      })            /* used like this                                     */
+    )
+    .then( habit => res.json(resFromObj(habit)))
+    .catch( err => {
+      //maybe more than 'habit not found' can go wrong here, so I'm logging
+      //here for posterity... in case that happens
+      console.log(`catch in GET /api/habits/${req.params.id}`);
+      console.log(err);
+      return res.status(404)
+          .json({ nohabitfound: 'No habit found with that ID' })
+    })
 });
 
 router.post('/',
@@ -81,7 +102,6 @@ router.post('/',
                     }
                     habit.save().then((habit) => res.json(resFromObj(habit)));
                 }
-                
             } else {
                 res.status(404).json({ nohabitfound: 'No habit with that ID' });
             }
@@ -110,9 +130,7 @@ router.put('/:id',
     }
 );
 
-
-
-router.delete("/:id",  
+router.delete("/:id",
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Habit.findById(req.params.id).then((habit) => {
@@ -124,7 +142,12 @@ router.delete("/:id",
                         if (err) {
                             res.send(err);
                         } else {
-                            habit.delete().then((habit) => res.json(resFromObj(habit)));
+                          Like.deleteMany({habitId: req.params.id})
+                            .then( () =>
+                              habit.delete())
+                            .then((habit) =>
+                                res.json(resFromObj(habit)))
+                            .catch( err => res.send(err) );
                         }
                     })
                 }
