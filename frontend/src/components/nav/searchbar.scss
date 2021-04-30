@@ -2,6 +2,7 @@
 	position: fixed;
 	height: 50px;
 	width: 100vw;
+	// box-shadow: 0 1px 0 #fe9e48;
 	z-index: 2;
 	min-width: auto;
 	top: 0;
@@ -36,7 +37,10 @@
 		
 	}
 	&__searchbar {
-		width: 12%;
+		position: absolute;
+		right: 0;
+		margin-right: 30px;
+		width: 16%;
 		margin: left;
 		&__container {
 			width: 100%;
