@@ -49,7 +49,7 @@
 .habit-show-grid {
     padding: 20px 50px;
     margin: 0 10px;
-    width: 100%;
+    width: 35%;
     border-radius: 15px;
     background-color: var(--forever-susan-dark-green);
 }

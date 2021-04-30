@@ -10,6 +10,11 @@
     background-color: white;
 }
 
+input { 
+    color: #fe9e48 !important; 
+} 
+
+
 .session-form:first-child() {
     margin-top: 0;
 }
