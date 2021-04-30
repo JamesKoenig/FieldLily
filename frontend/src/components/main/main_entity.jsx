@@ -1,16 +1,64 @@
 import React, {
   useState,
+  useEffect,
 } from 'react';
 
 const MainEntity = ({
+  windowHeight,
+  windowWidth,
+  habitId,
   habit,
 }) => {
   if(!habit) return null;
-  const [{ top, left, height, width}] = useState(
-    document.getElementById(habit._id)
-      .getBoundingClientRect()
-      .toJSON()
+  const [{ top, left, height, width, transform },setDimensions ] = useState(
+    Object.assign(
+      {},
+      document.getElementById(habitId)
+        .getBoundingClientRect()
+        .toJSON(),
+      { transform: undefined }
+    )
   );
+
+  const [ transitionEnabled, enableTransition ] = useState(false);
+
+  function setActiveDimensionsAfterDelay() {
+    setTimeout(() => {
+      const width   = windowWidth*(2/3)-180;
+      const height  = windowHeight-80;
+      const left    = 0;
+      const top     = 40;
+      setDimensions({
+        width,
+        height,
+        top,
+        left,
+        transform: `translateX(${(120+windowWidth/3)}px)`,
+      })
+    }, 100);
+  }
+
+  useEffect(() => {
+    const element = document.getElementById(habitId);
+    let dimensions = element.getBoundingClientRect().toJSON();
+
+    enableTransition(false);
+    setDimensions(
+      Object.assign(dimensions, {
+        width: dimensions.width-60,
+        left:  dimensions.left+30,
+        transform: undefined,
+      })
+    );
+    setTimeout(() => {
+      enableTransition(true);
+    },10);
+    setActiveDimensionsAfterDelay();
+  }, [habitId]);
+
+  useEffect(() => {
+    setActiveDimensionsAfterDelay();
+  }, [windowHeight,windowWidth]);
 
   const _style = {
     position: "absolute",
@@ -18,12 +66,13 @@ const MainEntity = ({
     left,
     height,
     width,
+    transform,
     backgroundColor: "blue",
-    transition: ".75s ease-in-out",
+    transition: transitionEnabled ? ".75s ease-in-out" : "none",
   }
-  console.log(_style);
   return (
-    <div style={_style}>
+    <div id="main-entity"
+         style={_style}>
       <p>{habit.title}</p>
     </div>
    );

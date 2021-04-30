@@ -9,16 +9,21 @@ const mapStateToProps = (
   },
     ui:
     { display:
-      { activeElement: _id }
+      {
+        activeElement: habitId,
+        height: windowHeight,
+        width: windowWidth,
+      }
     }
   }
 ) => {
-  if(!_id) return {};
-  const habit = allHabits[_id];
+  if(!habitId) return {};
 
   return {
-    _id,
-    habit,
+    habitId,
+    windowHeight,
+    windowWidth,
+    habit: allHabits[habitId],
   }
 }
 
