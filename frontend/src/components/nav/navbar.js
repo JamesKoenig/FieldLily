@@ -3,7 +3,6 @@ import {
   Link,
   Route,
 } from 'react-router-dom'
-import Modal from '../modal/modal_container';
 import './navbar.css';
 
 const CondLink = ({ path, label }) => (
@@ -82,7 +81,6 @@ class NavBar extends React.Component {
                { [<div key="make_room"></div>,...this.getLinks()] }
              </div>
           </div>
-          <Modal />
         </div>
       );
   }

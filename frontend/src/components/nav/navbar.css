@@ -17,7 +17,7 @@
     flex-direction: inherit;
     justify-content: space-between;
     margin: 20px 12px;
-    pointer-events: initial;
+    pointer-events: auto;
 }
 
 .navbar button {

@@ -1,4 +1,5 @@
 #modal-background {
+    z-index: 2;
     position: fixed;
     display: flex;
     justify-content: center;

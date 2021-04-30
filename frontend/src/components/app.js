@@ -14,9 +14,11 @@ import ResourcesContainer from './resources/resources_container';
 import ResourceShowContainer from './resources/resource_show_container';
 import NotFoundPage from './error-pages/not_found_page'
 import Main from './main/main_container'; 
+import Modal from './modal/modal_container';
 
 const App = () => (
   <div>
+    <Modal />
     <NavBarContainer />
     <Switch>
         <Route exact path="/" component={Main} />
