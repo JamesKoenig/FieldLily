@@ -2,6 +2,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+import HabitShow from '../habits/habit_show_container';
 
 const MainEntity = ({
   windowHeight,
@@ -67,13 +68,18 @@ const MainEntity = ({
     height,
     width,
     transform,
-    backgroundColor: "blue",
+    overflow: "hidden",
+    borderRadius: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     transition: transitionEnabled ? ".75s ease-in-out" : "none",
   }
   return (
     <div id="main-entity"
-         style={_style}>
-      <p>{habit.title}</p>
+         style={_style}
+         onClick={e => e.stopPropagation() }>
+      <HabitShow match={{params: { habitId }} } />
     </div>
    );
 }
