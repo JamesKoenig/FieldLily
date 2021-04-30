@@ -2,9 +2,10 @@
     z-index: 1;
     position: fixed;
     display: flex;
-    height: 50vh;
+    height: 100vh;
     bottom: 0;
     right: 0;
+    pointer-events: none;
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: flex-end;
@@ -16,6 +17,7 @@
     flex-direction: inherit;
     justify-content: space-between;
     margin: 20px 12px;
+    pointer-events: initial;
 }
 
 .navbar button {
@@ -65,7 +67,7 @@
     z-index: -1;
     transform: scale(1);
     right: 0;
-    max-height: 480px;
+    max-height: 640px;
 }
 
 @import "./navbar_logo_animation.css";
