@@ -5,27 +5,25 @@ import '../common-stylings/entity-index-item.css';
 
 import activeStyles from './habit_box_style';
 
-class HabitBox extends React.Component {
-  render() {
-    const {
-      title,
-      description,
-      _id,
-      isActive,
-      setSelfAsActive,
-    } = this.props;
+const HabitBox = props => {
+  const {
+    title,
+    description,
+    _id,
+    isActive,
+  } = props;
 
-    const handleClick = (e) => {
-      e.stopPropagation();
-      setSelfAsActive();
-    }
+  const handleClick = e => {
+    e.stopPropagation();
+  }
 
-      return (
-        <li style={activeStyles[isActive]}
-            id={_id}
-            onClick={handleClick}>
+    return (
+      <li style={activeStyles[isActive]}
+          id={_id}
+          onClick={handleClick}>
+          <Link style={{textDecoration: "none" }} to={`/habits/${_id}`}>
             <ul className="entity-index-box">
-              <li><h2><Link to={`/habits/${_id}`}>{title}</Link></h2></li>
+              <li><h2>{title}</h2></li>
               {/* style this so that "indent" is indented */}
               <li>
                 <p style={{marginLeft: "20px"}}>
@@ -33,9 +31,9 @@ class HabitBox extends React.Component {
                 </p>
              </li>
             </ul>
-        </li>
-    );
-  }
+          </Link>
+      </li>
+  );
 }
 
 export default HabitBox;

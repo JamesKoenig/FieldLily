@@ -6,8 +6,9 @@ import {
   detatchMain,
 } from "../../actions/display_actions";
 
-const mSTP = ({ui: {display}}) => ({
+const mSTP = ({ui: {display}}, {match: {params}}) => ({
   ...display,
+  status: Object.keys(params).length === 0 ? "dormant" : "active",
 })
 
 const mDTP = {

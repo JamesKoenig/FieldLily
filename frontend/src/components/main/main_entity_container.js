@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import MainEntity from './main_entity';
 
 const mapStateToProps = (
@@ -10,13 +11,14 @@ const mapStateToProps = (
     ui:
     { display:
       {
-        activeElement: habitId,
         height: windowHeight,
         width: windowWidth,
       }
     }
-  }
+  },
+  { match: { params } }
 ) => {
+  const { habitId } = params ? params : {};
   if(!habitId) return {};
 
   return {
@@ -27,4 +29,4 @@ const mapStateToProps = (
   }
 }
 
-export default connect(mapStateToProps)(MainEntity);
+export default withRouter(connect(mapStateToProps)(MainEntity));

@@ -22,6 +22,18 @@ class HabitShow extends React.Component {
     fetchHabitResources(habitId);
   }
 
+  componentDidUpdate({match: {params: {habitId: oldHabitId }}}) {
+    const {
+      fetchHabit,
+      fetchHabitResources,
+      match: { params: { habitId }},
+    } = this.props;
+    if(habitId !== oldHabitId) {
+      fetchHabit(habitId);
+      fetchHabitResources(habitId);
+    }
+  }
+
   render() {
     const {
       habit,
@@ -36,7 +48,8 @@ class HabitShow extends React.Component {
       return <NotFoundPage/>;
     const habitId = habit._id;
     return (
-      <div className="habit-show-grid">
+      <div className="habit-show-grid"
+           onClick={ e => e.stopPropagation() }>
         <div className="habit-show-body">
           <h1>{habit.title}</h1>
           <div>

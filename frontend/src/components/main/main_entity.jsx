@@ -2,7 +2,29 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
+
 import HabitShow from '../habits/habit_show_container';
+
+const _getElementDimensions = habitId => {
+  const element = document.getElementById(habitId);
+  if(element) {
+    return element
+            .getBoundingClientRect()
+            .toJSON();
+   } else {
+     return {
+       top: 0,
+       left: 0,
+       height: 0,
+       width: 0,
+     };
+  }
+}
 
 const MainEntity = ({
   windowHeight,
@@ -14,9 +36,7 @@ const MainEntity = ({
   const [{ top, left, height, width, transform },setDimensions ] = useState(
     Object.assign(
       {},
-      document.getElementById(habitId)
-        .getBoundingClientRect()
-        .toJSON(),
+      _getElementDimensions(habitId),
       { transform: undefined }
     )
   );
@@ -77,9 +97,10 @@ const MainEntity = ({
   }
   return (
     <div id="main-entity"
-         style={_style}
-         onClick={e => e.stopPropagation() }>
-      <HabitShow match={{params: { habitId }} } />
+         style={_style}>
+      <Switch>
+        <Route exact path="/habits/:habitId" component={HabitShow} />
+      </Switch>
     </div>
    );
 }
