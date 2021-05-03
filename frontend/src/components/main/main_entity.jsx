@@ -77,8 +77,7 @@ const MainEntity = ({
   }
   return (
     <div id="main-entity"
-         style={_style}
-         onClick={e => e.stopPropagation() }>
+         style={_style}>
       <HabitShow match={{params: { habitId }} } />
     </div>
    );
