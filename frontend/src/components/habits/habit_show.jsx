@@ -22,6 +22,18 @@ class HabitShow extends React.Component {
     fetchHabitResources(habitId);
   }
 
+  componentDidUpdate({match: {params: {habitId: oldHabitId}}}) {
+    const {
+      fetchHabit,
+      fetchHabitResources,
+      match: { params: { habitId }},
+    } = this.props;
+    if(habitId !== oldHabitId) {
+      fetchHabit(habitId);
+      fetchHabitResources(habitId);
+    }
+  }
+
   render() {
     const {
       habit,
