@@ -22,7 +22,7 @@ class HabitShow extends React.Component {
     fetchHabitResources(habitId);
   }
 
-  componentDidUpdate({match: {params: {habitId: oldHabitId }}}) {
+  componentDidUpdate({match: {params: {habitId: oldHabitId}}}) {
     const {
       fetchHabit,
       fetchHabitResources,

@@ -34,7 +34,7 @@ const mapStateToProps = (
   }
   return {
     habit,
-    totalLikes: habit.totalLikes,
+    totalLikes: habit ? habit.totalLikes : 0,
     currentUser,
     resources: habit_resources,
     errors,
