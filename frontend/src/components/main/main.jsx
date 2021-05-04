@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as stylings from './stylings';
 
@@ -10,15 +10,21 @@ const Main = ({
   width,
   status,
 }) => {
+  const [ styleState, setStyleState ] = useState("detatched");
+
+  useEffect( () => {
+    setStyleState(status);
+  }, [status]);
+
   return (
-    <Link to="/" 
+    <Link to="/"
           style={{
             cursor: "default",
             color: "inherit",
             textDecoration: "none",
           }}>
       <div style={stylings.container}>
-        <div style={stylings[status](height,width)}>
+        <div style={stylings[styleState](height,width)}>
           <HabitsContainer />
         </div>
         <MainEntity />

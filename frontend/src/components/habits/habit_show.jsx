@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ResourceIndexItem from '../resources/resource_index_item';
 import ListGroup from 'react-bootstrap/ListGroup';
 import NotFoundPage from '../error-pages/not_found_page'
@@ -49,7 +48,7 @@ class HabitShow extends React.Component {
     const habitId = habit._id;
     return (
       <div className="habit-show-grid"
-           onClick={ e => e.stopPropagation() }>
+           onClick={ e => e.preventDefault() }>
         <div className="habit-show-body">
           <h1>{habit.title}</h1>
           <div>
@@ -87,7 +86,6 @@ class HabitShow extends React.Component {
               </ListGroup>
           </section>
         </div>
-        <Link to="/" />
       </div>
     );
   }
